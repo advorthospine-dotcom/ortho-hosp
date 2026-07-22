@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes
 Route::livewire('/', 'pages::home')->name('home');
-Route::livewire('/blog', 'pages::blog')->name('blog.index');
-Route::livewire('/blog/{slug}', 'pages::blog-view')->name('blog.show');
+Route::livewire('/blogs', 'pages::blog')->name('blog');
+Route::livewire('/blogs/{slug}', 'pages::blog-view')->name('blog.view');
+Route::livewire('/services', 'pages::service')->name('services');
+Route::livewire('/services/{slug}', 'pages::service-view')->name('services.view');
 
 // Auth Routes (Guest Only)
 Route::middleware('guest')->group(function () {

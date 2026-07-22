@@ -54,25 +54,25 @@
                         <div class="px-3 py-2 border-b border-slate-100 font-bold text-xs text-slate-400 uppercase">Our 20 Services</div>
                         
                         <div class="py-1 space-y-1">
-                            <a href="{{ route('home') }}#services" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
+                            <a href="{{ route('services.view', 'trauma-and-accident-care') }}" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
                                 Trauma & Accident Care
                             </a>
-                            <a href="{{ route('home') }}#services" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
+                            <a href="{{ route('services.view', 'endoscopic-spine-surgery') }}" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
                                 Endoscopic Spine Surgery
                             </a>
-                            <a href="{{ route('home') }}#services" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
+                            <a href="{{ route('services.view', 'knee-replacement-surgery') }}" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
                                 Knee & Hip Replacement
                             </a>
-                            <a href="{{ route('home') }}#services" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
+                            <a href="{{ route('services.view', 'sports-injury-treatment') }}" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
                                 Sports Injury & Arthroscopy
                             </a>
-                            <a href="{{ route('home') }}#services" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
+                            <a href="{{ route('services.view', 'physiotherapy-and-rehabilitation') }}" @click="servicesOpen = false" class="block px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-sky-600 rounded-lg">
                                 Physiotherapy & Rehabilitation
                             </a>
                         </div>
 
                         <div class="pt-2 border-t border-slate-100">
-                            <a href="{{ route('home') }}#services" @click="servicesOpen = false" class="block text-center text-xs font-bold text-sky-600 hover:underline py-1">
+                            <a href="{{ route('services') }}" @click="servicesOpen = false" class="block text-center text-xs font-bold text-sky-600 hover:underline py-1">
                                 View All 20 Services →
                             </a>
                         </div>
@@ -81,7 +81,7 @@
 
                 <a href="{{ route('home') }}#why-choose-us" class="hover:text-sky-600 transition-colors">Why Choose Us</a>
                 <a href="{{ route('home') }}#faqs" class="hover:text-sky-600 transition-colors">FAQ</a>
-                <a href="{{ route('blog.index') }}" class="hover:text-sky-600 transition-colors {{ request()->routeIs('blog.*') ? 'text-sky-600' : '' }}">Blog</a>
+                <a href="{{ route('blog') }}" class="hover:text-sky-600 transition-colors {{ request()->routeIs('blog*') ? 'text-sky-600' : '' }}">Blog</a>
             </nav>
 
             <!-- CTA Button -->
@@ -101,10 +101,10 @@
         <!-- Mobile Navigation Menu -->
         <div x-show="mobileMenuOpen" x-transition x-cloak class="lg:hidden bg-white border-t border-slate-200 px-4 py-4 space-y-3">
             <a href="{{ route('home') }}" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Home</a>
-            <a href="{{ route('home') }}#services" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Services (20)</a>
+            <a href="{{ route('services') }}" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Services (20)</a>
             <a href="{{ route('home') }}#why-choose-us" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Why Choose Us</a>
             <a href="{{ route('home') }}#faqs" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">FAQ</a>
-            <a href="{{ route('blog.index') }}" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Blog</a>
+            <a href="{{ route('blog') }}" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Blog</a>
             <a href="{{ route('home') }}#booking" @click="mobileMenuOpen = false" class="block w-full text-center py-2.5 bg-sky-600 text-white font-bold text-xs rounded-lg">
                 Book Appointment
             </a>
