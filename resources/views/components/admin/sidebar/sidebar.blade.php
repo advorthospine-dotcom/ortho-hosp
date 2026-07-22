@@ -42,57 +42,10 @@
             <div>
                 <span class="px-3 text-[10px] font-bold text-slate-500 tracking-wider uppercase">Overview</span>
                 <div class="mt-3 space-y-1">
-                    <a href="{{ route('admin.dashboard') }}" 
+                    <a href="{{ route('admin.dashboard') }}" wire:navigate 
                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.dashboard') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
                         <i class="ri-dashboard-2-fill text-lg {{ request()->routeIs('admin.dashboard') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
                         <span>Dashboard</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Medical Operations Section -->
-            <div>
-                <span class="px-3 text-[10px] font-bold text-slate-500 tracking-wider uppercase">Clinical Operations</span>
-                <div class="mt-3 space-y-1">
-                    <a href="#" 
-                       class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all hover:text-slate-200 hover:bg-slate-900 group">
-                        <div class="flex items-center gap-3">
-                            <i class="ri-calendar-todo-fill text-lg text-slate-500 group-hover:text-slate-300"></i>
-                            <span>Appointments</span>
-                        </div>
-                        <span class="bg-sky-500/10 text-sky-400 text-xs px-2 py-0.5 rounded-full font-bold">12</span>
-                    </a>
-                    <a href="#" 
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all hover:text-slate-200 hover:bg-slate-900 group">
-                        <i class="ri-user-heart-fill text-lg text-slate-500 group-hover:text-slate-300"></i>
-                        <span>Patients</span>
-                    </a>
-                    <a href="#" 
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all hover:text-slate-200 hover:bg-slate-900 group">
-                        <i class="ri-contacts-book-3-fill text-lg text-slate-500 group-hover:text-slate-300"></i>
-                        <span>Medical Records</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Staff & Resources Section -->
-            <div>
-                <span class="px-3 text-[10px] font-bold text-slate-500 tracking-wider uppercase">Management</span>
-                <div class="mt-3 space-y-1">
-                    <a href="#" 
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all hover:text-slate-200 hover:bg-slate-900 group">
-                        <i class="ri-shield-user-fill text-lg text-slate-500 group-hover:text-slate-300"></i>
-                        <span>Doctors & Staff</span>
-                    </a>
-                    <a href="#" 
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all hover:text-slate-200 hover:bg-slate-900 group">
-                        <i class="ri-hotel-bed-fill text-lg text-slate-500 group-hover:text-slate-300"></i>
-                        <span>Bed Allotment</span>
-                    </a>
-                    <a href="#" 
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all hover:text-slate-200 hover:bg-slate-900 group">
-                        <i class="ri-file-chart-fill text-lg text-slate-500 group-hover:text-slate-300"></i>
-                        <span>Reports & Analytics</span>
                     </a>
                 </div>
             </div>
@@ -101,32 +54,20 @@
             <div>
                 <span class="px-3 text-[10px] font-bold text-slate-500 tracking-wider uppercase">Content Management</span>
                 <div class="mt-3 space-y-1">
-                    <a href="{{ route('admin.categories') }}" 
+                    <a href="{{ route('admin.categories') }}" wire:navigate 
                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.categories') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
                         <i class="ri-folders-fill text-lg {{ request()->routeIs('admin.categories') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
                         <span>Blog Categories</span>
                     </a>
-                    <a href="{{ route('admin.blogs.index') }}" 
+                    <a href="{{ route('admin.blogs.index') }}" wire:navigate 
                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.blogs.*') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
                         <i class="ri-newspaper-fill text-lg {{ request()->routeIs('admin.blogs.*') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
                         <span>Blog Posts</span>
                     </a>
-                    <a href="{{ route('admin.media.index') }}" 
+                    <a href="{{ route('admin.media.index') }}" wire:navigate 
                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.media.index') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
                         <i class="ri-image-2-fill text-lg {{ request()->routeIs('admin.media.index') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
                         <span>Media Library</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- System Settings -->
-            <div>
-                <span class="px-3 text-[10px] font-bold text-slate-500 tracking-wider uppercase">Configure</span>
-                <div class="mt-3 space-y-1">
-                    <a href="#" 
-                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all hover:text-slate-200 hover:bg-slate-900 group">
-                        <i class="ri-settings-4-fill text-lg text-slate-500 group-hover:text-slate-300"></i>
-                        <span>System Settings</span>
                     </a>
                 </div>
             </div>

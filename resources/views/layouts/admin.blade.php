@@ -17,6 +17,11 @@
     <!-- Livewire & Vite Styles -->
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- TinyMCE Editor -->
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+    <script>
+        window.tinymce.baseURL = "{{ asset('tinymce') }}";
+    </script>
 </head>
 <body class="h-full font-sans antialiased text-slate-800 bg-[#f8fafc] selection:bg-sky-600 selection:text-white"
       x-data="{ sidebarOpen: false }"
@@ -44,6 +49,8 @@
             </footer>
         </div>
     </div>
+
+    @include('components.toaster')
 
     @livewireScripts
 </body>
