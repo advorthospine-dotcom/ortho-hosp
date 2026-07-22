@@ -4,6 +4,63 @@
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Pristine Hospital Light Blue Color System */
+    --color-primary: #0284c7;          /* Medical Ocean Blue */
+    --color-primary-light: #38bdf8;    /* Bright Sky Blue */
+    --color-primary-dark: #0369a1;     /* Deep Medical Navy Blue */
+    --color-primary-surface: #f0f9ff;  /* Soft Ice Blue Surface */
+
+    --color-secondary: #0ea5e9;        /* Vibrant Sky Blue */
+    --color-secondary-light: #e0f2fe;  /* Soft Cloud Blue */
+    --color-secondary-dark: #0284c7;
+
+    --color-tertiary: #0f172a;         /* High-contrast Slate Text */
+    --color-tertiary-light: #334155;   /* Muted Body Text */
+
+    --color-emergency: #e11d48;        /* 24/7 Trauma Emergency Rose */
+    --color-emergency-hover: #be123c;
+    --color-accent-amber: #f59e0b;     /* Rating Gold */
+
+    --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
+
+[x-cloak] {
+    display: none !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Marquee Infinite Loop Keyframe */
+@keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
