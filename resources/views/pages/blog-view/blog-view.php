@@ -24,12 +24,27 @@ new #[Layout('layouts::app')] class extends Component
      */
     public function render()
     {
-        // Fetch 3 related posts from the same category
+        // Fetch 3 related posts from active blogs in same category with fallback
         $relatedBlogs = Blog::where('is_active', true)
-            ->where('category_id', $this->blog->category_id)
             ->where('id', '!=', $this->blog->id)
+            ->when($this->blog->category_id, function ($q) {
+                $q->where('category_id', $this->blog->category_id);
+            })
+            ->with(['category', 'authorUser'])
+            ->orderByDesc('id')
             ->take(3)
             ->get();
+
+        if ($relatedBlogs->count() < 3) {
+            $existingIds = $relatedBlogs->pluck('id')->push($this->blog->id);
+            $additional = Blog::where('is_active', true)
+                ->whereNotIn('id', $existingIds)
+                ->with(['category', 'authorUser'])
+                ->orderByDesc('id')
+                ->take(3 - $relatedBlogs->count())
+                ->get();
+            $relatedBlogs = $relatedBlogs->concat($additional);
+        }
 
         return view('pages.blog-view.blog-view', [
             'relatedBlogs' => $relatedBlogs,

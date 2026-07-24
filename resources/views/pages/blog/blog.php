@@ -32,16 +32,31 @@ new #[Layout('layouts::app')] #[Title('Medical Blog & Insights | Advance Orthopa
     }
 
     /**
+     * Reset all active filters.
+     */
+    public function clearFilters(): void
+    {
+        $this->search = '';
+        $this->selectedCategory = '';
+        $this->resetPage();
+    }
+
+    /**
      * Render the public blog list page.
      */
     public function render()
     {
-        // Fetch active categories that have active blogs
+        // Fetch active categories that have active blogs with count
         $categories = BlogCategory::where('is_active', true)
             ->whereHas('blogs', function ($query) {
                 $query->where('is_active', true);
             })
+            ->withCount(['blogs' => function ($query) {
+                $query->where('is_active', true);
+            }])
             ->get();
+
+        $totalBlogsCount = Blog::where('is_active', true)->count();
 
         // Query active blogs
         $blogs = Blog::query()
@@ -59,7 +74,7 @@ new #[Layout('layouts::app')] #[Title('Medical Blog & Insights | Advance Orthopa
             })
             ->with(['category', 'authorUser'])
             ->orderByDesc('id')
-            ->paginate(9);
+            ->paginate(6);
 
         // Fetch recent/popular posts for the sidebar/highlight
         $recentBlogs = Blog::query()
@@ -71,6 +86,7 @@ new #[Layout('layouts::app')] #[Title('Medical Blog & Insights | Advance Orthopa
         return view('pages.blog.blog', [
             'blogs' => $blogs,
             'categories' => $categories,
+            'totalBlogsCount' => $totalBlogsCount,
             'recentBlogs' => $recentBlogs
         ]);
     }

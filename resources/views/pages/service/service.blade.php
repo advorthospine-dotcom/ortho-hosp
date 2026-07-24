@@ -1,84 +1,160 @@
-<div class="min-h-screen bg-slate-50/50">
+<div class="min-h-screen bg-slate-50/60 pb-20">
     
     <!-- Hero Banner Header -->
-    <div class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white overflow-hidden py-20 sm:py-24 border-b border-blue-500/10">
-        <!-- Abstract Architectural Grid & Blue Glows -->
+    <div class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white overflow-hidden py-16 sm:py-20 border-b border-blue-500/10">
+        <!-- Ambient Grid Pattern & Radial Glows -->
         <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-        <div class="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl"></div>
-        <div class="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-indigo-500/10 blur-3xl"></div>
+        <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-600/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 tracking-wider uppercase">
-                <i class="ri-shield-check-line"></i> Medical Specialities
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-5">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 tracking-wider uppercase shadow-inner">
+                <i class="ri-shield-cross-fill text-blue-400"></i> Clinical Specialties & Surgical Excellence
             </span>
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight max-w-3xl mx-auto leading-tight text-white">
-                World-Class <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-200">Orthopaedic & Spine Services</span>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight max-w-4xl mx-auto leading-tight text-white">
+                World-Class <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-200">Orthopaedic & Spine Care</span>
             </h1>
-            <p class="text-blue-100/70 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-medium">
-                Advanced clinical diagnostics, robotic joint reconstructions, micro-endoscopic spine treatments, and premium rehabilitation.
+            <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-medium">
+                Comprehensive trauma response, robotic joint replacements, micro-endoscopic spine surgery, and 1-on-1 advanced physical rehabilitation.
             </p>
+
+            <!-- Search Bar inside Hero -->
+            <div class="pt-2 max-w-xl mx-auto">
+                <div class="relative flex items-center">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                        <i class="ri-search-2-line text-base text-blue-400"></i>
+                    </div>
+                    <input type="text" 
+                           wire:model.live.debounce.300ms="search" 
+                           placeholder="Search treatments, robotic knee, spine discectomy, ACL..." 
+                           class="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-sm text-white placeholder-slate-400 focus:outline-none focus:bg-white/15 focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all shadow-lg" />
+                    @if($search)
+                        <button wire:click="$set('search', '')" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-white transition-colors cursor-pointer">
+                            <i class="ri-close-circle-fill text-base"></i>
+                        </button>
+                    @endif
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Main Content Container -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         
-        <!-- Filters and Search Bar -->
-        <div class="flex flex-col lg:flex-row gap-6 justify-between items-center mb-12 bg-white border border-slate-200/60 p-4.5 rounded-2xl shadow-sm w-full">
+        <!-- Interactive Category Filter Section -->
+        <div class="mb-10 bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
+                        <i class="ri-hospital-line"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-heading font-extrabold text-slate-900 leading-none">Explore Clinical Departments</h2>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Filter procedures by medical department or surgical domain</p>
+                    </div>
+                </div>
+
+                @if($activeCategory !== 'all' || $search !== '')
+                    <button wire:click="clearFilters" 
+                            class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors cursor-pointer self-start sm:self-auto bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200/60">
+                        <i class="ri-refresh-line"></i> Reset Filters
+                    </button>
+                @endif
+            </div>
+
             <!-- Category Pills Navigation -->
-            <div class="flex flex-wrap items-center gap-2">
+            <div class="flex flex-wrap items-center gap-2.5">
                 <button wire:click="selectCategory('all')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer @if($activeCategory === 'all') bg-blue-600 text-white shadow-md shadow-blue-600/15 @else bg-slate-50 text-slate-650 hover:text-blue-600 hover:bg-slate-100 @endif">
-                    All Specialities
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'all') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                    <i class="ri-apps-2-line text-sm"></i>
+                    <span>All Specialties</span>
+                    <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'all') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
+                        {{ $this->categoryCounts['all'] ?? 0 }}
+                    </span>
                 </button>
+
                 <button wire:click="selectCategory('trauma')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer @if($activeCategory === 'trauma') bg-blue-600 text-white shadow-md shadow-blue-600/15 @else bg-slate-50 text-slate-650 hover:text-blue-600 hover:bg-slate-100 @endif">
-                    Trauma & Emergency
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'trauma') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                    <i class="ri-alarm-warning-line text-sm text-rose-500"></i>
+                    <span>Trauma & Emergency</span>
+                    <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'trauma') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
+                        {{ $this->categoryCounts['trauma'] ?? 0 }}
+                    </span>
                 </button>
+
                 <button wire:click="selectCategory('spine')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer @if($activeCategory === 'spine') bg-blue-600 text-white shadow-md shadow-blue-600/15 @else bg-slate-50 text-slate-650 hover:text-blue-600 hover:bg-slate-100 @endif">
-                    Spine & Back Care
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'spine') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                    <i class="ri-pulse-line text-sm text-sky-500"></i>
+                    <span>Spine & Back Care</span>
+                    <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'spine') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
+                        {{ $this->categoryCounts['spine'] ?? 0 }}
+                    </span>
                 </button>
+
                 <button wire:click="selectCategory('joints')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer @if($activeCategory === 'joints') bg-blue-600 text-white shadow-md shadow-blue-600/15 @else bg-slate-50 text-slate-650 hover:text-blue-600 hover:bg-slate-100 @endif">
-                    Joint Replacements
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'joints') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                    <i class="ri-robot-2-line text-sm text-blue-500"></i>
+                    <span>Joint Replacements</span>
+                    <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'joints') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
+                        {{ $this->categoryCounts['joints'] ?? 0 }}
+                    </span>
                 </button>
+
                 <button wire:click="selectCategory('sports')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer @if($activeCategory === 'sports') bg-blue-600 text-white shadow-md shadow-blue-600/15 @else bg-slate-50 text-slate-650 hover:text-blue-600 hover:bg-slate-100 @endif">
-                    Sports Medicine
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'sports') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                    <i class="ri-football-line text-sm text-indigo-500"></i>
+                    <span>Sports Medicine</span>
+                    <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'sports') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
+                        {{ $this->categoryCounts['sports'] ?? 0 }}
+                    </span>
                 </button>
+
                 <button wire:click="selectCategory('specialized')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer @if($activeCategory === 'specialized') bg-blue-600 text-white shadow-md shadow-blue-600/15 @else bg-slate-50 text-slate-650 hover:text-blue-600 hover:bg-slate-100 @endif">
-                    Specialized & Rehab
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'specialized') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                    <i class="ri-run-line text-sm text-emerald-500"></i>
+                    <span>Specialized & Rehab</span>
+                    <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'specialized') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
+                        {{ $this->categoryCounts['specialized'] ?? 0 }}
+                    </span>
                 </button>
             </div>
 
-            <!-- Search input -->
-            <div class="relative w-full lg:w-72 group">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                    <i class="ri-search-2-line text-sm"></i>
+            <!-- Active Filter Notification Bar (if active) -->
+            @if($activeCategory !== 'all' || $search !== '')
+                <div class="pt-2 flex items-center justify-between text-xs text-slate-600 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/60">
+                    <div class="flex items-center gap-2">
+                        <span class="font-semibold text-slate-700">Active View:</span>
+                        @if($activeCategory !== 'all')
+                            <span class="inline-flex items-center gap-1 font-bold text-blue-700 bg-blue-100/70 px-2.5 py-0.5 rounded-md text-[11px]">
+                                <i class="ri-folder-2-line"></i> {{ ucfirst($activeCategory) }}
+                            </span>
+                        @endif
+                        @if($search !== '')
+                            <span class="inline-flex items-center gap-1 font-bold text-amber-800 bg-amber-100/70 px-2.5 py-0.5 rounded-md text-[11px]">
+                                <i class="ri-search-line"></i> "{{ $search }}"
+                            </span>
+                        @endif
+                    </div>
+                    <span class="text-slate-400 text-[11px] font-medium hidden sm:inline">Showing {{ count($this->services) }} procedure(s)</span>
                 </div>
-                <input type="text" 
-                       wire:model.live.debounce.300ms="search" 
-                       placeholder="Search treatments, surgeries..." 
-                       class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50" />
-            </div>
+            @endif
         </div>
 
-        <!-- Services Grid -->
+        <!-- Services Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @forelse($this->services as $service)
-                <div class="bg-white border border-slate-150 rounded-2xl p-6.5 flex flex-col justify-between shadow-[0_8px_30px_rgb(0,0,0,0.015)] hover:shadow-[0_20px_40px_rgba(37,99,235,0.05)] hover:border-blue-200/60 transition-all group duration-500 relative overflow-hidden">
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6.5 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_32px_rgba(37,99,235,0.08)] hover:border-blue-200/80 transition-all duration-300 group relative overflow-hidden">
+                    
                     <div class="space-y-5">
                         
-                        <!-- Header with Category & Icon details -->
+                        <!-- Header with Category Label & Icon Box -->
                         <div class="flex items-center justify-between">
-                            <span class="text-[9px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-lg shadow-inner bg-slate-50 border border-slate-200 text-slate-500">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700">
                                 {{ $service['category_label'] }}
                             </span>
                             
-                            <!-- Icon background colors mapped dynamically -->
-                            <div class="w-10 h-10 rounded-xl flex items-center justify-center text-lg shadow-sm
+                            <!-- Dynamic Icon Box -->
+                            <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-xl shadow-sm transition-transform duration-300 group-hover:scale-110
                                 @if($service['color'] === 'rose') bg-rose-50 text-rose-600 border border-rose-100
                                 @elseif($service['color'] === 'sky') bg-sky-50 text-sky-600 border border-sky-100
                                 @elseif($service['color'] === 'blue') bg-blue-50 text-blue-600 border border-blue-100
@@ -91,42 +167,88 @@
 
                         <!-- Content Details -->
                         <div class="space-y-2">
-                            <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
-                                <a href="{{ route('services.view', $service['slug']) }}">{{ $service['title'] }}</a>
+                            <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors duration-200 leading-snug">
+                                <a href="{{ route('services.view', $service['slug']) }}">
+                                    {{ $service['title'] }}
+                                </a>
                             </h3>
-                            <p class="text-xs text-slate-500 leading-relaxed line-clamp-3">
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
                                 {{ $service['desc'] }}
                             </p>
                         </div>
 
-                        <!-- Core Features List -->
-                        <ul class="space-y-2 pt-2 border-t border-slate-50">
+                        <!-- Clinical Deliverables Checklist -->
+                        <ul class="space-y-2 pt-3 border-t border-slate-100">
                             @foreach($service['features'] as $feat)
-                                <li class="flex items-start gap-2 text-slate-600 text-[11px]">
-                                    <i class="ri-checkbox-circle-fill text-blue-500 text-xs shrink-0 mt-0.5"></i>
-                                    <span class="font-medium">{{ $feat }}</span>
+                                <li class="flex items-start gap-2 text-slate-600 text-xs">
+                                    <i class="ri-checkbox-circle-fill text-blue-600 text-xs shrink-0 mt-0.5"></i>
+                                    <span class="font-medium leading-tight">{{ $feat }}</span>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
 
                     <!-- Footer Link Button -->
-                    <div class="pt-6 shrink-0 mt-6 border-t border-slate-50 flex items-center justify-between">
-                        <span class="text-[10px] font-bold text-slate-400">{{ $service['badge'] }}</span>
-                        <a href="{{ route('services.view', $service['slug']) }}" class="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group-hover:translate-x-0.5 transition-transform">
-                            Explore Care <i class="ri-arrow-right-line"></i>
+                    <div class="pt-5 shrink-0 mt-6 border-t border-slate-100 flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{{ $service['badge'] }}</span>
+                        <a href="{{ route('services.view', $service['slug']) }}" 
+                           class="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group/link">
+                            <span>Explore Care</span>
+                            <i class="ri-arrow-right-line group-hover/link:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
+
                 </div>
             @empty
-                <div class="col-span-full py-20 text-center text-slate-400 bg-white border border-slate-200/60 rounded-2xl">
-                    <div class="flex flex-col items-center justify-center gap-3">
-                        <i class="ri-heart-pulse-fill text-5xl text-blue-600/15"></i>
-                        <span class="font-bold text-slate-700">No specialities match your query</span>
-                        <span class="text-xs text-slate-400">Try checking other category pills or modifying your search terms.</span>
+                <div class="col-span-full py-20 px-6 text-center bg-white border border-slate-200/80 rounded-2xl shadow-sm">
+                    <div class="flex flex-col items-center justify-center max-w-sm mx-auto space-y-3">
+                        <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-3xl">
+                            <i class="ri-search-eye-line"></i>
+                        </div>
+                        <h3 class="font-heading font-extrabold text-slate-800 text-base">No Specialties Match Your Query</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed">
+                            Try switching category pills or modifying your search terms.
+                        </p>
+                        <button wire:click="clearFilters" class="mt-2 px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-md transition-all cursor-pointer">
+                            View All Specialties
+                        </button>
                     </div>
                 </div>
             @endforelse
+        </div>
+
+        <!-- Hospital Accreditation & Safety Reassurance Strip -->
+        <div class="mt-16 bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-sm">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-100">
+                <div class="space-y-1 p-2">
+                    <div class="text-2xl text-blue-600 font-extrabold flex justify-center">
+                        <i class="ri-alarm-warning-fill"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-800">24/7 Level-1 Trauma</h4>
+                    <p class="text-[11px] text-slate-400">On-call emergency surgeons & OTs</p>
+                </div>
+                <div class="space-y-1 p-2 pt-4 md:pt-2">
+                    <div class="text-2xl text-blue-600 font-extrabold flex justify-center">
+                        <i class="ri-robot-2-fill"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-800">Mako® Robotic Suite</h4>
+                    <p class="text-[11px] text-slate-400">Sub-millimeter implant precision</p>
+                </div>
+                <div class="space-y-1 p-2 pt-4 md:pt-2">
+                    <div class="text-2xl text-blue-600 font-extrabold flex justify-center">
+                        <i class="ri-shield-check-fill"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-800">JCI Standard Care</h4>
+                    <p class="text-[11px] text-slate-400">Strict infection control protocols</p>
+                </div>
+                <div class="space-y-1 p-2 pt-4 md:pt-2">
+                    <div class="text-2xl text-blue-600 font-extrabold flex justify-center">
+                        <i class="ri-user-heart-fill"></i>
+                    </div>
+                    <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-800">10,000+ Procedures</h4>
+                    <p class="text-[11px] text-slate-400">High surgical success rate</p>
+                </div>
+            </div>
         </div>
 
     </div>

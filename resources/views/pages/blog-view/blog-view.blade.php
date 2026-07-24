@@ -1,66 +1,102 @@
-<div class="min-h-screen bg-slate-50/50 py-12 sm:py-16">
+<div class="min-h-screen bg-slate-50/60 py-10 sm:py-14">
     
-    <!-- Scoped style sheet override for TinyMCE output with Navy & Cobalt Blue theme -->
+    <!-- Scoped style sheet for TinyMCE HTML output with Navy & Cobalt theme -->
     <style>
-        .blog-rich-content h1, .blog-rich-content h2, .blog-rich-content h3, .blog-rich-content h4 {
+        .blog-rich-content {
+            font-family: 'Inter', sans-serif;
+            color: #334155;
+            font-size: 1.05rem;
+            line-height: 1.85;
+        }
+        .blog-rich-content h1, 
+        .blog-rich-content h2, 
+        .blog-rich-content h3, 
+        .blog-rich-content h4 {
             color: #0f172a !important;
             font-family: 'Plus Jakarta Sans', sans-serif !important;
             font-weight: 800 !important;
             line-height: 1.3 !important;
-            margin-top: 2.25rem !important;
+            letter-spacing: -0.02em !important;
+        }
+        .blog-rich-content h1 {
+            font-size: 2rem !important;
+            margin-top: 2.5rem !important;
             margin-bottom: 1.25rem !important;
         }
-        .blog-rich-content h2 { font-size: 1.6rem !important; border-b: 1px solid #e2e8f0; padding-bottom: 0.5rem; }
-        .blog-rich-content h3 { font-size: 1.3rem !important; }
+        .blog-rich-content h2 { 
+            font-size: 1.65rem !important; 
+            border-bottom: 2px solid #f1f5f9; 
+            padding-bottom: 0.6rem; 
+            margin-top: 2.5rem !important;
+            margin-bottom: 1.25rem !important;
+        }
+        .blog-rich-content h3 { 
+            font-size: 1.35rem !important; 
+            margin-top: 2rem !important;
+            margin-bottom: 1rem !important;
+        }
+        .blog-rich-content h4 { 
+            font-size: 1.15rem !important; 
+            margin-top: 1.75rem !important;
+            margin-bottom: 0.75rem !important;
+        }
         .blog-rich-content p {
-            margin-bottom: 1.5rem !important;
-            line-height: 1.8 !important;
+            margin-bottom: 1.6rem !important;
             color: #334155 !important;
-            font-size: 1rem !important;
         }
         .blog-rich-content ul {
             list-style-type: disc !important;
             margin-left: 1.75rem !important;
-            margin-bottom: 1.5rem !important;
+            margin-bottom: 1.6rem !important;
         }
         .blog-rich-content ol {
             list-style-type: decimal !important;
             margin-left: 1.75rem !important;
-            margin-bottom: 1.5rem !important;
+            margin-bottom: 1.6rem !important;
         }
         .blog-rich-content li {
-            margin-bottom: 0.6rem !important;
+            margin-bottom: 0.65rem !important;
             color: #334155 !important;
-            line-height: 1.7 !important;
+            line-height: 1.75 !important;
         }
         .blog-rich-content blockquote {
             border-left: 4px solid #2563eb !important;
-            padding: 0.75rem 1.5rem !important;
+            padding: 1.25rem 1.75rem !important;
             font-style: italic !important;
-            color: #475569 !important;
-            margin: 2rem 0 !important;
-            background-color: #eff6ff !important;
-            border-radius: 0 0.75rem 0.75rem 0;
+            color: #1e293b !important;
+            margin: 2.25rem 0 !important;
+            background-color: #f0f7ff !important;
+            border-radius: 0 1rem 1rem 0;
+            position: relative;
         }
         .blog-rich-content strong {
             color: #0f172a !important;
             font-weight: 700 !important;
         }
+        .blog-rich-content a {
+            color: #2563eb !important;
+            text-decoration: underline !important;
+            font-weight: 600 !important;
+        }
+        .blog-rich-content a:hover {
+            color: #1d4ed8 !important;
+        }
         .blog-rich-content img {
             border-radius: 1.25rem !important;
-            box-shadow: 0 10px 30px -10px rgba(37,99,235,0.08) !important;
+            box-shadow: 0 12px 32px -8px rgba(37,99,235,0.08) !important;
             margin: 2.5rem auto !important;
             max-width: 100% !important;
             height: auto !important;
+            border: 1px solid #e2e8f0;
         }
         .blog-rich-content table {
             display: block !important;
             width: 100% !important;
             overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch !important;
             border-collapse: collapse !important;
-            margin: 2rem 0 !important;
-            font-size: 0.875rem !important;
+            margin: 2.25rem 0 !important;
+            font-size: 0.9rem !important;
+            border-radius: 0.75rem;
         }
         .blog-rich-content th, .blog-rich-content td {
             border: 1px solid #e2e8f0 !important;
@@ -74,103 +110,242 @@
         }
     </style>
 
-    <!-- Main Container -->
+    <!-- Main Outer Container -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Breadcrumbs Navigation -->
-        <nav class="flex items-center gap-2.5 text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-8 shrink-0">
-            <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors">Home</a>
-            <i class="ri-arrow-right-s-line text-sm text-slate-300"></i>
-            <a href="{{ route('blog') }}" class="hover:text-blue-600 transition-colors">Insights</a>
-            <i class="ri-arrow-right-s-line text-sm text-slate-300"></i>
-            <span class="text-slate-655 truncate max-w-[200px]" title="{{ $blog->title }}">{{ $blog->title }}</span>
+        <nav class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-8 overflow-x-auto whitespace-nowrap pb-1 shrink-0">
+            <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors inline-flex items-center gap-1">
+                <i class="ri-home-4-line text-sm"></i> Home
+            </a>
+            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
+            <a href="{{ route('blog') }}" class="hover:text-blue-600 transition-colors">
+                Insights
+            </a>
+            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
+            <span class="text-blue-700 bg-blue-50 px-2 py-0.5 rounded font-bold">
+                {{ $blog->category->name }}
+            </span>
+            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
+            <span class="text-slate-600 truncate max-w-[240px]" title="{{ $blog->title }}">{{ $blog->title }}</span>
         </nav>
 
-        <!-- Main Layout Grid -->
+        <!-- Main Content Layout Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
             
-            <!-- Article Body Area (Left 2 Columns) -->
-            <article class="lg:col-span-2 bg-white border border-slate-200/60 rounded-2xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.01)] space-y-6">
-                <!-- Meta tags / Category Badge -->
-                <div class="flex items-center gap-2.5 flex-wrap">
-                    <span class="bg-blue-600 text-white text-[9px] font-extrabold tracking-widest uppercase px-2.5 py-1 rounded shadow-sm border border-blue-500/20">
-                        {{ $blog->category->name }}
-                    </span>
-                    <span class="text-slate-300 text-xs">|</span>
-                    <span class="text-slate-400 text-xs font-semibold flex items-center gap-1.5">
-                        <i class="ri-calendar-line text-blue-600"></i> {{ $blog->created_at->format('F d, Y') }}
-                    </span>
-                    <span class="text-slate-300 text-xs">•</span>
-                    <span class="text-slate-400 text-xs font-semibold flex items-center gap-1.5">
-                        <i class="ri-time-line text-blue-600"></i> {{ max(2, ceil(str_word_count(strip_tags($blog->content)) / 200)) }} min read
-                    </span>
+            <!-- Main Article Card Column (Left 2 Cols) -->
+            <main class="lg:col-span-2 bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.02)] space-y-8">
+                
+                <!-- Article Header Info -->
+                <div class="space-y-4">
+                    <!-- Meta Row: Category, Date, Reading Time -->
+                    <div class="flex items-center gap-3 flex-wrap">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 border border-blue-100 rounded-lg shadow-2xs">
+                            <i class="ri-price-tag-3-line text-blue-500 text-xs"></i>
+                            {{ $blog->category->name }}
+                        </span>
+
+                        <span class="text-slate-300 text-xs">•</span>
+
+                        <span class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
+                            <i class="ri-calendar-line text-blue-600"></i>
+                            {{ $blog->created_at->format('F d, Y') }}
+                        </span>
+
+                        <span class="text-slate-300 text-xs">•</span>
+
+                        <span class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
+                            <i class="ri-time-line text-blue-600"></i>
+                            {{ max(2, ceil(str_word_count(strip_tags($blog->content)) / 200)) }} min read
+                        </span>
+                    </div>
+
+                    <!-- Main Article Title -->
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight">
+                        {{ $blog->title }}
+                    </h1>
+
+                    <!-- Author Badge Card -->
+                    <div class="pt-2 flex items-center justify-between border-y border-slate-100 py-3.5">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex items-center justify-center text-xs font-extrabold uppercase shadow-md border-2 border-white">
+                                {{ substr($blog->authorUser->name ?? 'D', 0, 2) }}
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <p class="font-bold text-slate-800 text-sm leading-tight">{{ $blog->authorUser->name ?? 'Specialist Surgeon' }}</p>
+                                    <span class="text-blue-600 text-xs" title="Verified Medical Author"><i class="ri-verified-badge-fill"></i></span>
+                                </div>
+                                <p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mt-0.5">Clinical Faculty & Staff</p>
+                            </div>
+                        </div>
+
+                        <!-- Back Button Pill -->
+                        <a href="{{ route('blog') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-blue-600 bg-slate-100 hover:bg-slate-200/70 px-3 py-1.5 rounded-xl transition-all cursor-pointer">
+                            <i class="ri-arrow-left-line"></i> <span class="hidden sm:inline">Back to Insights</span>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Main Post Title -->
-                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-905 tracking-tight leading-tight">
-                    {{ $blog->title }}
-                </h1>
-
-                <!-- Author details tag -->
-                <div class="flex items-center gap-3.5 p-3.5 bg-slate-50 border border-slate-100 rounded-2xl max-w-fit shadow-sm">
-                    <div class="w-9 h-9 rounded-full bg-white text-blue-900 border border-slate-200 flex items-center justify-center text-xs font-bold uppercase shadow-inner">
-                        {{ substr($blog->authorUser->name ?? 'D', 0, 2) }}
-                    </div>
-                    <div class="text-xs">
-                        <p class="font-bold text-slate-800 leading-tight">{{ $blog->authorUser->name ?? 'Specialist Surgeon' }}</p>
-                        <p class="text-slate-400 text-[9px] mt-0.5 font-bold uppercase tracking-wider">Clinical Author</p>
-                    </div>
-                </div>
-
-                <!-- Main Wide Image Banner -->
+                <!-- Featured Image Banner -->
                 @if($blog->image_path)
-                    <div class="aspect-video bg-slate-100 rounded-2xl overflow-hidden border border-slate-200 shadow-inner">
-                        <img src="{{ $blog->image_url }}" alt="{{ $blog->image_alt ?? $blog->title }}" class="w-full h-full object-cover" />
+                    <div class="space-y-2">
+                        <div class="aspect-[16/9] bg-slate-100 rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm relative group">
+                            <img src="{{ $blog->image_url }}" alt="{{ $blog->image_alt ?? $blog->title }}" class="w-full h-full object-cover" />
+                        </div>
+                        @if($blog->image_alt)
+                            <p class="text-[11px] text-slate-400 italic text-center font-medium">
+                                <i class="ri-image-line"></i> {{ $blog->image_alt }}
+                            </p>
+                        @endif
                     </div>
                 @endif
 
-                <!-- Rich text Editor output -->
-                <div class="blog-rich-content">
+                <!-- Article Body Content -->
+                <div class="blog-rich-content pt-2">
                     {!! $blog->content !!}
                 </div>
-            </article>
 
-            <!-- Sidebar Info Area (Right 1 Column) -->
-            <div class="space-y-8">
-                <!-- Share Widget -->
-                <div class="bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm space-y-4"
-                     x-data="{ copied: false, shareUrl: window.location.href }">
-                    <h3 class="font-heading font-bold text-slate-800 text-sm flex items-center gap-2 border-b border-slate-50 pb-2">
-                        <i class="ri-share-forward-line text-blue-500"></i> Share Article
-                    </h3>
-                    <div class="flex flex-col gap-2">
-                        <!-- Custom copying button -->
-                        <button type="button" 
-                                @click="navigator.clipboard.writeText(shareUrl); copied = true; setTimeout(() => copied = false, 2000)"
-                                class="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl border text-xs font-bold transition-all cursor-pointer focus:outline-none"
-                                :class="copied ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-slate-50 hover:bg-slate-100 border-slate-200 text-slate-700'">
-                            <i :class="copied ? 'ri-checkbox-circle-fill text-emerald-500' : 'ri-file-copy-2-line'"></i>
-                            <span x-text="copied ? 'Link Copied!' : 'Copy Article Link'"></span>
-                        </button>
+                <!-- Medical Disclaimer Callout Box -->
+                <div class="mt-8 bg-blue-50/70 border border-blue-100 rounded-2xl p-5 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center text-lg shrink-0 shadow-sm mt-0.5">
+                        <i class="ri-shield-cross-fill"></i>
+                    </div>
+                    <div class="space-y-1 text-xs">
+                        <h4 class="font-heading font-extrabold text-blue-950">Clinical Information Disclaimer</h4>
+                        <p class="text-slate-600 leading-relaxed">
+                            This publication is authored by clinical staff at Advance Orthopaedic & Spine Center for informational purposes only. It is not a substitute for formal clinical diagnosis or personalized medical evaluation.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Related Articles list -->
-                <div class="bg-white border border-slate-200/60 rounded-2xl p-6 shadow-sm space-y-4">
-                    <h3 class="font-heading font-bold text-slate-800 text-sm flex items-center gap-2 border-b border-slate-50 pb-2">
-                        <i class="ri-git-repository-line text-blue-500"></i> Related Insights
+                <!-- Social Media Share Icons Row (Facebook, Instagram, WhatsApp, X) -->
+                <div class="pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+                     x-data="{ copied: false, shareUrl: window.location.href }">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs font-bold text-slate-700">Share Article:</span>
+                        <div class="flex items-center gap-2">
+                            <!-- Facebook -->
+                            <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl)" 
+                               target="_blank" 
+                               class="w-9 h-9 rounded-xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center text-base shadow-sm hover:scale-105 transition-all"
+                               title="Share on Facebook">
+                                <i class="ri-facebook-fill"></i>
+                            </a>
+
+                            <!-- Instagram -->
+                            <button @click="navigator.clipboard.writeText(shareUrl); copied = true; setTimeout(() => copied = false, 2000); window.open('https://www.instagram.com', '_blank')"
+                                    class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 hover:opacity-90 text-white flex items-center justify-center text-base shadow-sm hover:scale-105 transition-all cursor-pointer"
+                                    title="Copy Link & Open Instagram">
+                                <i class="ri-instagram-line"></i>
+                            </button>
+
+                            <!-- WhatsApp -->
+                            <a :href="'https://api.whatsapp.com/send?text=' + encodeURIComponent('{{ $blog->title }} - ' + shareUrl)" 
+                               target="_blank" 
+                               class="w-9 h-9 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-base shadow-sm hover:scale-105 transition-all"
+                               title="Share on WhatsApp">
+                                <i class="ri-whatsapp-fill"></i>
+                            </a>
+
+                            <!-- X (Twitter) -->
+                            <a :href="'https://twitter.com/intent/tweet?url=' + encodeURIComponent(shareUrl) + '&text=' + encodeURIComponent('{{ $blog->title }}')" 
+                               target="_blank" 
+                               class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-black text-white flex items-center justify-center text-base shadow-sm hover:scale-105 transition-all"
+                               title="Share on X">
+                                <i class="ri-twitter-x-fill"></i>
+                            </a>
+
+                            <!-- Copy Link Button -->
+                            <button @click="navigator.clipboard.writeText(shareUrl); copied = true; setTimeout(() => copied = false, 2000)" 
+                                    class="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center text-base transition-all cursor-pointer"
+                                    title="Copy Article Link">
+                                <i :class="copied ? 'ri-checkbox-circle-fill text-emerald-600' : 'ri-file-copy-2-line'"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('blog') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">
+                        <i class="ri-arrow-left-line"></i> View All Medical Insights
+                    </a>
+                </div>
+
+            </main>
+
+            <!-- Sidebar Column (Right 1 Col) -->
+            <aside class="space-y-8">
+                
+                <!-- Share Knowledge Sidebar Widget with Icons (Facebook, Instagram, WhatsApp, X) -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-4"
+                     x-data="{ copied: false, shareUrl: window.location.href }">
+                    <h3 class="font-heading font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
+                        <i class="ri-share-forward-line text-blue-600"></i> Share Knowledge
+                    </h3>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <!-- Facebook -->
+                        <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl)" 
+                           target="_blank" 
+                           class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-blue-50 hover:bg-blue-100 border border-blue-200/60 text-blue-700 text-xs font-bold transition-all">
+                            <i class="ri-facebook-circle-fill text-blue-600 text-base"></i>
+                            <span>Facebook</span>
+                        </a>
+
+                        <!-- Instagram -->
+                        <button type="button"
+                                @click="navigator.clipboard.writeText(shareUrl); copied = true; setTimeout(() => copied = false, 2000); window.open('https://www.instagram.com', '_blank')"
+                                class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200/60 text-rose-700 text-xs font-bold transition-all cursor-pointer">
+                            <i class="ri-instagram-fill text-rose-600 text-base"></i>
+                            <span>Instagram</span>
+                        </button>
+
+                        <!-- WhatsApp -->
+                        <a :href="'https://api.whatsapp.com/send?text=' + encodeURIComponent('{{ $blog->title }} - ' + shareUrl)" 
+                           target="_blank" 
+                           class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/60 text-emerald-700 text-xs font-bold transition-all">
+                            <i class="ri-whatsapp-fill text-emerald-600 text-base"></i>
+                            <span>WhatsApp</span>
+                        </a>
+
+                        <!-- X (Twitter) -->
+                        <a :href="'https://twitter.com/intent/tweet?url=' + encodeURIComponent(shareUrl) + '&text=' + encodeURIComponent('{{ $blog->title }}')" 
+                           target="_blank" 
+                           class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300/60 text-slate-900 text-xs font-bold transition-all">
+                            <i class="ri-twitter-x-fill text-slate-900 text-base"></i>
+                            <span>X (Twitter)</span>
+                        </a>
+                    </div>
+
+                    <!-- Direct Copy Button -->
+                    <button type="button" 
+                            @click="navigator.clipboard.writeText(shareUrl); copied = true; setTimeout(() => copied = false, 2000)"
+                            class="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer focus:outline-none"
+                            :class="copied ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-slate-50 hover:bg-slate-100 border-slate-200/80 text-slate-700'">
+                        <i :class="copied ? 'ri-checkbox-circle-fill text-emerald-500' : 'ri-file-copy-2-line'"></i>
+                        <span x-text="copied ? 'Link Copied to Clipboard!' : 'Copy Article Link'"></span>
+                    </button>
+                </div>
+
+                <!-- Related Insights Widget -->
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-4">
+                    <h3 class="font-heading font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
+                        <i class="ri-git-repository-line text-blue-600"></i> Related Insights
                     </h3>
                     <div class="space-y-4">
                         @forelse($relatedBlogs as $rel)
-                            <a href="{{ route('blog.view', $rel->slug) }}" class="flex gap-4 group">
-                                <div class="w-14 h-14 rounded-xl bg-slate-100 overflow-hidden shrink-0 border border-slate-200 shadow-sm">
+                            <a href="{{ route('blog.view', $rel->slug) }}" class="flex gap-3.5 group items-start">
+                                <div class="w-16 h-16 rounded-xl bg-slate-100 overflow-hidden shrink-0 border border-slate-200/80 shadow-xs relative">
                                     <img src="{{ $rel->image_url }}" alt="{{ $rel->image_alt }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 </div>
                                 <div class="min-w-0 space-y-1">
+                                    <span class="text-[9px] font-extrabold uppercase tracking-wider text-blue-600 block">
+                                        {{ $rel->category->name ?? 'Clinical' }}
+                                    </span>
                                     <h4 class="text-xs font-bold text-slate-800 leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
                                         {{ $rel->title }}
                                     </h4>
-                                    <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">{{ $rel->created_at->format('M d, Y') }}</p>
+                                    <p class="text-[10px] text-slate-400 font-medium">
+                                        {{ $rel->created_at->format('M d, Y') }}
+                                    </p>
                                 </div>
                             </a>
                         @empty
@@ -179,31 +354,28 @@
                     </div>
                 </div>
 
-                <!-- Quick Consultation CTA card -->
-                <div class="bg-gradient-to-br from-slate-900 to-blue-950 border border-blue-900 rounded-2xl p-6 shadow-xl text-white text-center relative overflow-hidden">
-                    <div class="absolute -top-20 -right-20 w-44 h-44 rounded-full bg-blue-500/20 blur-3xl"></div>
-                    <div class="absolute -bottom-20 -left-20 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl"></div>
+                <!-- Doctor Appointment CTA Widget -->
+                <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 border border-blue-900/60 rounded-2xl p-6 shadow-xl text-white text-center relative overflow-hidden">
+                    <div class="absolute -top-20 -right-20 w-44 h-44 rounded-full bg-blue-500/20 blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-20 -left-20 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"></div>
                     
-                    <div class="relative z-10 space-y-5 flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shadow-lg">
+                    <div class="relative z-10 space-y-4 flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/15 border border-blue-400/20 flex items-center justify-center text-blue-400 shadow-lg">
                             <i class="ri-calendar-check-fill text-2xl"></i>
                         </div>
                         <div class="space-y-1.5">
-                            <h4 class="font-heading font-extrabold text-sm tracking-wide text-blue-100">Need Clinical Guidance?</h4>
-                            <p class="text-xs text-blue-100/70 leading-relaxed max-w-[220px] mx-auto">Book an evaluation with our expert spine and joint reconstructive team.</p>
+                            <h4 class="font-heading font-extrabold text-sm tracking-wide text-blue-100">Need Expert Evaluation?</h4>
+                            <p class="text-xs text-slate-300 leading-relaxed max-w-[220px] mx-auto">Book an evaluation with our expert spine and joint reconstructive team.</p>
                         </div>
-                        <a href="{{ route('home') }}#booking" class="inline-flex items-center justify-center w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold text-xs rounded-xl shadow-lg shadow-blue-500/20 active:scale-[0.99] transition-all cursor-pointer">
+                        <a href="{{ route('home') }}#booking" class="inline-flex items-center justify-center w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-xs rounded-xl shadow-lg shadow-blue-600/30 active:scale-[0.99] transition-all cursor-pointer">
                             Schedule Appointment
                         </a>
                     </div>
                 </div>
 
-                <!-- Back to list button -->
-                <a href="{{ route('blog') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-blue-600 transition-colors py-2 px-1">
-                    <i class="ri-arrow-left-line"></i> Back to all articles
-                </a>
-            </div>
+            </aside>
 
         </div>
     </div>
+
 </div>

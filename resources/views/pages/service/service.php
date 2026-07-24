@@ -27,6 +27,15 @@ new #[Layout('layouts::app')] #[Title('Our Orthopaedic & Spine Services | Advanc
     }
 
     /**
+     * Reset active filters.
+     */
+    public function clearFilters(): void
+    {
+        $this->search = '';
+        $this->activeCategory = 'all';
+    }
+
+    /**
      * Get computed list of services.
      */
     #[Computed]
@@ -43,6 +52,23 @@ new #[Layout('layouts::app')] #[Title('Our Orthopaedic & Spine Services | Advanc
 
             return $matchesCategory && $matchesSearch;
         });
+    }
+
+    /**
+     * Get counts per category.
+     */
+    #[Computed]
+    public function categoryCounts(): array
+    {
+        $all = \App\Models\Service::all();
+        $counts = ['all' => count($all)];
+
+        foreach ($all as $s) {
+            $cat = $s['category'];
+            $counts[$cat] = ($counts[$cat] ?? 0) + 1;
+        }
+
+        return $counts;
     }
 
     /**
