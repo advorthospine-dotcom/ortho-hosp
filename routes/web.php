@@ -33,6 +33,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // Gallery (Upload & Modal CRUD)
     Route::livewire('/gallery', 'admin::gallery')->name('admin.gallery.index');
 
+    // Clinical Services CRUD
+    Route::livewire('/services', 'admin::service.list')->name('admin.services.index');
+
     // Settings (Hospital info, Socials, Hero Slider)
     Route::livewire('/settings', 'admin::setting')->name('admin.settings.index');
 });

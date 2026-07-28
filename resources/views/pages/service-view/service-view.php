@@ -6,14 +6,14 @@ use Livewire\Component;
 
 new #[Layout('layouts::app')] class extends Component
 {
-    public array $service = [];
+    public ?Service $service = null;
 
     /**
-     * Load the target service page.
+     * Load target service page by slug from database.
      */
     public function mount(string $slug): void
     {
-        $loaded = Service::findBySlug($slug);
+        $loaded = Service::where('slug', $slug)->where('is_active', true)->first();
 
         if (! $loaded) {
             abort(404);
@@ -27,13 +27,14 @@ new #[Layout('layouts::app')] class extends Component
      */
     public function render()
     {
-        // Load related services in the same category
-        $relatedServices = array_filter(Service::all(), function ($item) {
-            return $item['category'] === $this->service['category'] && $item['id'] !== $this->service['id'];
-        });
+        $relatedServices = Service::where('category', $this->service->category)
+            ->where('id', '!=', $this->service->id)
+            ->where('is_active', true)
+            ->take(4)
+            ->get();
 
         return view('pages.service-view.service-view', [
-            'relatedServices' => array_slice($relatedServices, 0, 4),
-        ])->title($this->service['title'].' | Advance Ortho & Spine');
+            'relatedServices' => $relatedServices,
+        ])->title($this->service->title.' | Advance Ortho & Spine');
     }
 };

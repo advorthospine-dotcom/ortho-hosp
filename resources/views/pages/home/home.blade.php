@@ -272,43 +272,76 @@
             @else
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @foreach ($this->services as $service)
-                        <div class="group bg-slate-50 hover:bg-white rounded-3xl p-7 border border-slate-200 hover:border-sky-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative">
+                        @php
+                            $title = data_get($service, 'title');
+                            $slug = data_get($service, 'slug');
+                            $desc = data_get($service, 'desc');
+                            $categoryLabel = data_get($service, 'category_label');
+                            $badge = data_get($service, 'badge', 'Specialty');
+                            $image = data_get($service, 'image') ? (str_starts_with(data_get($service, 'image'), 'http') ? data_get($service, 'image') : asset('storage/'.data_get($service, 'image'))) : data_get($service, 'image_url');
+                            $features = data_get($service, 'features', []);
+                        @endphp
+                        <div class="group bg-white rounded-3xl overflow-hidden border border-slate-200 hover:border-sky-400 hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative shadow-xs">
                             
-                            <div>
-                                <!-- Card Header Badge & Category -->
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="text-[11px] font-extrabold uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded border border-sky-100">
-                                        {{ $service['category_label'] }}
-                                    </span>
-                                    <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-white text-slate-700 border border-slate-200 shadow-xs">
-                                        {{ $service['badge'] }}
-                                    </span>
+                            <!-- Image Banner -->
+                            @if($image)
+                                <div class="aspect-16/9 bg-slate-100 relative overflow-hidden">
+                                    <a href="{{ route('services.view', $slug) }}" class="block w-full h-full">
+                                        <img src="{{ $image }}" alt="{{ $title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                    </a>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none"></div>
+                                    <div class="absolute top-3 left-3 z-10 flex items-center gap-2">
+                                        <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/90 backdrop-blur-md text-slate-800 shadow-sm">
+                                            {{ $categoryLabel }}
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
+                                <div>
+                                    @if(!$image)
+                                        <div class="flex items-center justify-between mb-4">
+                                            <span class="text-[11px] font-extrabold uppercase tracking-wider text-sky-700 bg-sky-50 px-2.5 py-1 rounded border border-sky-100">
+                                                {{ $categoryLabel }}
+                                            </span>
+                                            <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-white text-slate-700 border border-slate-200 shadow-xs">
+                                                {{ $badge }}
+                                            </span>
+                                        </div>
+                                    @endif
+
+                                    <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 group-hover:text-sky-600 transition-colors leading-snug">
+                                        <a href="{{ route('services.view', $slug) }}">
+                                            {{ $title }}
+                                        </a>
+                                    </h3>
+
+                                    <p class="text-slate-600 text-xs sm:text-sm mt-2.5 leading-relaxed line-clamp-3">
+                                        {{ $desc }}
+                                    </p>
+
+                                    @if(!empty($features))
+                                        <ul class="mt-4 space-y-2 text-xs text-slate-700 font-medium border-t border-slate-100 pt-4">
+                                            @foreach (array_slice($features, 0, 3) as $feat)
+                                                <li class="flex items-center gap-2">
+                                                    <i class="ri-checkbox-circle-fill text-sky-600 font-bold text-xs shrink-0"></i>
+                                                    <span class="line-clamp-1">{{ $feat }}</span>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                 </div>
 
-                                <h3 class="text-lg font-bold text-slate-900 group-hover:text-sky-600 transition-colors">
-                                    {{ $service['title'] }}
-                                </h3>
-
-                                <p class="text-slate-600 text-xs sm:text-sm mt-3 leading-relaxed">
-                                    {{ $service['desc'] }}
-                                </p>
-
-                                <ul class="mt-4 space-y-2 text-xs text-slate-700 font-medium border-t border-slate-200/80 pt-4">
-                                    @foreach ($service['features'] as $feat)
-                                        <li class="flex items-center gap-2">
-                                            <i class="ri-checkbox-circle-fill text-sky-600 font-bold text-sm"></i>
-                                            <span>{{ $feat }}</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                            <div class="mt-6 pt-4 border-t border-slate-200/80 flex items-center justify-between">
-                                <a href="#booking" wire:click="$set('selectedService', '{{ $service['title'] }}')" class="text-xs font-bold text-sky-600 group-hover:text-sky-700 flex items-center gap-1">
-                                    <span>Book Service Consultation</span>
-                                    <i class="ri-arrow-right-s-line text-base"></i>
-                                </a>
-                                <span class="text-[11px] font-semibold text-slate-400">OPD & Surgery</span>
+                                <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                                    <a href="{{ route('services.view', $slug) }}" class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+                                        <span>View Details</span>
+                                        <i class="ri-arrow-right-s-line text-base"></i>
+                                    </a>
+                                    <a href="#booking" wire:click="$set('selectedService', '{{ $title }}')" class="px-3 py-1.5 bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200/60 rounded-xl text-[11px] font-bold transition-colors">
+                                        Book Consultation
+                                    </a>
+                                </div>
                             </div>
 
                         </div>

@@ -41,7 +41,7 @@
     <!-- Main Full-Width Responsive Container -->
     <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-10 sm:py-14 space-y-10">
         
-        <!-- Interactive Category Filter Section (Mobile Horizontal Slider) -->
+        <!-- Category Filter Pills -->
         <div class="bg-white border border-slate-200/80 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-sm space-y-4">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div class="flex items-center gap-2">
@@ -62,7 +62,7 @@
                 @endif
             </div>
 
-            <!-- Category Pills Navigation Bar (Mobile Phone Horizontal Slider) -->
+            <!-- Category Pills Navigation Bar -->
             <div class="flex overflow-x-auto sm:flex-wrap items-center gap-2.5 pb-2 sm:pb-0 scrollbar-none [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 
                 <button wire:click="selectCategory('all')" 
@@ -120,7 +120,7 @@
                 </button>
             </div>
 
-            <!-- Active Filter Notification Bar -->
+            <!-- Active Filter Status -->
             @if($activeCategory !== 'all' || $search !== '')
                 <div class="pt-2 flex items-center justify-between text-xs text-slate-600 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/60">
                     <div class="flex items-center gap-2 flex-wrap">
@@ -144,59 +144,68 @@
         <!-- Services Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             @forelse($this->services as $service)
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_32px_rgba(37,99,235,0.08)] hover:border-blue-200/80 transition-all duration-300 group relative overflow-hidden">
+                @php
+                    $title = data_get($service, 'title');
+                    $slug = data_get($service, 'slug');
+                    $desc = data_get($service, 'desc');
+                    $categoryLabel = data_get($service, 'category_label');
+                    $color = data_get($service, 'color', 'blue');
+                    $badge = data_get($service, 'badge', 'Specialty');
+                    $image = data_get($service, 'image') ? (str_starts_with(data_get($service, 'image'), 'http') ? data_get($service, 'image') : asset('storage/'.data_get($service, 'image'))) : data_get($service, 'image_url');
+                    $features = data_get($service, 'features', []);
+                @endphp
+                
+                <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_32px_rgba(37,99,235,0.08)] hover:border-blue-200/80 transition-all duration-300 group relative">
                     
-                    <div class="space-y-5">
+                    <!-- Image Banner -->
+                    <div class="aspect-16/9 bg-slate-100 relative overflow-hidden">
+                        <img src="{{ $image }}" alt="{{ $title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
                         
-                        <!-- Header with Category Label & Icon Box -->
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 text-blue-700">
-                                {{ $service['category_label'] }}
+                        <!-- Badge overlay on top of image -->
+                        <div class="absolute top-3 left-3 z-10 flex items-center gap-2">
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white/90 backdrop-blur-md text-slate-800 shadow-sm">
+                                {{ $categoryLabel }}
                             </span>
-                            
-                            <!-- Dynamic Icon Box -->
-                            <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-xl shadow-sm transition-transform duration-300 group-hover:scale-110
-                                @if($service['color'] === 'rose') bg-rose-50 text-rose-600 border border-rose-100
-                                @elseif($service['color'] === 'sky') bg-sky-50 text-sky-600 border border-sky-100
-                                @elseif($service['color'] === 'blue') bg-blue-50 text-blue-600 border border-blue-100
-                                @elseif($service['color'] === 'indigo') bg-indigo-50 text-indigo-600 border border-indigo-100
-                                @elseif($service['color'] === 'emerald') bg-emerald-50 text-emerald-600 border border-emerald-100
-                                @else bg-slate-50 text-slate-600 border border-slate-100 @endif">
-                                <i class="{{ $service['icon'] }}"></i>
-                            </div>
                         </div>
-
-                        <!-- Content Details -->
-                        <div class="space-y-2">
-                            <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors duration-200 leading-snug">
-                                <a href="{{ route('services.view', $service['slug']) }}">
-                                    {{ $service['title'] }}
-                                </a>
-                            </h3>
-                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
-                                {{ $service['desc'] }}
-                            </p>
-                        </div>
-
-                        <!-- Clinical Deliverables Checklist -->
-                        <ul class="space-y-2 pt-3 border-t border-slate-100">
-                            @foreach($service['features'] as $feat)
-                                <li class="flex items-start gap-2 text-slate-600 text-xs">
-                                    <i class="ri-checkbox-circle-fill text-blue-600 text-xs shrink-0 mt-0.5"></i>
-                                    <span class="font-medium leading-tight">{{ $feat }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
                     </div>
 
-                    <!-- Footer Link Button -->
-                    <div class="pt-5 shrink-0 mt-6 border-t border-slate-100 flex items-center justify-between">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{{ $service['badge'] }}</span>
-                        <a href="{{ route('services.view', $service['slug']) }}" 
-                           class="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group/link">
-                            <span>Explore Care</span>
-                            <i class="ri-arrow-right-line group-hover/link:translate-x-1 transition-transform"></i>
-                        </a>
+                    <div class="p-6 space-y-5 flex-1 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <!-- Title & Description -->
+                            <div class="space-y-2">
+                                <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors duration-200 leading-snug">
+                                    <a href="{{ route('services.view', $slug) }}">
+                                        {{ $title }}
+                                    </a>
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
+                                    {{ $desc }}
+                                </p>
+                            </div>
+
+                            <!-- Clinical Deliverables Checklist -->
+                            @if(!empty($features))
+                                <ul class="space-y-2 pt-3 border-t border-slate-100">
+                                    @foreach($features as $feat)
+                                        <li class="flex items-start gap-2 text-slate-600 text-xs">
+                                            <i class="ri-checkbox-circle-fill text-blue-600 text-xs shrink-0 mt-0.5"></i>
+                                            <span class="font-medium leading-tight">{{ $feat }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        </div>
+
+                        <!-- Footer Link Button -->
+                        <div class="pt-4 shrink-0 border-t border-slate-100 flex items-center justify-between mt-4">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{{ $badge }}</span>
+                            <a href="{{ route('services.view', $slug) }}" 
+                               class="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors group/link">
+                                <span>Explore Care</span>
+                                <i class="ri-arrow-right-line group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
                     </div>
 
                 </div>

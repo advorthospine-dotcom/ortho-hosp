@@ -1,0 +1,432 @@
+<div class="space-y-6" 
+     x-data="{ 
+         serviceModalOpen: false, 
+         deleteModalOpen: false, 
+         deleteId: null 
+     }"
+     @open-service-modal.window="serviceModalOpen = true"
+     @close-service-modal.window="serviceModalOpen = false">
+
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200/80 pb-5">
+        <div>
+            <div class="flex items-center gap-2">
+                <h1 class="text-2xl font-heading font-bold text-slate-900 tracking-tight">Clinical Services Management</h1>
+                <span class="bg-sky-50 text-sky-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-sky-200/60">
+                    {{ $services->total() }} Total
+                </span>
+            </div>
+            <p class="text-slate-500 text-sm mt-1">Add, update, and organize medical treatments, robotic surgeries, and rehabilitation procedures.</p>
+        </div>
+        
+        <button @click="serviceModalOpen = true; $wire.create()" 
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.98] transition-all cursor-pointer">
+            <i class="ri-add-line text-lg"></i>
+            <span>Add New Service</span>
+        </button>
+    </div>
+
+    <!-- Filter & Search Toolbar -->
+    <div class="bg-white border border-slate-200/80 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <!-- Search input -->
+        <div class="relative flex-1 max-w-md">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                <i class="ri-search-2-line text-base"></i>
+            </div>
+            <input type="text" 
+                   wire:model.live.debounce.300ms="search" 
+                   placeholder="Search service title, slug, description..." 
+                   class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+        </div>
+
+        <!-- Category Dropdown Filter -->
+        <div class="flex items-center gap-3 shrink-0">
+            <label for="filter-category" class="text-xs font-semibold text-slate-500">Department:</label>
+            <select id="filter-category" 
+                    wire:model.live="categoryFilter" 
+                    class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-slate-50 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 cursor-pointer">
+                <option value="all">All Departments</option>
+                <option value="trauma">Trauma & Emergency</option>
+                <option value="spine">Spine & Back Care</option>
+                <option value="joints">Joint Replacements</option>
+                <option value="sports">Sports Medicine</option>
+                <option value="specialized">Specialized & Rehab</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Services Table Container -->
+    <div class="bg-white border border-slate-200/80 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+                        <th class="py-3.5 px-6">Service & Specialty</th>
+                        <th class="py-3.5 px-6">Department</th>
+                        <th class="py-3.5 px-6">Badge / Tag</th>
+                        <th class="py-3.5 px-6">Status</th>
+                        <th class="py-3.5 px-6 text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-xs">
+                    @forelse($services as $item)
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <!-- Service Thumbnail & Title -->
+                            <td class="py-4 px-6">
+                                <div class="flex items-center gap-3.5">
+                                    <div class="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center text-slate-500">
+                                        @if($item->image_url)
+                                            <img src="{{ $item->image_url }}" alt="{{ $item->title }}" class="w-full h-full object-cover" />
+                                        @else
+                                            <i class="ri-stethoscope-line text-xl"></i>
+                                        @endif
+                                    </div>
+                                    <div class="min-w-0 space-y-0.5">
+                                        <h3 class="font-semibold text-slate-900 text-sm truncate max-w-xs" title="{{ $item->title }}">
+                                            {{ $item->title }}
+                                        </h3>
+                                        <p class="text-[11px] text-slate-400 font-mono truncate max-w-xs">{{ $item->slug }}</p>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <!-- Category -->
+                            <td class="py-4 px-6">
+                                <span class="bg-sky-50 text-sky-700 font-semibold px-2.5 py-1 rounded-lg text-xs border border-sky-100 inline-block">
+                                    {{ $item->category_label ?: ucfirst($item->category) }}
+                                </span>
+                            </td>
+
+                            <!-- Badge -->
+                            <td class="py-4 px-6">
+                                <span class="bg-slate-100 text-slate-600 font-medium px-2 py-0.5 rounded text-[11px]">
+                                    {{ $item->badge ?: 'Standard Care' }}
+                                </span>
+                            </td>
+
+                            <!-- Active Status Switch -->
+                            <td class="py-4 px-6">
+                                <button type="button" 
+                                        wire:click="toggleStatus({{ $item->id }})"
+                                        class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $item->is_active ? 'bg-sky-600' : 'bg-slate-300' }}"
+                                        role="switch">
+                                    <span class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $item->is_active ? 'translate-x-4' : 'translate-x-0' }}"></span>
+                                </button>
+                            </td>
+
+                            <!-- Action Buttons -->
+                            <td class="py-4 px-6 text-right space-x-1">
+                                <button wire:click="edit({{ $item->id }})" 
+                                        class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-sky-600 transition-all cursor-pointer inline-flex"
+                                        title="Edit Service">
+                                    <i class="ri-pencil-line text-base"></i>
+                                </button>
+                                <button @click="deleteId = {{ $item->id }}; deleteModalOpen = true" 
+                                        class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-rose-600 transition-all cursor-pointer inline-flex"
+                                        title="Delete Service">
+                                    <i class="ri-delete-bin-line text-base"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="py-12 text-center text-slate-400">
+                                <div class="flex flex-col items-center justify-center gap-2">
+                                    <i class="ri-inbox-archive-line text-3xl text-slate-300"></i>
+                                    <span class="text-xs font-semibold text-slate-600">No services found</span>
+                                    <p class="text-[11px] text-slate-400">Try adjusting search or category filter</p>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        @if ($services->hasPages())
+            <div class="p-4 border-t border-slate-100">
+                {{ $services->links() }}
+            </div>
+        @endif
+    </div>
+
+    <!-- CREATE & EDIT SERVICE MODAL -->
+    <div x-show="serviceModalOpen" 
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" 
+         x-cloak
+         @keydown.escape.window="serviceModalOpen = false">
+        
+        <!-- Backdrop -->
+        <div x-show="serviceModalOpen" 
+             x-transition:enter="transition-opacity ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition-opacity ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" 
+             @click="serviceModalOpen = false">
+        </div>
+
+        <!-- Modal Box -->
+        <div x-show="serviceModalOpen" 
+             x-transition:enter="transition-transform ease-out duration-300"
+             x-transition:enter-start="scale-95 translate-y-4"
+             x-transition:enter-end="scale-100 translate-y-0"
+             x-transition:leave="transition-transform ease-in duration-200"
+             x-transition:leave-start="scale-100 translate-y-0"
+             x-transition:leave-end="scale-95 translate-y-4"
+             class="w-full max-w-3xl bg-white border border-slate-100 rounded-3xl shadow-2xl relative z-10 flex flex-col max-h-[90vh] overflow-hidden">
+            
+            <!-- Header -->
+            <div class="px-6 py-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+                <div>
+                    <h3 class="font-heading font-bold text-slate-800 text-sm">
+                        {{ $serviceId ? 'Edit Service Specialty' : 'Add New Clinical Service' }}
+                    </h3>
+                    <p class="text-[11px] text-slate-400">Configure medical treatment details, features checklist, and featured image</p>
+                </div>
+                <button @click="serviceModalOpen = false" 
+                        class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-200/50 transition-colors cursor-pointer">
+                    <i class="ri-close-line text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Form Body -->
+            <form wire:submit.prevent="save" class="flex-1 overflow-y-auto p-6 space-y-5">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Title -->
+                    <div class="space-y-1.5">
+                        <label for="srv-title" class="text-xs font-semibold text-slate-700">Service Title <span class="text-rose-500">*</span></label>
+                        <input id="srv-title" 
+                               type="text" 
+                               wire:model.live.debounce.300ms="title" 
+                               placeholder="e.g. Knee Replacement Surgery" 
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('title') border-rose-400 @enderror" 
+                               required />
+                        @error('title') <span class="text-xs font-medium text-rose-500 block">{{ $message }}</span> @enderror
+                    </div>
+
+                    <!-- Slug -->
+                    <div class="space-y-1.5">
+                        <label for="srv-slug" class="text-xs font-semibold text-slate-700">URL Slug <span class="text-rose-500">*</span></label>
+                        <input id="srv-slug" 
+                               type="text" 
+                               wire:model="slug" 
+                               placeholder="e.g. knee-replacement-surgery" 
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-mono text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('slug') border-rose-400 @enderror" 
+                               required />
+                        @error('slug') <span class="text-xs font-medium text-rose-500 block">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Department Category -->
+                    <div class="space-y-1.5">
+                        <label for="srv-category" class="text-xs font-semibold text-slate-700">Department <span class="text-rose-500">*</span></label>
+                        <select id="srv-category" 
+                                wire:model.live="category" 
+                                class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-sky-500 transition-all bg-white cursor-pointer">
+                            <option value="trauma">Trauma & Emergency</option>
+                            <option value="spine">Spine & Back Care</option>
+                            <option value="joints">Joint Replacements</option>
+                            <option value="sports">Sports Medicine</option>
+                            <option value="specialized">Specialized & Rehab</option>
+                        </select>
+                    </div>
+
+                    <!-- Category Label -->
+                    <div class="space-y-1.5">
+                        <label for="srv-catlabel" class="text-xs font-semibold text-slate-700">Category Display Label</label>
+                        <input id="srv-catlabel" 
+                               type="text" 
+                               wire:model="category_label" 
+                               placeholder="e.g. Joint Replacements" 
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 transition-all" />
+                    </div>
+
+                    <!-- Badge / Tag -->
+                    <div class="space-y-1.5">
+                        <label for="srv-badge" class="text-xs font-semibold text-slate-700">Badge Tag</label>
+                        <input id="srv-badge" 
+                               type="text" 
+                               wire:model="badge" 
+                               placeholder="e.g. Robotic & Conventional" 
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 transition-all" />
+                    </div>
+                </div>
+
+                <!-- Color Accent -->
+                <div class="space-y-1.5">
+                    <label for="srv-color" class="text-xs font-semibold text-slate-700">Color Accent Theme</label>
+                    <select id="srv-color" 
+                            wire:model="color" 
+                            class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-sky-500 transition-all bg-white cursor-pointer">
+                        <option value="rose">Rose (Emergency)</option>
+                        <option value="sky">Sky Blue (Spine)</option>
+                        <option value="blue">Blue (Joints)</option>
+                        <option value="indigo">Indigo (Sports)</option>
+                        <option value="emerald">Emerald (Specialized & Rehab)</option>
+                    </select>
+                </div>
+
+                <!-- Image Upload Box -->
+                <div class="space-y-2">
+                    <label class="text-xs font-semibold text-slate-700">Featured Service Image</label>
+                    
+                    <div class="p-4 bg-slate-50 border border-slate-200/80 rounded-2xl flex flex-col sm:flex-row items-center gap-4">
+                        <div class="w-24 h-24 rounded-2xl bg-white border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center relative shadow-sm group">
+                            @if($imageFile)
+                                <img src="{{ $imageFile->temporaryUrl() }}" class="w-full h-full object-cover" />
+                            @elseif($existingImage)
+                                <img src="{{ Str::startsWith($existingImage, 'http') ? $existingImage : asset('storage/'.$existingImage) }}" class="w-full h-full object-cover" />
+                            @else
+                                <div class="flex flex-col items-center justify-center text-slate-400 p-2 text-center">
+                                    <i class="ri-image-add-line text-2xl"></i>
+                                    <span class="text-[9px] font-semibold mt-1">No Image</span>
+                                </div>
+                            @endif
+
+                            <!-- Loading overlay during upload -->
+                            <div wire:loading wire:target="imageFile" class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center text-white">
+                                <div class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 space-y-2 w-full text-center sm:text-left">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-sm transition-all cursor-pointer">
+                                    <i class="ri-upload-2-line"></i>
+                                    <span>Choose Image File</span>
+                                    <input type="file" 
+                                           wire:model="imageFile" 
+                                           accept="image/*" 
+                                           class="hidden" />
+                                </label>
+
+                                @if($imageFile || $existingImage)
+                                    <button type="button" 
+                                            wire:click="removeImage" 
+                                            class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold border border-rose-200/60 transition-all cursor-pointer">
+                                        <i class="ri-delete-bin-line"></i> Remove Image
+                                    </button>
+                                @endif
+                            </div>
+                            <p class="text-[11px] text-slate-400">Supports JPG, PNG, WEBP files up to 10MB. Recommended resolution: 800x600 px.</p>
+                        </div>
+                    </div>
+                    @error('imageFile') <span class="text-xs font-medium text-rose-500 block">{{ $message }}</span> @enderror
+                </div>
+
+                <!-- Description -->
+                <div class="space-y-1.5">
+                    <label for="srv-desc" class="text-xs font-semibold text-slate-700">Service Description <span class="text-rose-500">*</span></label>
+                    <textarea id="srv-desc" 
+                              wire:model="desc" 
+                              rows="3" 
+                              placeholder="Enter short clinical summary of the procedure..." 
+                              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('desc') border-rose-400 @enderror"
+                              required></textarea>
+                    @error('desc') <span class="text-xs font-medium text-rose-500 block">{{ $message }}</span> @enderror
+                </div>
+
+                <!-- Features / Checklist (1 per line) -->
+                <div class="space-y-1.5">
+                    <label for="srv-features" class="text-xs font-semibold text-slate-700">Key Features / Procedures Checklist <span class="text-slate-400 font-normal">(Enter 1 item per line)</span></label>
+                    <textarea id="srv-features" 
+                              wire:model="featuresInput" 
+                              rows="3" 
+                              placeholder="3D CT Pre-Op Planning&#10;Muscle-Sparing Technique&#10;Walk within 24 Hours" 
+                              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all leading-relaxed"></textarea>
+                </div>
+
+                <!-- Active Status -->
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200/80">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-800 block">Published on Public Website</span>
+                        <span class="text-[11px] text-slate-400">Controls visibility on /services page</span>
+                    </div>
+                    <button type="button" 
+                            wire:click="$toggle('is_active')"
+                            class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $is_active ? 'bg-sky-600' : 'bg-slate-300' }}"
+                            role="switch">
+                        <span class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $is_active ? 'translate-x-4' : 'translate-x-0' }}"></span>
+                    </button>
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-2">
+                    <button type="button" 
+                            @click="serviceModalOpen = false" 
+                            class="px-4 py-2 border border-slate-200 bg-white hover:bg-slate-100 rounded-xl text-xs font-semibold text-slate-600 transition-all cursor-pointer">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="px-5 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
+                        <span wire:loading wire:target="save" class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                        <span wire:loading.remove wire:target="save"><i class="ri-save-line"></i> Save Service</span>
+                        <span wire:loading wire:target="save">Saving...</span>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- DELETE CONFIRMATION MODAL -->
+    <div x-show="deleteModalOpen" 
+         class="fixed inset-0 z-50 flex items-center justify-center p-4" 
+         x-cloak
+         @keydown.escape.window="deleteModalOpen = false">
+        
+        <!-- Backdrop -->
+        <div x-show="deleteModalOpen" 
+             x-transition:enter="transition-opacity ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="transition-opacity ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" 
+             @click="deleteModalOpen = false">
+        </div>
+
+        <!-- Dialog -->
+        <div x-show="deleteModalOpen" 
+             x-transition:enter="transition-transform ease-out duration-300"
+             x-transition:enter-start="scale-95 translate-y-4"
+             x-transition:enter-end="scale-100 translate-y-0"
+             x-transition:leave="transition-transform ease-in duration-200"
+             x-transition:leave-start="scale-100 translate-y-0"
+             x-transition:leave-end="scale-95 translate-y-4"
+             class="w-full max-w-md bg-white border border-slate-100 rounded-2xl shadow-2xl relative z-10 p-6 flex flex-col overflow-hidden">
+            
+            <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center text-rose-600 shrink-0">
+                    <i class="ri-error-warning-fill text-xl"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="font-heading font-bold text-slate-800 text-base">Delete Service</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Are you sure you want to delete this clinical service treatment permanently? This action cannot be undone.</p>
+                </div>
+            </div>
+
+            <div class="mt-6 flex items-center justify-end gap-2">
+                <button type="button" 
+                        @click="deleteModalOpen = false; deleteId = null" 
+                        class="px-4 py-2 border border-slate-200 bg-white hover:bg-slate-100 rounded-xl text-xs font-semibold text-slate-600 transition-all cursor-pointer">
+                    Cancel
+                </button>
+                <button type="button" 
+                        wire:click="delete(deleteId)"
+                        @click="deleteModalOpen = false"
+                        class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-rose-600/10 hover:shadow-rose-600/20 active:scale-[0.99] transition-all cursor-pointer">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

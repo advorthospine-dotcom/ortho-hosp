@@ -6,37 +6,37 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Layout('layouts::app')] #[Title('Advance Orthopaedic & Spine Center | World-Class Robotic Surgery & Spine Care')] class extends Component
+new #[Layout('layouts::app')] #[Title('Advance Orthopaedic & Spine Center | Super-Specialty Hospital')] class extends Component
 {
-    // Search and filter state
     public string $search = '';
 
     public string $activeCategory = 'all';
 
-    // Interactive Appointment Booking Form State
+    // Quick Consultation Booking Form State
     public string $patientName = '';
 
     public string $patientPhone = '';
 
-    public string $selectedService = 'Robotic Knee Replacement Surgery';
+    public string $selectedService = 'Trauma & Accident Care';
 
-    public string $preferredDate = '';
-
-    public string $consultationMode = 'In-Hospital Visit';
+    public string $preferredTime = 'Morning (9 AM - 12 PM)';
 
     public bool $bookingSubmitted = false;
-
-    // Interactive Symptom Checker State
-    public string $selectedBodyPart = 'spine';
 
     public function setCategory(string $category): void
     {
         $this->activeCategory = $category;
     }
 
-    public function selectBodyPart(string $part): void
+    public function selectCategory(string $category): void
     {
-        $this->selectedBodyPart = $part;
+        $this->activeCategory = $category;
+    }
+
+    public function clearFilters(): void
+    {
+        $this->search = '';
+        $this->activeCategory = 'all';
     }
 
     public function submitBooking(): void
@@ -55,19 +55,23 @@ new #[Layout('layouts::app')] #[Title('Advance Orthopaedic & Spine Center | Worl
         $this->reset(['patientName', 'patientPhone', 'bookingSubmitted']);
     }
 
+    /**
+     * Get computed list of active services from database.
+     */
     #[Computed]
-    public function services(): array
+    public function services()
     {
-        $allServices = Service::all();
-
-        return array_filter($allServices, function ($service) {
-            $matchesCategory = $this->activeCategory === 'all' || $service['category'] === $this->activeCategory;
-            $matchesSearch = empty($this->search) ||
-                stripos($service['title'], $this->search) !== false ||
-                stripos($service['desc'], $this->search) !== false ||
-                stripos($service['category_label'], $this->search) !== false;
-
-            return $matchesCategory && $matchesSearch;
-        });
+        return Service::query()
+            ->where('is_active', true)
+            ->when($this->activeCategory !== 'all', fn ($q) => $q->where('category', $this->activeCategory))
+            ->when($this->search !== '', function ($q) {
+                $q->where(function ($sub) {
+                    $sub->where('title', 'like', '%' . $this->search . '%')
+                        ->orWhere('desc', 'like', '%' . $this->search . '%')
+                        ->orWhere('category_label', 'like', '%' . $this->search . '%');
+                });
+            })
+            ->orderBy('id', 'asc')
+            ->get();
     }
 };

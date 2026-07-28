@@ -13,7 +13,7 @@ new #[Layout('layouts::app')] #[Title('Our Orthopaedic & Spine Services | Advanc
     public string $activeCategory = 'all';
 
     /**
-     * Reset filters when category selection changes.
+     * Set active department category filter.
      */
     public function selectCategory(string $category): void
     {
@@ -21,15 +21,7 @@ new #[Layout('layouts::app')] #[Title('Our Orthopaedic & Spine Services | Advanc
     }
 
     /**
-     * Reset query parameters when typing search.
-     */
-    public function updatingSearch(): void
-    {
-        // No pagination to reset, but hook present for consistency
-    }
-
-    /**
-     * Reset active filters.
+     * Reset active search and category filters.
      */
     public function clearFilters(): void
     {
@@ -38,36 +30,39 @@ new #[Layout('layouts::app')] #[Title('Our Orthopaedic & Spine Services | Advanc
     }
 
     /**
-     * Get computed list of services.
+     * Get computed list of active services from database matching search & category filters.
      */
     #[Computed]
-    public function services(): array
+    public function services()
     {
-        $allServices = Service::all();
-
-        return array_filter($allServices, function ($service) {
-            $matchesCategory = $this->activeCategory === 'all' || $service['category'] === $this->activeCategory;
-            $matchesSearch = empty($this->search) ||
-                stripos($service['title'], $this->search) !== false ||
-                stripos($service['desc'], $this->search) !== false ||
-                stripos($service['category_label'], $this->search) !== false;
-
-            return $matchesCategory && $matchesSearch;
-        });
+        return Service::query()
+            ->where('is_active', true)
+            ->when($this->activeCategory !== 'all', fn ($q) => $q->where('category', $this->activeCategory))
+            ->when($this->search !== '', function ($q) {
+                $q->where(function ($sub) {
+                    $sub->where('title', 'like', '%'.$this->search.'%')
+                        ->orWhere('desc', 'like', '%'.$this->search.'%')
+                        ->orWhere('category_label', 'like', '%'.$this->search.'%');
+                });
+            })
+            ->orderBy('id', 'asc')
+            ->get();
     }
 
     /**
-     * Get counts per category.
+     * Get total active counts per category.
      */
     #[Computed]
     public function categoryCounts(): array
     {
-        $all = Service::all();
-        $counts = ['all' => count($all)];
+        $all = Service::where('is_active', true)->get();
+        $counts = ['all' => $all->count()];
 
         foreach ($all as $s) {
-            $cat = $s['category'];
-            $counts[$cat] = ($counts[$cat] ?? 0) + 1;
+            $cat = $s->category;
+            if ($cat) {
+                $counts[$cat] = ($counts[$cat] ?? 0) + 1;
+            }
         }
 
         return $counts;

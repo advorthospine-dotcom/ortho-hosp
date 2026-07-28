@@ -74,6 +74,11 @@
                         <i class="ri-gallery-fill text-lg {{ request()->routeIs('admin.gallery.index') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
                         <span>Gallery</span>
                     </a>
+                    <a href="{{ route('admin.services.index') }}" wire:navigate 
+                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.services.*') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
+                        <i class="ri-stethoscope-fill text-lg {{ request()->routeIs('admin.services.*') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
+                        <span>Clinical Services</span>
+                    </a>
                 </div>
             </div>
 
