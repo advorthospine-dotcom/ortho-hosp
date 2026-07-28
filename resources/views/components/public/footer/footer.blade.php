@@ -53,7 +53,8 @@
                     <li><a href="{{ route('home') }}" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Home</a></li>
                     <li><a href="{{ route('services') }}" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> 20 Medical Services</a></li>
                     <li><a href="{{ route('home') }}#why-choose-us" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Why Choose Us</a></li>
-                    <li><a href="{{ route('home') }}#faqs" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> FAQ</a></li>
+                    <li><a href="{{ route('blog') }}" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Medical Blog</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Contact Us</a></li>
                     <li><a href="{{ route('home') }}#booking" class="text-sky-400 font-bold hover:underline flex items-center gap-1.5"><i class="ri-calendar-check-line text-sky-400"></i> Book Appointment</a></li>
                 </ul>
             </div>

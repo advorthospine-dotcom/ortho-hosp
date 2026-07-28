@@ -82,6 +82,7 @@
                 <a href="{{ route('home') }}#why-choose-us" class="hover:text-sky-600 transition-colors">Why Choose Us</a>
                 <a href="{{ route('home') }}#faqs" class="hover:text-sky-600 transition-colors">FAQ</a>
                 <a href="{{ route('blog') }}" class="hover:text-sky-600 transition-colors {{ request()->routeIs('blog*') ? 'text-sky-600' : '' }}">Blog</a>
+                <a href="{{ route('contact') }}" class="hover:text-sky-600 transition-colors {{ request()->routeIs('contact') ? 'text-sky-600' : '' }}">Contact</a>
             </nav>
 
             <!-- CTA Button -->
@@ -105,6 +106,7 @@
             <a href="{{ route('home') }}#why-choose-us" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Why Choose Us</a>
             <a href="{{ route('home') }}#faqs" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">FAQ</a>
             <a href="{{ route('blog') }}" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Blog</a>
+            <a href="{{ route('contact') }}" @click="mobileMenuOpen = false" class="block text-sm font-semibold text-slate-800 py-1">Contact Us</a>
             <a href="{{ route('home') }}#booking" @click="mobileMenuOpen = false" class="block w-full text-center py-2.5 bg-sky-600 text-white font-bold text-xs rounded-lg">
                 Book Appointment
             </a>

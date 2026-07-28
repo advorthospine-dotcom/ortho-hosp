@@ -58,9 +58,18 @@ new #[Layout('layouts::app')] #[Title('Medical Blog & Insights | Advance Orthopa
 
         $totalBlogsCount = Blog::where('is_active', true)->count();
 
-        // Query active blogs
+        // Get single featured blog when no search/category filter is active
+        $featuredBlog = null;
+        if ($this->search === '' && $this->selectedCategory === '') {
+            $featuredBlog = Blog::where('is_active', true)->with(['category', 'authorUser'])->orderByDesc('id')->first();
+        }
+
+        // Query active blogs grid
         $blogs = Blog::query()
             ->where('is_active', true)
+            ->when($featuredBlog && $this->search === '' && $this->selectedCategory === '', function ($query) use ($featuredBlog) {
+                $query->where('id', '!=', $featuredBlog->id);
+            })
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($q) {
                     $q->where('title', 'like', '%' . $this->search . '%')
@@ -76,18 +85,11 @@ new #[Layout('layouts::app')] #[Title('Medical Blog & Insights | Advance Orthopa
             ->orderByDesc('id')
             ->paginate(6);
 
-        // Fetch recent/popular posts for the sidebar/highlight
-        $recentBlogs = Blog::query()
-            ->where('is_active', true)
-            ->orderByDesc('id')
-            ->take(4)
-            ->get();
-
         return view('pages.blog.blog', [
             'blogs' => $blogs,
             'categories' => $categories,
             'totalBlogsCount' => $totalBlogsCount,
-            'recentBlogs' => $recentBlogs
+            'featuredBlog' => $featuredBlog,
         ]);
     }
 };

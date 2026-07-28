@@ -24,13 +24,13 @@
                     </p>
 
                     <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
-                        <a href="#services" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white font-bold text-sm rounded-2xl shadow-lg shadow-sky-600/25 hover:shadow-sky-600/40 transition-all flex items-center justify-center gap-2 group">
+                    <div class="flex flex-col sm:flex-row items-center gap-3.5 pt-2">
+                        <a href="#services" class="w-full sm:w-auto px-6 py-3 sm:py-3.5 bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-md shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center justify-center gap-2 group">
                             <span>Explore 20 Clinical Services</span>
                             <i class="ri-arrow-right-line group-hover:translate-x-1 transition-transform"></i>
                         </a>
 
-                        <a href="#why-choose-us" class="w-full sm:w-auto px-7 py-4 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm rounded-2xl border border-slate-200 hover:border-sky-300 transition-all flex items-center justify-center gap-2 shadow-xs">
+                        <a href="#why-choose-us" class="w-full sm:w-auto px-5 py-3 sm:py-3.5 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm rounded-xl border border-slate-200/90 hover:border-sky-300 transition-all flex items-center justify-center gap-2 shadow-xs">
                             <i class="ri-shield-check-fill text-sky-600"></i>
                             <span>Why Choose Us</span>
                         </a>

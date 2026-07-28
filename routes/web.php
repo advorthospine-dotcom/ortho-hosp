@@ -8,6 +8,7 @@ Route::livewire('/blogs', 'pages::blog')->name('blog');
 Route::livewire('/blogs/{slug}', 'pages::blog-view')->name('blog.view');
 Route::livewire('/services', 'pages::service')->name('services');
 Route::livewire('/services/{slug}', 'pages::service-view')->name('services.view');
+Route::livewire('/contact', 'pages::contact')->name('contact');
 
 // Auth Routes (Guest Only)
 Route::middleware('guest')->group(function () {

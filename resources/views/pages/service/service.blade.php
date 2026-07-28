@@ -1,13 +1,13 @@
 <div class="min-h-screen bg-slate-50/60 pb-20">
     
     <!-- Hero Banner Header -->
-    <div class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white overflow-hidden py-16 sm:py-20 border-b border-blue-500/10">
+    <div class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white overflow-hidden py-16 sm:py-24 border-b border-blue-500/10">
         <!-- Ambient Grid Pattern & Radial Glows -->
         <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
         <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-600/15 blur-3xl pointer-events-none"></div>
         <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-5">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10 text-center space-y-5">
             <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 tracking-wider uppercase shadow-inner">
                 <i class="ri-shield-cross-fill text-blue-400"></i> Clinical Specialties & Surgical Excellence
             </span>
@@ -38,34 +38,35 @@
         </div>
     </div>
 
-    <!-- Main Content Container -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Main Full-Width Responsive Container -->
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-10 sm:py-14 space-y-10">
         
-        <!-- Interactive Category Filter Section -->
-        <div class="mb-10 bg-white border border-slate-200/80 p-5 rounded-2xl shadow-sm space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-3">
+        <!-- Interactive Category Filter Section (Mobile Horizontal Slider) -->
+        <div class="bg-white border border-slate-200/80 p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div class="flex items-center gap-2">
                     <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
                         <i class="ri-hospital-line"></i>
                     </div>
                     <div>
-                        <h2 class="text-sm font-heading font-extrabold text-slate-900 leading-none">Explore Clinical Departments</h2>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Filter procedures by medical department or surgical domain</p>
+                        <h2 class="text-sm font-heading font-extrabold text-slate-900 leading-none">Clinical Departments</h2>
+                        <p class="text-[11px] text-slate-500 mt-0.5 hidden sm:block">Filter procedures by medical department or surgical domain</p>
                     </div>
                 </div>
 
                 @if($activeCategory !== 'all' || $search !== '')
                     <button wire:click="clearFilters" 
-                            class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors cursor-pointer self-start sm:self-auto bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200/60">
-                        <i class="ri-refresh-line"></i> Reset Filters
+                            class="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors cursor-pointer bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg border border-blue-200/60 shrink-0">
+                        <i class="ri-refresh-line"></i> Reset
                     </button>
                 @endif
             </div>
 
-            <!-- Category Pills Navigation -->
-            <div class="flex flex-wrap items-center gap-2.5">
+            <!-- Category Pills Navigation Bar (Mobile Phone Horizontal Slider) -->
+            <div class="flex overflow-x-auto sm:flex-wrap items-center gap-2.5 pb-2 sm:pb-0 scrollbar-none [::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                
                 <button wire:click="selectCategory('all')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'all') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 shrink-0 @if($activeCategory === 'all') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
                     <i class="ri-apps-2-line text-sm"></i>
                     <span>All Specialties</span>
                     <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'all') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
@@ -74,7 +75,7 @@
                 </button>
 
                 <button wire:click="selectCategory('trauma')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'trauma') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 shrink-0 @if($activeCategory === 'trauma') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
                     <i class="ri-alarm-warning-line text-sm text-rose-500"></i>
                     <span>Trauma & Emergency</span>
                     <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'trauma') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
@@ -83,7 +84,7 @@
                 </button>
 
                 <button wire:click="selectCategory('spine')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'spine') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 shrink-0 @if($activeCategory === 'spine') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
                     <i class="ri-pulse-line text-sm text-sky-500"></i>
                     <span>Spine & Back Care</span>
                     <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'spine') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
@@ -92,7 +93,7 @@
                 </button>
 
                 <button wire:click="selectCategory('joints')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'joints') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 shrink-0 @if($activeCategory === 'joints') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
                     <i class="ri-robot-2-line text-sm text-blue-500"></i>
                     <span>Joint Replacements</span>
                     <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'joints') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
@@ -101,7 +102,7 @@
                 </button>
 
                 <button wire:click="selectCategory('sports')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'sports') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 shrink-0 @if($activeCategory === 'sports') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
                     <i class="ri-football-line text-sm text-indigo-500"></i>
                     <span>Sports Medicine</span>
                     <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'sports') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
@@ -110,7 +111,7 @@
                 </button>
 
                 <button wire:click="selectCategory('specialized')" 
-                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 @if($activeCategory === 'specialized') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
+                        class="px-4 py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer inline-flex items-center gap-2 shrink-0 @if($activeCategory === 'specialized') bg-blue-600 text-white shadow-md shadow-blue-600/20 ring-2 ring-blue-600/20 @else bg-slate-100/80 hover:bg-slate-200/70 text-slate-700 hover:text-blue-600 border border-slate-200/60 @endif">
                     <i class="ri-run-line text-sm text-emerald-500"></i>
                     <span>Specialized & Rehab</span>
                     <span class="px-2 py-0.5 text-[10px] rounded-full font-semibold @if($activeCategory === 'specialized') bg-white/20 text-white @else bg-slate-200 text-slate-600 @endif">
@@ -119,11 +120,11 @@
                 </button>
             </div>
 
-            <!-- Active Filter Notification Bar (if active) -->
+            <!-- Active Filter Notification Bar -->
             @if($activeCategory !== 'all' || $search !== '')
                 <div class="pt-2 flex items-center justify-between text-xs text-slate-600 bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/60">
-                    <div class="flex items-center gap-2">
-                        <span class="font-semibold text-slate-700">Active View:</span>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="font-semibold text-slate-700 text-[11px]">Filtered:</span>
                         @if($activeCategory !== 'all')
                             <span class="inline-flex items-center gap-1 font-bold text-blue-700 bg-blue-100/70 px-2.5 py-0.5 rounded-md text-[11px]">
                                 <i class="ri-folder-2-line"></i> {{ ucfirst($activeCategory) }}
@@ -135,15 +136,15 @@
                             </span>
                         @endif
                     </div>
-                    <span class="text-slate-400 text-[11px] font-medium hidden sm:inline">Showing {{ count($this->services) }} procedure(s)</span>
+                    <span class="text-slate-400 text-[11px] font-medium hidden sm:inline">{{ count($this->services) }} procedure(s)</span>
                 </div>
             @endif
         </div>
 
         <!-- Services Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             @forelse($this->services as $service)
-                <div class="bg-white border border-slate-200/80 rounded-2xl p-6.5 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_32px_rgba(37,99,235,0.08)] hover:border-blue-200/80 transition-all duration-300 group relative overflow-hidden">
+                <div class="bg-white border border-slate-200/80 rounded-2xl p-6 flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_32px_rgba(37,99,235,0.08)] hover:border-blue-200/80 transition-all duration-300 group relative overflow-hidden">
                     
                     <div class="space-y-5">
                         
@@ -218,7 +219,7 @@
         </div>
 
         <!-- Hospital Accreditation & Safety Reassurance Strip -->
-        <div class="mt-16 bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div class="bg-white border border-slate-200/80 rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-sm">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-slate-100">
                 <div class="space-y-1 p-2">
                     <div class="text-2xl text-blue-600 font-extrabold flex justify-center">
