@@ -1,5 +1,26 @@
 <div>
-    <!-- 1. LIGHT HERO SECTION WITH MODERN IMAGE ON RIGHT SIDE -->
+    <!-- 1. LIGHT HERO SECTION WITH DYNAMIC AUTO-SLIDING CAROUSEL -->
+    @php
+        $heroTitle = setting('hero_title', 'Restoring Pain-Free Mobility & Spine Health');
+        $heroDescription = setting('hero_description', 'Sub-specialized orthopaedic excellence powered by 3D Robotic Knee Replacements, Keyhole Endoscopic Spine Surgery, and 24/7 Level-1 Trauma Emergency Care.');
+        
+        $customSliderImages = setting('hero_slider_images', []);
+        $slides = [];
+        if (!empty($customSliderImages) && is_array($customSliderImages)) {
+            foreach ($customSliderImages as $path) {
+                $slides[] = asset('storage/' . $path);
+            }
+        }
+        if (empty($slides)) {
+            $slides = [
+                '/images/modern-hero.png',
+                'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
+                'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80',
+                'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80',
+            ];
+        }
+    @endphp
+
     <section id="hero" class="relative bg-gradient-to-b from-sky-50/80 via-white to-slate-50 text-slate-900 pt-10 pb-16 lg:pt-16 lg:pb-24 border-b border-slate-200/80 overflow-hidden">
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -13,14 +34,11 @@
                     </div>
 
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-                        Restoring Pain-Free <br class="hidden sm:inline" />
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-600 via-blue-600 to-cyan-600">
-                            Mobility & Spine Health
-                        </span>
+                        {{ $heroTitle }}
                     </h1>
 
                     <p class="text-slate-600 text-base sm:text-lg max-w-2xl leading-relaxed">
-                        Sub-specialized orthopaedic excellence powered by 3D Robotic Knee Replacements, Keyhole Endoscopic Spine Surgery, and 24/7 Level-1 Trauma Emergency Care.
+                        {{ $heroDescription }}
                     </p>
 
                     <!-- CTAs -->
@@ -30,10 +48,17 @@
                             <i class="ri-arrow-right-line group-hover:translate-x-1 transition-transform"></i>
                         </a>
 
-                        <a href="#why-choose-us" class="w-full sm:w-auto px-5 py-3 sm:py-3.5 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm rounded-xl border border-slate-200/90 hover:border-sky-300 transition-all flex items-center justify-center gap-2 shadow-xs">
-                            <i class="ri-shield-check-fill text-sky-600"></i>
-                            <span>Why Choose Us</span>
-                        </a>
+                        @if(setting('whatsapp_number'))
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', setting('whatsapp_number')) }}" target="_blank" class="w-full sm:w-auto px-5 py-3 sm:py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs">
+                                <i class="ri-whatsapp-line text-lg"></i>
+                                <span>WhatsApp Consultation</span>
+                            </a>
+                        @else
+                            <a href="#why-choose-us" class="w-full sm:w-auto px-5 py-3 sm:py-3.5 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm rounded-xl border border-slate-200/90 hover:border-sky-300 transition-all flex items-center justify-center gap-2 shadow-xs">
+                                <i class="ri-shield-check-fill text-sky-600"></i>
+                                <span>Why Choose Us</span>
+                            </a>
+                        @endif
                     </div>
 
                     <!-- Quick Stats Ribbon -->
@@ -53,14 +78,77 @@
                     </div>
                 </div>
 
-                <!-- Modern Hero Image on Right Side -->
+                <!-- Modern Auto-Sliding Hero Carousel on Right Side -->
                 <div class="lg:col-span-5">
-                    <div class="relative bg-white p-3.5 rounded-3xl border border-slate-200 shadow-xl overflow-hidden group">
-                        <img src="/images/modern-hero.png" alt="Advance Orthopaedic & Spine Center" class="w-full h-auto rounded-2xl object-cover group-hover:scale-103 transition-transform duration-500">
-                        <div class="p-4 flex items-center justify-between">
+                    <div x-data="{ 
+                            activeSlide: 0, 
+                            slidesCount: {{ count($slides) }},
+                            timer: null,
+                            startTimer() {
+                                this.stopTimer();
+                                this.timer = setInterval(() => {
+                                    this.activeSlide = (this.activeSlide + 1) % this.slidesCount;
+                                }, 4000);
+                            },
+                            stopTimer() {
+                                if (this.timer) clearInterval(this.timer);
+                            }
+                         }"
+                         x-init="startTimer()"
+                         @mouseenter="stopTimer()"
+                         @mouseleave="startTimer()"
+                         class="relative bg-white p-3.5 rounded-3xl border border-slate-200 shadow-xl overflow-hidden group">
+                        
+                        <!-- Slide Window -->
+                        <div class="aspect-4/3 sm:aspect-16/10 rounded-2xl relative overflow-hidden bg-slate-900">
+                            @foreach ($slides as $index => $slideUrl)
+                                <div x-show="activeSlide === {{ $index }}"
+                                     x-transition:enter="transition ease-out duration-700 transform"
+                                     x-transition:enter-start="opacity-0 scale-105"
+                                     x-transition:enter-end="opacity-100 scale-100"
+                                     x-transition:leave="transition ease-in duration-500 transform absolute inset-0"
+                                     x-transition:leave-start="opacity-100 scale-100"
+                                     x-transition:leave-end="opacity-0 scale-95"
+                                     class="absolute inset-0 w-full h-full">
+                                    <img src="{{ $slideUrl }}" 
+                                         alt="Hospital Facility {{ $index + 1 }}" 
+                                         class="w-full h-full object-cover" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                                </div>
+                            @endforeach
+
+                            <!-- Previous Button -->
+                            @if (count($slides) > 1)
+                                <button type="button" 
+                                        @click="activeSlide = (activeSlide - 1 + slidesCount) % slidesCount"
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/50 hover:bg-sky-600 text-white flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all cursor-pointer shadow-md">
+                                    <i class="ri-arrow-left-s-line text-xl"></i>
+                                </button>
+
+                                <!-- Next Button -->
+                                <button type="button" 
+                                        @click="activeSlide = (activeSlide + 1) % slidesCount"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-slate-900/50 hover:bg-sky-600 text-white flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all cursor-pointer shadow-md">
+                                    <i class="ri-arrow-right-s-line text-xl"></i>
+                                </button>
+
+                                <!-- Indicator Dots -->
+                                <div class="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-1.5 z-10">
+                                    @foreach ($slides as $index => $slideUrl)
+                                        <button type="button" 
+                                                @click="activeSlide = {{ $index }}"
+                                                class="h-2 rounded-full transition-all duration-300 cursor-pointer"
+                                                :class="activeSlide === {{ $index }} ? 'w-6 bg-sky-500' : 'w-2 bg-white/60 hover:bg-white'"></button>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+
+                        <!-- Card Detail Footer -->
+                        <div class="p-4 flex items-center justify-between bg-white">
                             <div>
                                 <span class="text-[10px] font-extrabold uppercase tracking-widest text-sky-600 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Center of Excellence</span>
-                                <h3 class="text-sm font-bold text-slate-900 mt-1">Robotic Joint & Keyhole Spine Suite</h3>
+                                <h3 class="text-sm font-bold text-slate-900 mt-1">{{ setting('hospital_name', 'Advance Ortho & Spine Center') }}</h3>
                             </div>
                             <a href="#booking" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center gap-1">
                                 <span>Book Slot</span>

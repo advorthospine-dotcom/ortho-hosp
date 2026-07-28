@@ -15,8 +15,7 @@
                         </div>
                     </div>
                     <div>
-                        <span class="font-extrabold text-lg text-white tracking-tight">ADVANCE ORTHOPAEDIC</span>
-                        <p class="text-[10px] text-sky-400 uppercase tracking-widest font-semibold">& Spine Center</p>
+                        <span class="font-extrabold text-lg text-white tracking-tight uppercase">{{ setting('hospital_name', 'Advance Ortho & Spine Center') }}</span>
                     </div>
                 </a>
 
@@ -24,12 +23,34 @@
                     A tertiary hospital dedicated exclusively to bone, joint, spine, and musculoskeletal care. Powered by 3D Mako® Robotic Joint Replacements and 7mm Keyhole Endoscopic Spine procedures.
                 </p>
 
+                <!-- Social Icons -->
                 <div class="flex items-center gap-2 pt-1">
-                    <span class="px-2.5 py-1 bg-slate-900 text-sky-300 rounded-lg text-[11px] font-bold border border-slate-800">
+                    @if(setting('social_instagram'))
+                        <a href="{{ setting('social_instagram') }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 hover:bg-pink-600 text-slate-300 hover:text-white border border-slate-800 flex items-center justify-center transition-colors" title="Instagram">
+                            <i class="ri-instagram-line text-sm"></i>
+                        </a>
+                    @endif
+
+                    @if(setting('social_facebook'))
+                        <a href="{{ setting('social_facebook') }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 hover:bg-blue-600 text-slate-300 hover:text-white border border-slate-800 flex items-center justify-center transition-colors" title="Facebook">
+                            <i class="ri-facebook-fill text-sm"></i>
+                        </a>
+                    @endif
+
+                    @if(setting('social_x'))
+                        <a href="{{ setting('social_x') }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-800 flex items-center justify-center transition-colors" title="X (Twitter)">
+                            <i class="ri-twitter-x-line text-sm"></i>
+                        </a>
+                    @endif
+
+                    @if(setting('whatsapp_number'))
+                        <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', setting('whatsapp_number')) }}" target="_blank" class="w-8 h-8 rounded-lg bg-slate-900 hover:bg-emerald-600 text-slate-300 hover:text-white border border-slate-800 flex items-center justify-center transition-colors" title="WhatsApp">
+                            <i class="ri-whatsapp-line text-sm"></i>
+                        </a>
+                    @endif
+
+                    <span class="px-2.5 py-1 bg-slate-900 text-sky-300 rounded-lg text-[11px] font-bold border border-slate-800 ml-1">
                         JCI Accredited
-                    </span>
-                    <span class="px-2.5 py-1 bg-slate-900 text-sky-300 rounded-lg text-[11px] font-bold border border-slate-800">
-                        NABH Certified
                     </span>
                 </div>
             </div>
@@ -69,11 +90,11 @@
                     </p>
                     <p class="flex items-center gap-2 text-emerald-400 font-bold">
                         <i class="ri-phone-fill text-sm"></i>
-                        <span>Helpline: 1-800-678-4677</span>
+                        <span>Helpline: {{ setting('phone_number', '1-800-678-4677') }}</span>
                     </p>
                     <p class="flex items-center gap-2">
                         <i class="ri-mail-fill text-sky-400 text-sm"></i>
-                        <span>care@advanceorthospine.com</span>
+                        <span>{{ setting('email', 'care@advanceorthospine.com') }}</span>
                     </p>
                     <div class="pt-2 border-t border-slate-900 text-[11px] text-slate-400">
                         <p class="font-bold text-slate-300">OPD Consultation Hours:</p>

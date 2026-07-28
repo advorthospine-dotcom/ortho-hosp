@@ -6,11 +6,17 @@
             <div class="flex items-center gap-4">
                 <span>JCI & NABH Accredited Center</span>
                 <span class="text-slate-700">|</span>
-                <a href="tel:18006784677" class="text-emerald-400 font-bold hover:underline">
-                    24/7 Emergency Helpline: 1-800-ORTHO-CARE
+                <a href="tel:{{ preg_replace('/[^0-9+]/', '', setting('phone_number', '1-800-678-4677')) }}" class="text-emerald-400 font-bold hover:underline">
+                    24/7 Emergency Helpline: {{ setting('phone_number', '1-800-678-4677') }}
                 </a>
             </div>
             <div class="hidden sm:flex items-center gap-4 text-slate-400">
+                @if(setting('whatsapp_number'))
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', setting('whatsapp_number')) }}" target="_blank" class="text-emerald-400 font-semibold hover:underline flex items-center gap-1">
+                        <i class="ri-whatsapp-line text-sm"></i> WhatsApp Us
+                    </a>
+                    <span class="text-slate-700">|</span>
+                @endif
                 <a href="#booking" class="hover:text-white transition-colors">Book Appointment</a>
             </div>
         </div>
@@ -27,8 +33,7 @@
                 </div>
                 <div>
                     <div class="flex items-baseline gap-1">
-                        <span class="font-bold text-xl text-slate-900 tracking-tight">ADVANCE</span>
-                        <span class="text-xs font-bold text-sky-600 bg-sky-50 px-1.5 py-0.5 rounded">ORTHO</span>
+                        <span class="font-bold text-xl text-slate-900 tracking-tight">{{ setting('hospital_name', 'Advance Ortho & Spine Center') }}</span>
                     </div>
                     <p class="text-[11px] text-slate-500 font-medium">Orthopaedic & Spine Center</p>
                 </div>

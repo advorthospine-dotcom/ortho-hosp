@@ -35,8 +35,8 @@
                     <span class="text-[10px] font-extrabold uppercase tracking-wider text-rose-600">Emergency 24/7</span>
                     <h3 class="font-heading font-bold text-slate-900 text-sm mt-0.5">Trauma Helpline</h3>
                 </div>
-                <a href="tel:18006784677" class="text-base font-extrabold text-slate-900 hover:text-rose-600 transition-colors block">
-                    1-800-678-4677
+                <a href="tel:{{ preg_replace('/[^0-9+]/', '', setting('phone_number', '1-800-678-4677')) }}" class="text-base font-extrabold text-slate-900 hover:text-rose-600 transition-colors block">
+                    {{ setting('phone_number', '1-800-678-4677') }}
                 </a>
                 <p class="text-xs text-slate-500 leading-relaxed">Level-1 Trauma OTs and ACLS ambulance dispatch on standby 24 hours.</p>
             </div>
@@ -65,8 +65,8 @@
                     <span class="text-[10px] font-extrabold uppercase tracking-wider text-sky-600">Email Inquiries</span>
                     <h3 class="font-heading font-bold text-slate-900 text-sm mt-0.5">Patient Support Desk</h3>
                 </div>
-                <a href="mailto:care@advanceorthospine.com" class="text-xs font-bold text-slate-800 hover:text-sky-600 transition-colors block truncate" title="care@advanceorthospine.com">
-                    care@advanceorthospine.com
+                <a href="mailto:{{ setting('email', 'care@advanceorthospine.com') }}" class="text-xs font-bold text-slate-800 hover:text-sky-600 transition-colors block truncate" title="{{ setting('email', 'care@advanceorthospine.com') }}">
+                    {{ setting('email', 'care@advanceorthospine.com') }}
                 </a>
                 <p class="text-xs text-slate-500 leading-relaxed">Guaranteed response within 2 hours during OPD working shifts.</p>
             </div>
