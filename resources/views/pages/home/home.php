@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Service;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -57,7 +58,7 @@ new #[Layout('layouts::app')] #[Title('Advance Orthopaedic & Spine Center | Worl
     #[Computed]
     public function services(): array
     {
-        $allServices = \App\Models\Service::all();
+        $allServices = Service::all();
 
         return array_filter($allServices, function ($service) {
             $matchesCategory = $this->activeCategory === 'all' || $service['category'] === $this->activeCategory;

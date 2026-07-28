@@ -42,8 +42,8 @@ new #[Layout('layouts::admin')] #[Title('Blog Posts | Admin')] class extends Com
     {
         $blogs = Blog::query()
             ->when($this->search !== '', function ($query) {
-                $query->where('title', 'like', '%' . $this->search . '%')
-                      ->orWhere('content', 'like', '%' . $this->search . '%');
+                $query->where('title', 'like', '%'.$this->search.'%')
+                    ->orWhere('content', 'like', '%'.$this->search.'%');
             })
             ->with('category')
             ->orderByDesc('id')

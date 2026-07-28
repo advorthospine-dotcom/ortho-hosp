@@ -69,6 +69,23 @@
                         <i class="ri-image-2-fill text-lg {{ request()->routeIs('admin.media.index') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
                         <span>Media Library</span>
                     </a>
+                    <a href="{{ route('admin.gallery.index') }}" wire:navigate 
+                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.gallery.index') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
+                        <i class="ri-gallery-fill text-lg {{ request()->routeIs('admin.gallery.index') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
+                        <span>Gallery</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Configuration Section -->
+            <div>
+                <span class="px-3 text-[10px] font-bold text-slate-500 tracking-wider uppercase">Configuration</span>
+                <div class="mt-3 space-y-1">
+                    <a href="{{ route('admin.settings.index') }}" wire:navigate 
+                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.settings.*') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
+                        <i class="ri-settings-4-fill text-lg {{ request()->routeIs('admin.settings.*') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
+                        <span>Settings</span>
+                    </a>
                 </div>
             </div>
         </nav>

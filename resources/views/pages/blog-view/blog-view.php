@@ -48,6 +48,6 @@ new #[Layout('layouts::app')] class extends Component
 
         return view('pages.blog-view.blog-view', [
             'relatedBlogs' => $relatedBlogs,
-        ])->title(($this->blog->meta_title ?: $this->blog->title) . ' | Advance Ortho & Spine');
+        ])->title(($this->blog->meta_title ?: $this->blog->title).' | Advance Ortho & Spine');
     }
 };

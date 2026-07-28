@@ -16,18 +16,25 @@ new #[Layout('layouts::admin')] #[Title('Edit Blog Post | Admin')] class extends
 
     // Fields
     public string $title = '';
+
     public string $slug = '';
+
     public ?int $category_id = null;
+
     public string $content = '';
+
     public bool $is_active = true;
-    
+
     // File upload
     public $image;
+
     public string $image_alt = '';
 
     // SEO Meta
     public string $meta_title = '';
+
     public string $meta_description = '';
+
     public string $meta_keywords = '';
 
     /**
@@ -36,7 +43,7 @@ new #[Layout('layouts::admin')] #[Title('Edit Blog Post | Admin')] class extends
     public function mount(int $id): void
     {
         $this->blog = Blog::findOrFail($id);
-        
+
         $this->title = $this->blog->title;
         $this->slug = $this->blog->slug;
         $this->category_id = $this->blog->category_id;
@@ -63,7 +70,7 @@ new #[Layout('layouts::admin')] #[Title('Edit Blog Post | Admin')] class extends
     {
         $validated = $this->validate([
             'title' => 'required|max:255',
-            'slug' => 'required|max:255|unique:blogs,slug,' . $this->blog->id,
+            'slug' => 'required|max:255|unique:blogs,slug,'.$this->blog->id,
             'category_id' => 'required|exists:blog_categories,id',
             'content' => 'required|min:10',
             'is_active' => 'required|boolean',
@@ -85,7 +92,7 @@ new #[Layout('layouts::admin')] #[Title('Edit Blog Post | Admin')] class extends
         $this->blog->update($validated);
 
         session()->flash('toast-message', 'Blog post updated successfully!');
-        
+
         return redirect()->route('admin.blogs.index');
     }
 

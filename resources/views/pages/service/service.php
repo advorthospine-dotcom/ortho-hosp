@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Service;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -8,6 +9,7 @@ use Livewire\Component;
 new #[Layout('layouts::app')] #[Title('Our Orthopaedic & Spine Services | Advance Center')] class extends Component
 {
     public string $search = '';
+
     public string $activeCategory = 'all';
 
     /**
@@ -41,7 +43,7 @@ new #[Layout('layouts::app')] #[Title('Our Orthopaedic & Spine Services | Advanc
     #[Computed]
     public function services(): array
     {
-        $allServices = \App\Models\Service::all();
+        $allServices = Service::all();
 
         return array_filter($allServices, function ($service) {
             $matchesCategory = $this->activeCategory === 'all' || $service['category'] === $this->activeCategory;
@@ -60,7 +62,7 @@ new #[Layout('layouts::app')] #[Title('Our Orthopaedic & Spine Services | Advanc
     #[Computed]
     public function categoryCounts(): array
     {
-        $all = \App\Models\Service::all();
+        $all = Service::all();
         $counts = ['all' => count($all)];
 
         foreach ($all as $s) {

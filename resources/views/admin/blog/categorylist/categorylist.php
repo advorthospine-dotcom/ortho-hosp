@@ -15,7 +15,9 @@ new #[Layout('layouts::admin')] #[Title('Blog Categories | Admin')] class extend
 
     // Form fields
     public ?int $categoryId = null;
+
     public string $name = '';
+
     public string $slug = '';
 
     // Listeners or search reset
@@ -59,7 +61,7 @@ new #[Layout('layouts::admin')] #[Title('Blog Categories | Admin')] class extend
     {
         $validated = $this->validate([
             'name' => 'required|min:2|max:255',
-            'slug' => 'required|max:255|unique:blog_categories,slug,' . ($this->categoryId ?? 'NULL') . ',id',
+            'slug' => 'required|max:255|unique:blog_categories,slug,'.($this->categoryId ?? 'NULL').',id',
         ]);
 
         BlogCategory::updateOrCreate(
@@ -68,7 +70,7 @@ new #[Layout('layouts::admin')] #[Title('Blog Categories | Admin')] class extend
         );
 
         $this->dispatch('close-category-modal');
-        
+
         $this->dispatch('toast-show', [
             'message' => $this->categoryId ? 'Category updated successfully!' : 'Category created successfully!',
             'type' => 'success',
@@ -84,7 +86,7 @@ new #[Layout('layouts::admin')] #[Title('Blog Categories | Admin')] class extend
     public function edit(int $id): void
     {
         $this->resetValidation();
-        
+
         $category = BlogCategory::findOrFail($id);
         $this->categoryId = $category->id;
         $this->name = $category->name;
@@ -115,8 +117,8 @@ new #[Layout('layouts::admin')] #[Title('Blog Categories | Admin')] class extend
     {
         $categories = BlogCategory::query()
             ->when($this->search !== '', function ($query) {
-                $query->where('name', 'like', '%' . $this->search . '%')
-                      ->orWhere('slug', 'like', '%' . $this->search . '%');
+                $query->where('name', 'like', '%'.$this->search.'%')
+                    ->orWhere('slug', 'like', '%'.$this->search.'%');
             })
             ->withCount('blogs')
             ->orderBy('name')

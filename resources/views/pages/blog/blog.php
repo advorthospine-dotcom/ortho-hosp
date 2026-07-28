@@ -12,6 +12,7 @@ new #[Layout('layouts::app')] #[Title('Medical Blog & Insights | Advance Orthopa
     use WithPagination;
 
     public string $search = '';
+
     public string $selectedCategory = '';
 
     /**
@@ -72,8 +73,8 @@ new #[Layout('layouts::app')] #[Title('Medical Blog & Insights | Advance Orthopa
             })
             ->when($this->search !== '', function ($query) {
                 $query->where(function ($q) {
-                    $q->where('title', 'like', '%' . $this->search . '%')
-                      ->orWhere('content', 'like', '%' . $this->search . '%');
+                    $q->where('title', 'like', '%'.$this->search.'%')
+                        ->orWhere('content', 'like', '%'.$this->search.'%');
                 });
             })
             ->when($this->selectedCategory !== '', function ($query) {

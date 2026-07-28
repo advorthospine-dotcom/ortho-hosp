@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
-
 class Service
 {
     /**
@@ -274,6 +272,7 @@ class Service
                 return $service;
             }
         }
+
         return null;
     }
 
@@ -287,6 +286,7 @@ class Service
                 return $service;
             }
         }
+
         return null;
     }
 }

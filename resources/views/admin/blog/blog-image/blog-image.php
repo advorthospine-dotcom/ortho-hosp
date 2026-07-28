@@ -27,7 +27,7 @@ new #[Layout('layouts::admin')] #[Title('Media Library | Admin')] class extends 
 
         foreach ($this->images as $image) {
             $path = $image->store('media', 'public');
-            $link = asset('storage/' . $path);
+            $link = asset('storage/'.$path);
 
             BlogImage::create([
                 'image_path' => $path,

@@ -17,6 +17,7 @@ new #[Layout('layouts::app')] #[Title('Contact Us & Hospital Location | Advance 
     public string $phone = '';
 
     public string $department = 'General Inquiry';
+
     public string $preferred_date = '';
 
     #[Validate('required|min:10', message: 'Please enter your message or symptoms (min 10 characters)')]

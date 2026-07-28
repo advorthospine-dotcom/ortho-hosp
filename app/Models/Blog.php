@@ -22,7 +22,7 @@ class Blog extends Model
         'image_alt',
         'meta_title',
         'meta_description',
-        'meta_keywords'
+        'meta_keywords',
     ];
 
     /**
@@ -47,7 +47,7 @@ class Blog extends Model
     public function getImageUrlAttribute(): string
     {
         if ($this->image_path && Storage::disk('public')->exists($this->image_path)) {
-            return asset('storage/' . $this->image_path);
+            return asset('storage/'.$this->image_path);
         }
 
         return 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80'; // Default medical placeholder

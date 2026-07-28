@@ -15,7 +15,7 @@ new #[Layout('layouts::app')] class extends Component
     {
         $loaded = Service::findBySlug($slug);
 
-        if (!$loaded) {
+        if (! $loaded) {
             abort(404);
         }
 
@@ -33,7 +33,7 @@ new #[Layout('layouts::app')] class extends Component
         });
 
         return view('pages.service-view.service-view', [
-            'relatedServices' => array_slice($relatedServices, 0, 4)
-        ])->title($this->service['title'] . ' | Advance Ortho & Spine');
+            'relatedServices' => array_slice($relatedServices, 0, 4),
+        ])->title($this->service['title'].' | Advance Ortho & Spine');
     }
 };

@@ -31,8 +31,8 @@ return [
 
     'component_namespaces' => [
         'layouts' => resource_path('views/layouts'),
-        'admin'=>resource_path('views/admin'),
-        'auth'=>resource_path('views/auth'),
+        'admin' => resource_path('views/admin'),
+        'auth' => resource_path('views/auth'),
         'pages' => resource_path('views/pages'),
     ],
 

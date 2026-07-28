@@ -15,18 +15,25 @@ new #[Layout('layouts::admin')] #[Title('Create Blog Post | Admin')] class exten
 
     // Fields
     public string $title = '';
+
     public string $slug = '';
+
     public ?int $category_id = null;
+
     public string $content = '';
+
     public bool $is_active = true;
-    
+
     // File upload
     public $image;
+
     public string $image_alt = '';
 
     // SEO Meta
     public string $meta_title = '';
+
     public string $meta_description = '';
+
     public string $meta_keywords = '';
 
     /**
@@ -68,7 +75,7 @@ new #[Layout('layouts::admin')] #[Title('Create Blog Post | Admin')] class exten
         Blog::create($validated);
 
         session()->flash('toast-message', 'Blog post published successfully!');
-        
+
         return redirect()->route('admin.blogs.index');
     }
 

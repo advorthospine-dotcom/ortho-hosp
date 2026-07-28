@@ -6,26 +6,34 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
-class BlogImage extends Model
+class Gallery extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['image_link', 'image_path'];
+    protected $fillable = [
+        'title',
+        'image_path',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
 
     /**
      * Get the absolute URL to the image.
      */
-    public function getFileUrlAttribute(): string
+    public function getImageUrlAttribute(): string
     {
         if ($this->image_path && Storage::disk('public')->exists($this->image_path)) {
             return asset('storage/'.$this->image_path);
         }
 
-        return $this->image_link ?? '';
+        return asset('images/placeholder.jpg');
     }
 
     /**
-     * Get the human-readable file size.
+     * Get human readable file size.
      */
     public function getFileSizeAttribute(): string
     {
@@ -39,6 +47,6 @@ class BlogImage extends Model
             return round($bytes, 2).' '.$units[$i];
         }
 
-        return 'External';
+        return 'Unknown';
     }
 }
