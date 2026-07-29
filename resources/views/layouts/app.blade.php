@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
 
-    <title>{{ $title ?? 'Advance Orthopaedic & Spine Center | World-Class Robotic Surgery & Spine Care' }}</title>
-    <meta name="description" content="Advance Orthopaedic & Spine Center - Premier hospital for robotic knee replacement, endoscopic spine surgery, sports medicine, and 24/7 trauma emergency care.">
+    <title>{{ $title ?? 'Advance Orthopaedic & Spine Center | Advanced Orthopaedic & Spine Care' }}</title>
+    <meta name="description" content="Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, endoscopic spine surgery, sports medicine, and 24/7 trauma emergency care.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

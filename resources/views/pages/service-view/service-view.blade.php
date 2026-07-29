@@ -118,8 +118,8 @@
                         <div class="relative">
                             <span class="absolute -left-[39px] top-0 w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-extrabold shadow-md ring-4 ring-white">2</span>
                             <div class="space-y-1">
-                                <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-900">Intraoperative Robotic / Micro Navigation</h4>
-                                <p class="text-xs text-slate-600 leading-relaxed">Real-time computer guidance (Mako® robotic arm / O-Arm CT) providing sub-millimeter precision to protect native nerves and arteries.</p>
+                                <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-900">Intraoperative Surgical Navigation</h4>
+                                <p class="text-xs text-slate-600 leading-relaxed">Real-time computer guidance providing sub-millimeter precision to protect native nerves and arteries.</p>
                             </div>
                         </div>
 
@@ -157,9 +157,9 @@
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                             <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-                                <i class="ri-robot-2-fill text-blue-400 text-xl"></i>
-                                <h4 class="font-bold text-xs text-white">Robotic Suite</h4>
-                                <p class="text-[11px] text-slate-300 leading-relaxed">Mako® robotic arm & 3D intraoperative navigation.</p>
+                                <i class="ri-health-book-fill text-blue-400 text-xl"></i>
+                                <h4 class="font-bold text-xs text-white">Precision OT Suite</h4>
+                                <p class="text-[11px] text-slate-300 leading-relaxed">Modern surgical suite with 3D intraoperative navigation.</p>
                             </div>
 
                             <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">

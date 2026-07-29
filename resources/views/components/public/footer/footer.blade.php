@@ -20,7 +20,7 @@
                 </a>
 
                 <p class="text-slate-400 leading-relaxed text-xs max-w-sm">
-                    A tertiary hospital dedicated exclusively to bone, joint, spine, and musculoskeletal care. Powered by 3D Mako® Robotic Joint Replacements and 7mm Keyhole Endoscopic Spine procedures.
+                    A tertiary hospital dedicated exclusively to bone, joint, spine, and musculoskeletal care. Specialized in Advanced Joint Replacements and 7mm Keyhole Endoscopic Spine procedures.
                 </p>
 
                 <!-- Social Icons -->
@@ -71,12 +71,13 @@
             <div class="space-y-3">
                 <h4 class="text-sm font-bold text-white uppercase tracking-wider">Quick Links</h4>
                 <ul class="space-y-2 text-xs">
-                    <li><a href="{{ route('home') }}" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Home</a></li>
-                    <li><a href="{{ route('services') }}" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> 20 Medical Services</a></li>
-                    <li><a href="{{ route('home') }}#why-choose-us" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Why Choose Us</a></li>
-                    <li><a href="{{ route('blog') }}" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Medical Blog</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Contact Us</a></li>
-                    <li><a href="{{ route('home') }}#booking" class="text-sky-400 font-bold hover:underline flex items-center gap-1.5"><i class="ri-calendar-check-line text-sky-400"></i> Book Appointment</a></li>
+                    <li><a href="{{ route('home') }}" wire:navigate class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Home</a></li>
+                    <li><a href="{{ route('gallery') }}" wire:navigate class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Photo Gallery</a></li>
+                    <li><a href="{{ route('services') }}" wire:navigate class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> 20 Medical Services</a></li>
+                    <li><a href="{{ route('home') }}#why-choose-us" wire:navigate class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Why Choose Us</a></li>
+                    <li><a href="{{ route('blog') }}" wire:navigate class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Medical Blog</a></li>
+                    <li><a href="{{ route('contact') }}" wire:navigate class="hover:text-sky-400 transition-colors flex items-center gap-1.5"><i class="ri-arrow-right-s-line text-sky-500"></i> Contact Us</a></li>
+                    <li><a href="{{ route('home') }}#booking" wire:navigate class="text-sky-400 font-bold hover:underline flex items-center gap-1.5"><i class="ri-calendar-check-line text-sky-400"></i> Book Appointment</a></li>
                 </ul>
             </div>
 

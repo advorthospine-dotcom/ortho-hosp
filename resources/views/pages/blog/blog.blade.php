@@ -15,7 +15,7 @@
                 Clinical Insights & <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-200">Orthopedic Innovations</span>
             </h1>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-medium">
-                Explore peer-reviewed updates, robotic surgical outcomes, and evidence-based rehabilitation protocols authored by our chief surgical faculty.
+                Explore peer-reviewed updates, surgical outcomes, and evidence-based rehabilitation protocols authored by our chief surgical faculty.
             </p>
 
             <!-- Search Bar inside Hero -->
@@ -26,7 +26,7 @@
                     </div>
                     <input type="text" 
                            wire:model.live.debounce.300ms="search" 
-                           placeholder="Search clinical topics, robotic knee, spine care..." 
+                           placeholder="Search clinical topics, knee replacement, spine care..." 
                            class="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-sm text-white placeholder-slate-400 focus:outline-none focus:bg-white/15 focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all shadow-lg" />
                     @if($search)
                         <button wire:click="$set('search', '')" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-white transition-colors cursor-pointer">

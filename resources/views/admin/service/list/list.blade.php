@@ -16,7 +16,7 @@
                     {{ $services->total() }} Total
                 </span>
             </div>
-            <p class="text-slate-500 text-sm mt-1">Add, update, and organize medical treatments, robotic surgeries, and rehabilitation procedures.</p>
+            <p class="text-slate-500 text-sm mt-1">Add, update, and organize medical treatments, surgical care, and rehabilitation procedures.</p>
         </div>
         
         <button @click="serviceModalOpen = true; $wire.create()" 
@@ -253,7 +253,7 @@
                         <input id="srv-badge" 
                                type="text" 
                                wire:model="badge" 
-                               placeholder="e.g. Robotic & Conventional" 
+                               placeholder="e.g. Advanced & Conventional" 
                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 transition-all" />
                     </div>
                 </div>

@@ -26,7 +26,7 @@
                     <input id="title" 
                            type="text" 
                            wire:model.live="title" 
-                           placeholder="e.g. Advancements in Robotic Knee Replacement" 
+                           placeholder="e.g. Advancements in Knee Replacement" 
                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 font-medium focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('title') border-rose-400 focus:border-rose-500 @enderror"
                            required />
                     @error('title')

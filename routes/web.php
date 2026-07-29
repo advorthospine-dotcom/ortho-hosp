@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes
 Route::livewire('/', 'pages::home')->name('home');
+Route::livewire('/gallery', 'pages::gallery')->name('gallery');
 Route::livewire('/blogs', 'pages::blog')->name('blog');
 Route::livewire('/blogs/{slug}', 'pages::blog-view')->name('blog.view');
 Route::livewire('/services', 'pages::service')->name('services');

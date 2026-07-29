@@ -15,18 +15,18 @@
                 World-Class <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-200">Orthopaedic & Spine Care</span>
             </h1>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-medium">
-                Comprehensive trauma response, robotic joint replacements, micro-endoscopic spine surgery, and 1-on-1 advanced physical rehabilitation.
+                Comprehensive trauma response, joint replacements, micro-endoscopic spine surgery, and 1-on-1 advanced physical rehabilitation.
             </p>
 
             <!-- Search Bar inside Hero -->
             <div class="pt-2 max-w-xl mx-auto">
                 <div class="relative flex items-center">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                        <i class="ri-search-2-line text-base text-blue-400"></i>
+                        <i class="ri-search-2-line text-base text-sky-400"></i>
                     </div>
                     <input type="text" 
                            wire:model.live.debounce.300ms="search" 
-                           placeholder="Search treatments, robotic knee, spine discectomy, ACL..." 
+                           placeholder="Search treatments, knee replacement, spine discectomy, ACL..." 
                            class="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 text-sm text-white placeholder-slate-400 focus:outline-none focus:bg-white/15 focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30 transition-all shadow-lg" />
                     @if($search)
                         <button wire:click="$set('search', '')" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-white transition-colors cursor-pointer">
@@ -239,10 +239,10 @@
                 </div>
                 <div class="space-y-1 p-2 pt-4 md:pt-2">
                     <div class="text-2xl text-blue-600 font-extrabold flex justify-center">
-                        <i class="ri-robot-2-fill"></i>
+                        <i class="ri-health-book-fill"></i>
                     </div>
-                    <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-800">Mako® Robotic Suite</h4>
-                    <p class="text-[11px] text-slate-400">Sub-millimeter implant precision</p>
+                    <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-800">Precision Joint Suite</h4>
+                    <p class="text-[11px] text-slate-400">Sub-millimeter implant accuracy</p>
                 </div>
                 <div class="space-y-1 p-2 pt-4 md:pt-2">
                     <div class="text-2xl text-blue-600 font-extrabold flex justify-center">

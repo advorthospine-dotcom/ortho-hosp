@@ -26,56 +26,49 @@ class BlogSeeder extends Seeder
         // Define Categories
         $categoriesData = [
             [
-                'name' => 'Robotic Surgery',
-                'slug' => 'robotic-surgery',
+                'name' => 'Joint Surgery',
+                'slug' => 'joint-surgery',
             ],
             [
                 'name' => 'Spine Care',
                 'slug' => 'spine-care',
             ],
             [
-                'name' => 'Joint Replacement',
-                'slug' => 'joint-replacement',
-            ],
-            [
                 'name' => 'Sports Medicine',
                 'slug' => 'sports-medicine',
             ],
             [
-                'name' => 'Pain Management',
-                'slug' => 'pain-management',
-            ],
-            [
-                'name' => 'Physical Rehab',
-                'slug' => 'physical-rehab',
+                'name' => 'Rehabilitation',
+                'slug' => 'rehabilitation',
             ],
         ];
 
-        $categories = [];
-        foreach ($categoriesData as $catData) {
-            $categories[$catData['slug']] = BlogCategory::updateOrCreate(
-                ['slug' => $catData['slug']],
+        $categoriesMap = [];
+        foreach ($categoriesData as $cat) {
+            $createdCategory = BlogCategory::updateOrCreate(
+                ['slug' => $cat['slug']],
                 [
-                    'name' => $catData['name'],
+                    'name' => $cat['name'],
                     'is_active' => true,
                 ]
             );
+            $categoriesMap[$cat['slug']] = $createdCategory->id;
         }
 
         // Define Blog Posts
         $blogs = [
             [
-                'category_slug' => 'robotic-surgery',
-                'title' => 'Robotic Knee Replacement: What Patients Should Expect',
-                'slug' => 'robotic-knee-replacement-what-patients-should-expect',
-                'image_alt' => 'Surgeons operating Mako robotic surgical system',
-                'meta_title' => 'Robotic Knee Replacement Guide | Advance Ortho',
-                'meta_description' => 'Learn how Mako robotic-arm guided knee replacement ensures sub-millimeter precision, less pain, and rapid 24-hour walking recovery.',
+                'category_slug' => 'joint-surgery',
+                'title' => 'Advanced Knee Replacement: What Patients Should Expect',
+                'slug' => 'advanced-knee-replacement-what-patients-should-expect',
+                'image_alt' => 'Surgeons operating advanced surgical system',
+                'meta_title' => 'Advanced Knee Replacement Guide | Advance Ortho',
+                'meta_description' => 'Learn how advanced knee replacement ensures precision, less pain, and rapid 24-hour walking recovery.',
                 'content' => '
-                    <p>Total knee replacement has evolved dramatically with the introduction of 3D CT-guided robotic surgical assistants such as the Mako® System. Unlike traditional manual instrumentation, robotic-arm guided technology allows orthopedic surgeons to customize each procedure with sub-millimeter accuracy.</p>
+                    <p>Total knee replacement has evolved dramatically with the introduction of 3D CT-guided surgical planning. Unlike traditional manual instrumentation, precision-guided technology allows orthopedic surgeons to customize each procedure with sub-millimeter accuracy.</p>
                     
-                    <h2>Why Robotic Navigation Matters in Joint Arthroplasty</h2>
-                    <p>Every knee joint possesses unique anatomical contours, ligament tension, and wear patterns. Using pre-operative 3D CT scanning, the surgeon creates a virtual 3D model of the patient’s knee joint. During surgery, the robotic arm provides haptic feedback, preventing cuts outside the pre-planned boundaries.</p>
+                    <h2>Why Precision Navigation Matters in Joint Arthroplasty</h2>
+                    <p>Every knee joint possesses unique anatomical contours, ligament tension, and wear patterns. Using pre-operative 3D CT scanning, the surgeon creates a virtual 3D model of the patient’s knee joint. During surgery, optical navigation provides real-time feedback, preventing cuts outside the pre-planned boundaries.</p>
 
                     <ul>
                         <li><strong>Preservation of Healthy Bone & Ligaments:</strong> Cuts are restricted strictly to diseased cartilage zones.</li>
@@ -83,10 +76,10 @@ class BlogSeeder extends Seeder
                         <li><strong>Accelerated Rehabilitation:</strong> Most patients walk with support within 12 to 24 hours post-surgery.</li>
                     </ul>
 
-                    <blockquote>"Robotic assistance provides real-time digital balance feedback, allowing us to align the knee implant precisely according to the patient’s natural soft-tissue tension." — Dr. Alexander Vance</blockquote>
+                    <blockquote>"Precision guidance provides real-time digital balance feedback, allowing us to align the knee implant precisely according to the patient’s natural soft-tissue tension." — Dr. Alexander Vance</blockquote>
 
                     <h2>What Happens During the Surgical Procedure?</h2>
-                    <p>The patient undergoes regional or general anesthesia. Small optical trackers are placed to calibrate the robot with the patient’s physical anatomy in real time. The surgeon guides the robotic arm to resurface damaged bone surfaces before securing high-grade cobalt-chromium and polyethylene implants.</p>
+                    <p>The patient undergoes regional or general anesthesia. Small optical trackers are placed to calibrate the surgical system with the patient’s physical anatomy in real time. The surgeon guides the instrument to resurface damaged bone surfaces before securing high-grade cobalt-chromium and polyethylene implants.</p>
                 ',
             ],
             [
@@ -260,13 +253,13 @@ class BlogSeeder extends Seeder
         ];
 
         foreach ($blogs as $blogData) {
-            $cat = $categories[$blogData['category_slug']] ?? reset($categories);
+            $catId = $categoriesMap[$blogData['category_slug']] ?? reset($categoriesMap);
 
             Blog::updateOrCreate(
                 ['slug' => $blogData['slug']],
                 [
                     'author' => $author->id,
-                    'category_id' => $cat->id,
+                    'category_id' => $catId,
                     'title' => $blogData['title'],
                     'content' => $blogData['content'],
                     'is_active' => true,

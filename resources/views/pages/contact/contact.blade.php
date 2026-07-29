@@ -15,7 +15,7 @@
                 Get in Touch with Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-200">Clinical Team</span>
             </h1>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-medium">
-                Have questions regarding robotic knee replacement, endoscopic spine surgery, or emergency trauma admissions? We are available 24/7 to assist you.
+                Have questions regarding knee replacement, endoscopic spine surgery, or emergency trauma admissions? We are available 24/7 to assist you.
             </p>
         </div>
     </div>
@@ -195,7 +195,7 @@
                                         class="w-full pl-10 pr-8 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50/50 appearance-none">
                                     <option value="General Inquiry">General Inquiry</option>
                                     <option value="Trauma & Emergency Care">Trauma & Emergency Care</option>
-                                    <option value="Robotic Knee & Hip Surgery">Robotic Knee & Hip Surgery</option>
+                                    <option value="Knee & Hip Surgery">Knee & Hip Surgery</option>
                                     <option value="Endoscopic Spine Care">Endoscopic Spine Care</option>
                                     <option value="Sports Medicine & ACL">Sports Medicine & ACL</option>
                                     <option value="Physiotherapy & Rehabilitation">Physiotherapy & Rehabilitation</option>

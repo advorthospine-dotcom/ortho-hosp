@@ -2,7 +2,7 @@
     <!-- 1. LIGHT HERO SECTION WITH DYNAMIC AUTO-SLIDING CAROUSEL -->
     @php
         $heroTitle = setting('hero_title', 'Restoring Pain-Free Mobility & Spine Health');
-        $heroDescription = setting('hero_description', 'Sub-specialized orthopaedic excellence powered by 3D Robotic Knee Replacements, Keyhole Endoscopic Spine Surgery, and 24/7 Level-1 Trauma Emergency Care.');
+        $heroDescription = setting('hero_description', 'Sub-specialized orthopaedic excellence powered by Advanced Knee Replacements, Keyhole Endoscopic Spine Surgery, and 24/7 Level-1 Trauma Emergency Care.');
         
         $customSliderImages = setting('hero_slider_images', []);
         $slides = [];
@@ -30,7 +30,7 @@
                 <div class="lg:col-span-7 space-y-6 text-left">
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-sky-100 text-sky-800 border border-sky-200">
                         <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                        <i class="ri-award-fill text-amber-500"></i> Region's Premier Center for Robotic & Spine Surgery
+                        <i class="ri-award-fill text-amber-500"></i> Region's Premier Center for Orthopaedic & Spine Surgery
                     </div>
 
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
@@ -169,7 +169,7 @@
             <div class="flex items-center gap-8">
                 <span class="flex items-center gap-2 text-amber-300"><i class="ri-sparkling-fill"></i> 25,000+ SUCCESSFUL SURGERIES</span>
                 <span class="text-sky-300">•</span>
-                <span class="flex items-center gap-2"><i class="ri-robot-2-fill text-sky-300"></i> 3D MAKO® ROBOTIC KNEE REPLACEMENT</span>
+                <span class="flex items-center gap-2"><i class="ri-health-book-fill text-sky-300"></i> ADVANCED KNEE & JOINT REPLACEMENT</span>
                 <span class="text-sky-300">•</span>
                 <span class="flex items-center gap-2"><i class="ri-spine-fill text-cyan-300"></i> KEYHOLE ENDOSCOPIC SPINE DISCECTOMY</span>
                 <span class="text-sky-300">•</span>
@@ -189,7 +189,7 @@
             <div class="flex items-center gap-8">
                 <span class="flex items-center gap-2 text-amber-300"><i class="ri-sparkling-fill"></i> 25,000+ SUCCESSFUL SURGERIES</span>
                 <span class="text-sky-300">•</span>
-                <span class="flex items-center gap-2"><i class="ri-robot-2-fill text-sky-300"></i> 3D MAKO® ROBOTIC KNEE REPLACEMENT</span>
+                <span class="flex items-center gap-2"><i class="ri-health-book-fill text-sky-300"></i> ADVANCED KNEE & JOINT REPLACEMENT</span>
                 <span class="text-sky-300">•</span>
                 <span class="flex items-center gap-2"><i class="ri-spine-fill text-cyan-300"></i> KEYHOLE ENDOSCOPIC SPINE DISCECTOMY</span>
                 <span class="text-sky-300">•</span>
@@ -386,9 +386,9 @@
                     <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 font-extrabold text-xl flex items-center justify-center border border-cyan-500/30 group-hover:scale-110 transition-transform">
                         2
                     </div>
-                    <h3 class="font-bold text-white text-lg group-hover:text-cyan-400 transition-colors">Daycare Keyhole & Robotic Precision</h3>
+                    <h3 class="font-bold text-white text-lg group-hover:text-cyan-400 transition-colors">Daycare Keyhole & Minimal Precision</h3>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                        Endoscopic 7mm spine discectomy and Mako® 3D robotic joint alignment minimize soft tissue disruption, enabling same-day or 24-hour hospital discharge.
+                        Endoscopic 7mm spine discectomy and 3D precision joint alignment minimize soft tissue disruption, enabling same-day or 24-hour hospital discharge.
                     </p>
                 </div>
 
@@ -440,12 +440,12 @@
                     <button @click="activeFaq = (activeFaq === 1 ? 0 : 1)" class="w-full px-6 py-5 text-left font-bold text-slate-900 text-base flex items-center justify-between gap-4 focus:outline-none">
                         <span class="flex items-center gap-3">
                             <i class="ri-question-fill text-sky-600 text-xl"></i>
-                            <span>How soon can I walk after robotic knee replacement surgery?</span>
+                            <span>How soon can I walk after knee replacement surgery?</span>
                         </span>
                         <i class="ri-add-line text-slate-400 text-2xl transition-transform duration-200" :class="{ 'rotate-45 text-sky-600': activeFaq === 1 }"></i>
                     </button>
                     <div x-show="activeFaq === 1" x-collapse x-cloak class="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 border-t border-slate-100 leading-relaxed">
-                        With Mako® 3D SmartRobotic knee replacement and muscle-sparing techniques, soft tissue trauma is minimal. Most patients stand and walk supported steps with our physiotherapists within 24 hours post-surgery.
+                        With advanced joint replacement techniques and muscle-sparing approaches, soft tissue trauma is minimal. Most patients stand and walk supported steps with our physiotherapists within 24 hours post-surgery.
                     </div>
                 </div>
 

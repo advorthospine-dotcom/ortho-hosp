@@ -79,3 +79,17 @@ test('admin can delete gallery image', function () {
     expect(Gallery::find($gallery->id))->toBeNull();
     Storage::disk('public')->assertMissing($path);
 });
+
+test('public users can render gallery page and see active images', function () {
+    Gallery::create([
+        'title' => 'Advanced Surgery Operating Room',
+        'image_path' => 'gallery/surgical-ot.jpg',
+        'is_active' => true,
+    ]);
+
+    $this->get('/gallery')
+        ->assertSuccessful()
+        ->assertSee('Hospital Photo Gallery')
+        ->assertSee('Advanced Surgery Operating Room');
+});
+

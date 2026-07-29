@@ -167,7 +167,7 @@
                             </td>
                             <td class="py-3.5 px-5 font-medium text-slate-700">Dr. Robert Chen</td>
                             <td class="py-3.5 px-5">
-                                <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded text-[10px]">Robotic Knee</span>
+                                <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded text-[10px]">Knee Care</span>
                             </td>
                             <td class="py-3.5 px-5 text-slate-500 font-medium">11:15 AM</td>
                             <td class="py-3.5 px-5">
@@ -268,7 +268,7 @@
                 <!-- Unit 1 -->
                 <div class="space-y-1.5">
                     <div class="flex items-center justify-between text-xs">
-                        <span class="font-semibold text-slate-700">Robotic Joint Replacement</span>
+                        <span class="font-semibold text-slate-700">Joint Replacement</span>
                         <span class="text-slate-500 font-bold">12/15 Beds</span>
                     </div>
                     <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
