@@ -170,12 +170,7 @@
 
             </form>
             
-            <!-- Quick Helper / Demo Credentials -->
-            <div class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1.5 text-xs text-slate-500">
-                <span class="font-bold text-slate-700 block"><i class="ri-information-line text-sky-600"></i> Demo Credentials:</span>
-                <p>Email: <code class="bg-slate-100 text-slate-800 px-1 py-0.5 rounded font-mono">admin@orthohosp.com</code></p>
-                <p>Password: <code class="bg-slate-100 text-slate-800 px-1 py-0.5 rounded font-mono">admin123</code></p>
-            </div>
+          
             
         </div>
     </div>
