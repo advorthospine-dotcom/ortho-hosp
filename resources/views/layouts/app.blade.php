@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, nofollow, noarchive">
 
     <title>{{ $title ?? 'Advance Orthopaedic & Spine Center | Advanced Orthopaedic & Spine Care' }}</title>
     <meta name="description" content="Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, endoscopic spine surgery, sports medicine, and 24/7 trauma emergency care.">
