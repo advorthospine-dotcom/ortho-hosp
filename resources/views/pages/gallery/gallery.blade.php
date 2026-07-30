@@ -138,13 +138,13 @@
             @else
                 <!-- CURATED SAMPLE FACILITY GALLERY SHOWCASE (Fallback when no DB items uploaded yet) -->
                 <div class="space-y-6">
-                    <div class="bg-sky-50 border border-sky-200 rounded-2xl p-4 sm:p-5 flex items-center gap-4 text-sky-950">
-                        <div class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center shrink-0 font-bold">
-                            <i class="ri-information-line text-xl"></i>
+                    <div class="bg-teal-50 border border-teal-200/80 rounded-2xl p-4 sm:p-5 flex items-center gap-4 text-slate-800">
+                        <div class="w-10 h-10 rounded-xl bg-[#114b5f] text-white flex items-center justify-center shrink-0 font-bold">
+                            <i class="ri-information-line text-lg"></i>
                         </div>
-                        <div class="text-xs sm:text-sm">
-                            <span class="font-bold text-sky-900">Hospital Facility Showcase:</span> Below are glimpses of our core departments and infrastructure. New clinical event photos will appear here as uploaded by the hospital administration.
-                        </div>
+                        <p class="text-xs leading-relaxed font-medium">
+                            <span class="font-bold text-[#114b5f]">Hospital Facility Showcase:</span> Below are glimpses of our core departments and infrastructure. New clinical event photos will appear here as uploaded by the hospital administration.
+                        </p>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

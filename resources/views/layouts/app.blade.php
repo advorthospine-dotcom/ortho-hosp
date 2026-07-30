@@ -91,7 +91,7 @@
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased text-slate-800 bg-slate-50 selection:bg-sky-600 selection:text-white">
+<body class="font-sans antialiased text-slate-800 bg-slate-50 selection:bg-[#114b5f] selection:text-white">
 
     <!-- PUBLIC HEADER COMPONENT -->
     @include('components.public.header.header')

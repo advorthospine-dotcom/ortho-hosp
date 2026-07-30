@@ -24,6 +24,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // Page SEO & Management (Modal CRUD)
     Route::livewire('/pages', 'admin::page-mangement.page-mangement')->name('admin.pages.index');
 
+    // Contact Inquiries & OPD Appointments
+    Route::livewire('/contacts', 'admin::contactlist.contactlist')->name('admin.contacts.index');
+
     // Blog Categories (Modal CRUD)
     Route::livewire('/categories', 'admin::blog.categorylist')->name('admin.categories');
 

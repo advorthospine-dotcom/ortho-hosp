@@ -4,15 +4,24 @@
 @source '../../storage/framework/views/*.php';
 
 @theme {
-    /* Pristine Hospital Light Blue Color System */
-    --color-primary: #0284c7;          /* Medical Ocean Blue */
-    --color-primary-light: #38bdf8;    /* Bright Sky Blue */
-    --color-primary-dark: #0369a1;     /* Deep Medical Navy Blue */
-    --color-primary-surface: #f0f9ff;  /* Soft Ice Blue Surface */
+    /* Official Advance Ortho & Spine Center Logo Brand Colors */
+    --color-brand: #114b5f;            /* Deep Petrol Teal (From Logo "ADVANCE" & Spine Curve) */
+    --color-brand-light: #1a6b85;      /* Light Teal Accent */
+    --color-brand-dark: #0c3949;       /* Dark Teal Depth */
+    --color-brand-surface: #f0f7f9;    /* Soft Teal Surface */
 
-    --color-secondary: #0ea5e9;        /* Vibrant Sky Blue */
-    --color-secondary-light: #e0f2fe;  /* Soft Cloud Blue */
-    --color-secondary-dark: #0284c7;
+    --color-emerald-brand: #3b774b;    /* Forest / Sage Emerald (From Logo "ORTHO & SPINE CENTER" & Active Figure) */
+    --color-emerald-light: #eef7f1;    /* Soft Emerald Surface */
+    --color-emerald-dark: #2c5a38;     /* Dark Emerald Accent */
+
+    --color-primary: #114b5f;          /* Primary Brand Teal */
+    --color-primary-light: #1a6b85;
+    --color-primary-dark: #0c3949;
+    --color-primary-surface: #f0f7f9;
+
+    --color-secondary: #3b774b;        /* Secondary Brand Emerald */
+    --color-secondary-light: #eef7f1;
+    --color-secondary-dark: #2c5a38;
 
     --color-tertiary: #0f172a;         /* High-contrast Slate Text */
     --color-tertiary-light: #334155;   /* Muted Body Text */
@@ -41,7 +50,7 @@
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    background: #114b5f;
 }
 
 html {
@@ -63,4 +72,3 @@ html {
 .animate-marquee:hover {
     animation-play-state: paused;
 }
-

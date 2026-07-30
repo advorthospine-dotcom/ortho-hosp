@@ -219,15 +219,16 @@
                         <textarea wire:model="message" 
                                   rows="4" 
                                   placeholder="Describe your medical query, symptoms, or requested consultation date..." 
-                                  class="w-full p-4 rounded-xl border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50/50 resize-none"></textarea>
+                                  class="w-full p-4 rounded-xl border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-[#114b5f]/20 transition-all bg-slate-50/50 resize-none"></textarea>
                         @error('message') <span class="text-rose-600 text-[11px] font-bold block">{{ $message }}</span> @enderror
                     </div>
 
                     <!-- Submit Button -->
                     <button type="submit" 
-                            class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-xs sm:text-sm rounded-xl shadow-md shadow-blue-600/20 active:scale-[0.99] transition-all cursor-pointer inline-flex items-center justify-center gap-2">
-                        <i class="ri-send-plane-fill text-sm"></i>
-                        <span>Submit Inquiry</span>
+                            class="w-full sm:w-auto px-6 py-3 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs sm:text-sm rounded-xl shadow-md shadow-[#114b5f]/20 active:scale-[0.99] transition-all cursor-pointer inline-flex items-center justify-center gap-2">
+                        <span wire:loading.delay class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+                        <span wire:loading.remove.delay><i class="ri-send-plane-fill"></i> Send Message</span>
+                        <span wire:loading.delay>Submitting...</span>
                     </button>
                 </form>
 

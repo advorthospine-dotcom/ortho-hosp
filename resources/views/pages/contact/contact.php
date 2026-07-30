@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Contact;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -26,13 +27,29 @@ new #[Layout('layouts::app')] #[Title('Contact Us & Hospital Location | Advance 
     public bool $submitted = false;
 
     /**
-     * Submit contact / appointment inquiry form.
+     * Submit contact / appointment inquiry form and persist to database.
      */
     public function submitForm(): void
     {
         $this->validate();
 
+        Contact::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'department' => $this->department ?: 'General Inquiry',
+            'preferred_date' => $this->preferred_date ?: null,
+            'message' => $this->message,
+            'is_read' => false,
+        ]);
+
         $this->submitted = true;
+
+        $this->dispatch('toast-show', [
+            'message' => 'Your inquiry has been submitted successfully!',
+            'type' => 'success',
+            'position' => 'top-right',
+        ]);
 
         $this->reset(['name', 'email', 'phone', 'department', 'preferred_date', 'message']);
     }

@@ -24,7 +24,7 @@
         window.tinymce.baseURL = "{{ asset('tinymce') }}";
     </script>
 </head>
-<body class="h-full font-sans antialiased text-slate-800 bg-[#f8fafc] selection:bg-sky-600 selection:text-white"
+<body class="h-full font-sans antialiased text-slate-800 bg-[#f8fafc] selection:bg-[#114b5f] selection:text-white"
       x-data="{ sidebarOpen: false }"
       @keydown.escape.window="sidebarOpen = false">
 

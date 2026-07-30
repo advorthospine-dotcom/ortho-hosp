@@ -9,7 +9,7 @@
             <p class="text-slate-500 text-sm mt-0.5">Control dynamic SEO titles, descriptions, open graph tags, and metadata for all website pages.</p>
         </div>
         <button @click="isOpen = true; $wire.create()" 
-                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.98] transition-all cursor-pointer">
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#114b5f] hover:bg-[#0e3f50] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#114b5f]/10 hover:shadow-[#114b5f]/20 active:scale-[0.98] transition-all cursor-pointer">
             <i class="ri-add-circle-fill text-lg"></i> Add New Page SEO
         </button>
     </div>
@@ -327,7 +327,7 @@
                         Cancel
                     </button>
                     <button type="submit" 
-                            class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer">
+                            class="px-5 py-2.5 bg-[#114b5f] hover:bg-[#0e3f50] text-white rounded-xl text-xs font-semibold shadow-md shadow-[#114b5f]/10 hover:shadow-[#114b5f]/20 active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer">
                         <span wire:loading.delay class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         <span wire:loading.remove.delay><i class="ri-save-line"></i> Save Page SEO</span>
                         <span wire:loading.delay>Saving...</span>
