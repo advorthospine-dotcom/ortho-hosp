@@ -1,3 +1,7 @@
+@section('title', 'Hospital Photo Gallery & Infrastructure | Advance Orthopaedic & Spine Center')
+@section('meta_description', 'Explore our photo gallery featuring ultra-clean modular operation theaters, advanced ICU units, private suites, and patient care facilities.')
+@section('meta_keywords', 'hospital gallery, modular OT, ICU facility, orthopaedic hospital photos')
+
 <div x-data="{ 
     isOpen: false, 
     activeImage: '', 

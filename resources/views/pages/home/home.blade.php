@@ -1,3 +1,7 @@
+@section('title', 'Advance Orthopaedic & Spine Center | Super-Specialty Hospital')
+@section('meta_description', 'Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, endoscopic spine surgery, joint care, sports injury, and 24/7 emergency care.')
+@section('meta_keywords', 'orthopaedic hospital, spine surgeon Kanpur, knee replacement, joint care, sports medicine, trauma center')
+
 <div>
     <!-- 1. LIGHT HERO SECTION WITH DYNAMIC AUTO-SLIDING CAROUSEL -->
     @php

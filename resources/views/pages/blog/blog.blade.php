@@ -1,3 +1,7 @@
+@section('title', 'Orthopaedic Health Articles & Medical Insights | Advance Orthopaedic & Spine Center')
+@section('meta_description', 'Read expert medical insights, joint care tips, recovery guidelines, and surgical news from our leading orthopedic surgeons.')
+@section('meta_keywords', 'orthopaedic blog, spine care tips, joint health, recovery guides, medical news')
+
 <div class="min-h-screen bg-slate-50/60 pb-20">
     
     <!-- Hero Banner Header -->

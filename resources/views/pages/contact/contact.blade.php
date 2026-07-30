@@ -1,3 +1,7 @@
+@section('title', 'Contact Us & OPD Appointments | Advance Orthopaedic & Spine Center')
+@section('meta_description', 'Book your OPD consultation or contact our 24/7 Emergency Spine Hotline. Location, directions, working hours, and contact details.')
+@section('meta_keywords', 'contact orthopaedic hospital, OPD appointment, emergency hotline, hospital location')
+
 <div class="min-h-screen bg-slate-50/60 pb-20">
     
     <!-- Hero Banner Header -->

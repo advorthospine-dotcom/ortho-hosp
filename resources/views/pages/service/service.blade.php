@@ -1,3 +1,7 @@
+@section('title', 'Clinical Services & Treatments | Advance Orthopaedic & Spine Center')
+@section('meta_description', 'Comprehensive orthopaedic services including minimally invasive spine surgery, robotic knee replacement, fracture care, sports medicine, and physical therapy.')
+@section('meta_keywords', 'orthopaedic services, robotic joint replacement, endoscopic spine surgery, fracture treatment, physical therapy')
+
 <div class="min-h-screen bg-slate-50/60 pb-20">
     
     <!-- Hero Banner Header -->

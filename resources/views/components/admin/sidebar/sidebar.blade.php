@@ -54,6 +54,11 @@
             <div>
                 <span class="px-3 text-[10px] font-bold text-slate-500 tracking-wider uppercase">Content Management</span>
                 <div class="mt-3 space-y-1">
+                    <a href="{{ route('admin.pages.index') }}" wire:navigate 
+                       class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.pages.*') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
+                        <i class="ri-pages-fill text-lg {{ request()->routeIs('admin.pages.*') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>
+                        <span>Pages & SEO</span>
+                    </a>
                     <a href="{{ route('admin.categories') }}" wire:navigate 
                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all group {{ request()->routeIs('admin.categories') ? 'bg-sky-600 text-white' : 'hover:text-slate-200 hover:bg-slate-900' }}">
                         <i class="ri-folders-fill text-lg {{ request()->routeIs('admin.categories') ? 'text-white' : 'text-slate-500 group-hover:text-slate-300' }}"></i>

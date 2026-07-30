@@ -1,3 +1,8 @@
+@section('title', isset($blog) && $blog->title ? $blog->title . ' | Orthopaedic Medical Blog' : 'Medical Article')
+@section('meta_description', isset($blog) && $blog->content ? Str::limit(strip_tags($blog->content), 155) : 'Read our latest medical article from Advance Orthopaedic & Spine Center.')
+@section('og_title', isset($blog) ? $blog->title : '')
+@section('og_description', isset($blog) && $blog->content ? Str::limit(strip_tags($blog->content), 155) : '')
+
 <div class="min-h-screen bg-slate-50/60 py-10 sm:py-14">
     
     <!-- Scoped style sheet for TinyMCE HTML output with Navy & Cobalt theme -->

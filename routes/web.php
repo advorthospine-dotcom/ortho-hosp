@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public Routes
 Route::livewire('/', 'pages::home')->name('home');
+Route::livewire('/about', 'pages::about')->name('about');
 Route::livewire('/gallery', 'pages::gallery')->name('gallery');
 Route::livewire('/blogs', 'pages::blog')->name('blog');
 Route::livewire('/blogs/{slug}', 'pages::blog-view')->name('blog.view');
@@ -19,6 +20,9 @@ Route::middleware('guest')->group(function () {
 // Admin Routes (Authenticated Only)
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::livewire('/', 'admin::dashboard')->name('admin.dashboard');
+
+    // Page SEO & Management (Modal CRUD)
+    Route::livewire('/pages', 'admin::page-mangement.page-mangement')->name('admin.pages.index');
 
     // Blog Categories (Modal CRUD)
     Route::livewire('/categories', 'admin::blog.categorylist')->name('admin.categories');

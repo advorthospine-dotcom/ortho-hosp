@@ -3,10 +3,81 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="robots" content="index, follow">
 
-    <title>{{ $title ?? 'Advance Orthopaedic & Spine Center | Advanced Orthopaedic & Spine Care' }}</title>
-    <meta name="description" content="Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, endoscopic spine surgery, sports medicine, and 24/7 trauma emergency care.">
+    @php
+        $pageSeo = null;
+        try {
+            $currentRoute = request()->route() ? request()->route()->getName() : 'home';
+            $slugMap = [
+                'home' => 'home',
+                'about' => 'about',
+                'services' => 'services',
+                'services.view' => 'services',
+                'gallery' => 'gallery',
+                'blog' => 'blog',
+                'blog.view' => 'blog',
+                'contact' => 'contact',
+            ];
+            $pageSlug = $slugMap[$currentRoute] ?? \Illuminate\Support\Str::slug(request()->path() ?: 'home');
+            if (class_exists(\App\Models\PageContent::class)) {
+                $pageSeo = \App\Models\PageContent::getBySlug($pageSlug);
+            }
+        } catch (\Throwable $e) {
+            $pageSeo = null;
+        }
+
+        $defaultTitle = $title ?? ($pageSeo?->meta_title ?: 'Advance Orthopaedic & Spine Center | Super-Specialty Hospital');
+        $defaultDesc = $pageSeo?->meta_description ?: 'Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, endoscopic spine surgery, joint care, and 24/7 trauma emergency care.';
+        $defaultKeywords = $pageSeo?->meta_keywords ?: 'orthopaedic hospital, spine surgeon, knee replacement, joint care, sports medicine';
+        $defaultOgTitle = $pageSeo?->og_title ?: $defaultTitle;
+        $defaultOgDesc = $pageSeo?->og_description ?: $defaultDesc;
+
+        $schemaData = [
+            '@context' => 'https://schema.org',
+            '@type' => 'MedicalClinic',
+            'name' => 'Advance Orthopaedic & Spine Center',
+            'url' => url('/'),
+            'description' => strip_tags($defaultDesc),
+            'medicalSpecialty' => [
+                'Orthopedic Surgery',
+                'Endoscopic Spine Surgery',
+                'Joint Replacement',
+                'Sports Injury Care',
+            ],
+        ];
+    @endphp
+
+    <!-- Primary Meta & Title Tags -->
+    <title>@yield('title', $defaultTitle)</title>
+    <meta name="description" content="@yield('meta_description', $defaultDesc)">
+    <meta name="keywords" content="@yield('meta_keywords', $defaultKeywords)">
+    
+    <!-- Dynamic Canonical URL Function -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Social Sharing Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('og_title', $defaultOgTitle)">
+    <meta property="og:description" content="@yield('og_description', $defaultOgDesc)">
+    <meta property="og:site_name" content="Advance Orthopaedic & Spine Center">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="@yield('og_title', $defaultOgTitle)">
+    <meta name="twitter:description" content="@yield('og_description', $defaultOgDesc)">
+
+    <!-- Custom Page Meta & Head Section Yields -->
+    @yield('meta')
+    @yield('seo')
+    @yield('head')
+
+    <!-- JSON-LD MedicalOrganization Structured Data Schema -->
+    <script type="application/ld+json">
+    {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) !!}
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

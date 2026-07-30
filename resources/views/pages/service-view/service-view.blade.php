@@ -1,5 +1,9 @@
+@section('title', isset($service) && data_get($service, 'title') ? data_get($service, 'title') . ' | Advance Orthopaedic & Spine Center' : 'Clinical Service')
+@section('meta_description', isset($service) && data_get($service, 'desc') ? Str::limit(strip_tags(data_get($service, 'desc')), 155) : 'Specialized orthopaedic procedure and treatment.')
+@section('og_title', data_get($service, 'title', ''))
+@section('og_description', isset($service) && data_get($service, 'desc') ? Str::limit(strip_tags(data_get($service, 'desc')), 155) : '')
+
 <div class="min-h-screen bg-slate-50/60 py-10 sm:py-14">
-    
     @php
         $title = data_get($service, 'title');
         $slug = data_get($service, 'slug');
