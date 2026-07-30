@@ -69,8 +69,8 @@
                     <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#114b5f]">Email Inquiries</span>
                     <h3 class="font-heading font-bold text-slate-900 text-sm mt-0.5">Patient Support Desk</h3>
                 </div>
-                <a href="mailto:{{ setting('email', 'care@advanceorthospine.com') }}" class="text-xs font-bold text-slate-800 hover:text-[#114b5f] transition-colors block truncate" title="{{ setting('email', 'care@advanceorthospine.com') }}">
-                    {{ setting('email', 'care@advanceorthospine.com') }}
+                <a href="mailto:{{ setting('email', 'contact@advorthospine.com') }}" class="text-xs font-bold text-slate-800 hover:text-[#114b5f] transition-colors block truncate" title="{{ setting('email', 'contact@advorthospine.com') }}">
+                    {{ setting('email', 'contact@advorthospine.com') }}
                 </a>
                 <p class="text-xs text-slate-500 leading-relaxed">Guaranteed response within 2 hours during OPD working shifts.</p>
             </div>
@@ -236,6 +236,20 @@
             <!-- Hospital Arrival & Transport Guide Card (Right 1 Col) -->
             <div class="space-y-6">
                 
+                <!-- Contact Image Spotlight -->
+                <div class="bg-white border border-slate-200/80 rounded-3xl overflow-hidden shadow-sm group">
+                    <div class="aspect-[4/3] bg-slate-900 relative overflow-hidden">
+                        <img src="{{ asset('images/contact.webp') }}" 
+                             alt="Advanced Super Speciality Hospital Desk" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-3 left-4 right-4 text-white">
+                            <p class="font-heading font-extrabold text-sm">Advanced Super Speciality Hospital</p>
+                            <p class="text-[11px] text-teal-300">NH-31, Line Bazar, Purnea</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Arrival Guide Box -->
                 <div class="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm space-y-5">
                     <h3 class="font-heading font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
@@ -306,32 +320,32 @@
                         <i class="ri-map-2-fill"></i>
                     </div>
                     <div>
-                        <h3 class="font-heading font-extrabold text-slate-900 text-base">Interactive Hospital Campus Map</h3>
-                        <p class="text-xs text-slate-500">Find driving directions, emergency gate access, and parking locations</p>
+                        <h3 class="font-heading font-extrabold text-slate-900 text-base">Hospital Location & Google Map</h3>
+                        <p class="text-xs text-slate-500">Advanced Super Speciality Hospital, NH-31, Line Bazar, Purnea</p>
                     </div>
                 </div>
 
-                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#114b5f] hover:text-[#0d3b4b] bg-teal-50 hover:bg-teal-100 px-4 py-2 rounded-xl transition-all cursor-pointer self-start sm:self-auto border border-teal-200/60">
-                    <span>Open in Google Maps App</span>
+                <a href="https://maps.google.com/?q=Advanced+Super+Speciality+Hospital+Purnea" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#114b5f] hover:text-[#0d3b4b] bg-teal-50 hover:bg-teal-100 px-4 py-2 rounded-xl transition-all cursor-pointer self-start sm:self-auto border border-teal-200/60">
+                    <span>Open in Google Maps</span>
                     <i class="ri-external-link-line"></i>
                 </a>
             </div>
 
             <!-- Map Frame with Custom Floating Badge -->
             <div class="relative w-full h-[400px] sm:h-[460px] rounded-2xl overflow-hidden border border-slate-200/80 shadow-inner group">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304603!3d40.69767010000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1680000000000!5m2!1sen!2s" 
-                        class="w-full h-full border-0 filter grayscale-[20%] group-hover:grayscale-0 transition-all duration-500" 
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7003.261715458082!2d87.49336440221526!3d25.78083705086542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eff93a63547e3b%3A0x7975441d4a59bf41!2sAdvanced%20Super%20Speciality%20Hospital!5e0!3m2!1sen!2sin!4v1785412497936!5m2!1sen!2sin" 
+                        class="w-full h-full border-0 filter grayscale-[10%] group-hover:grayscale-0 transition-all duration-500" 
                         allowfullscreen="" 
                         loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
                 <!-- Map Overlay Campus Tag -->
                 <div class="absolute bottom-4 left-4 right-4 sm:right-auto max-w-sm bg-slate-950/90 backdrop-blur-md text-white p-4 rounded-2xl border border-white/10 shadow-2xl space-y-1">
                     <div class="flex items-center gap-2 text-xs font-bold text-teal-300">
                         <i class="ri-hospital-fill text-base"></i>
-                        <span>Advance Orthopaedic & Spine Center</span>
+                        <span>Advanced Super Speciality Hospital</span>
                     </div>
-                    <p class="text-[11px] text-slate-300">450 Health Avenue, Medical District • Gate 2 Emergency Entrance</p>
+                    <p class="text-[11px] text-slate-300">NH-31, Line Bazar, Purnea, Bihar 854301 • Emergency Entrance</p>
                 </div>
             </div>
         </div>

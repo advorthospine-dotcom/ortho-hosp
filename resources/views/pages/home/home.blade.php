@@ -152,7 +152,7 @@
                 <span class="text-teal-200/60">•</span>
                 <span class="flex items-center gap-2 text-white"><i class="ri-health-book-fill text-teal-300"></i> ADVANCED KNEE & JOINT REPLACEMENT</span>
                 <span class="text-teal-200/60">•</span>
-                <span class="flex items-center gap-2 text-white"><i class="ri-spine-fill text-teal-300"></i> KEYHOLE ENDOSCOPIC SPINE DISCECTOMY</span>
+                <span class="flex items-center gap-2 text-white"><i class="ri-spine-fill text-teal-300"></i> MINIMALLY INVASIVE SPINE SURGERY</span>
                 <span class="text-teal-200/60">•</span>
                 <span class="flex items-center gap-2 text-rose-300"><i class="ri-alarm-warning-fill"></i> 24/7 LEVEL-1 EMERGENCY TRAUMA CARE</span>
                 <span class="text-teal-200/60">•</span>
@@ -172,7 +172,7 @@
                 <span class="text-teal-200/60">•</span>
                 <span class="flex items-center gap-2 text-white"><i class="ri-health-book-fill text-teal-300"></i> ADVANCED KNEE & JOINT REPLACEMENT</span>
                 <span class="text-teal-200/60">•</span>
-                <span class="flex items-center gap-2 text-white"><i class="ri-spine-fill text-teal-300"></i> KEYHOLE ENDOSCOPIC SPINE DISCECTOMY</span>
+                <span class="flex items-center gap-2 text-white"><i class="ri-spine-fill text-teal-300"></i> MINIMALLY INVASIVE SPINE SURGERY</span>
                 <span class="text-teal-200/60">•</span>
                 <span class="flex items-center gap-2 text-rose-300"><i class="ri-alarm-warning-fill"></i> 24/7 LEVEL-1 EMERGENCY TRAUMA CARE</span>
                 <span class="text-teal-200/60">•</span>
@@ -188,7 +188,81 @@
         </div>
     </div>
 
-    
+    <!-- 2.5 DOCTOR & CENTER OVERVIEW SECTION -->
+    <section class="py-16 sm:py-20 bg-slate-50/80 border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Doctor Image Showcase (5 cols) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-slate-200/80 bg-slate-900 group">
+                        <img src="{{ asset('images/doctor.webp') }}" 
+                             alt="Dr. Md. Shafique Alam" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=800&q=80';" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent"></div>
+                        
+                        <div class="absolute bottom-5 left-5 right-5 text-white space-y-1">
+                            <span class="px-3 py-1 rounded-md bg-[#114b5f] text-[10px] font-extrabold uppercase tracking-wider text-white inline-block shadow-sm">
+                                Lead Specialist & Surgeon
+                            </span>
+                            <h3 class="font-heading font-extrabold text-xl text-white">Dr. Md. Shafique Alam</h3>
+                            <p class="text-teal-300 text-xs font-semibold">MBBS, MS (Orthopaedics), D.Ortho, DNB</p>
+                        </div>
+                    </div>
+
+                    <!-- Floating Quality Badge -->
+                    <div class="absolute -bottom-5 -right-3 bg-white border border-slate-200/80 p-3.5 sm:p-4 rounded-2xl shadow-xl flex items-center gap-3 max-w-xs">
+                        <div class="w-10 h-10 rounded-xl bg-teal-50 text-[#114b5f] flex items-center justify-center text-xl font-bold shrink-0 border border-teal-200/60">
+                            <i class="ri-award-fill"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-xs text-slate-900 leading-tight">21+ Years Experience</p>
+                            <p class="text-[10px] text-slate-500 mt-0.5">Spine & Joint Specialist</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Description & Center Commitment (7 cols) -->
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#114b5f] bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200/80">
+                            Trusted Care in Seemanchal
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight">
+                            Advanced Orthopaedic & Spine Center, Purnea
+                        </h2>
+                    </div>
+
+                    <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+                        <strong>Advanced Orthopaedic & Spine Center</strong> is a trusted destination for advanced bone, joint, trauma, and spine care in Purnea, serving patients across the Seemanchal region, including Katihar, Kishanganj, Araria, Supaul, Saharsa, Madhepura, Forbesganj, and nearby areas.
+                    </p>
+
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                        Led by <strong>Dr. Md. Shafique Alam (MBBS, MS, D.Ortho, DNB)</strong> with over 21 years of experience, our center offers comprehensive orthopaedic services, including trauma & accident care, spine surgery & back care, joint replacement surgeries, sports injury management, arthroscopic procedures, fracture care, rheumatology, and physiotherapy & rehabilitation.
+                    </p>
+
+                    <div class="p-4 rounded-2xl bg-teal-50/70 border border-teal-200/80 space-y-1.5">
+                        <p class="text-xs sm:text-sm text-slate-800 font-medium leading-relaxed italic">
+                            "We are committed to delivering personalized, evidence-based treatment using modern technology to help patients regain mobility, relieve pain, and lead healthier, more active lives."
+                        </p>
+                    </div>
+
+                    <div class="pt-2 flex flex-wrap items-center gap-3">
+                        <a href="{{ route('about') }}" wire:navigate class="px-5 py-2.5 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs rounded-xl shadow-md shadow-[#114b5f]/15 transition-all inline-flex items-center gap-2">
+                            <span>Read Full Profile & Qualifications</span>
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                        <a href="{{ route('contact') }}" wire:navigate class="px-5 py-2.5 bg-white border border-slate-200 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-50 transition-all inline-flex items-center gap-2 shadow-xs">
+                            <i class="ri-calendar-check-fill text-[#114b5f]"></i>
+                            <span>Book Consultation</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- 3. SERVICES SECTION (ONLY THE 20 SPECIFIED SERVICES) -->
     <section id="services" class="py-24 bg-white border-b border-slate-200">

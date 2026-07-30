@@ -51,7 +51,7 @@
                 <h4 class="text-xs font-extrabold text-white uppercase tracking-wider">Specialties</h4>
                 <ul class="space-y-2 text-xs">
                     <li><a href="{{ route('services.view', 'trauma-and-accident-care') }}" class="text-slate-400 hover:text-teal-300 transition-colors">Trauma & Accident Care</a></li>
-                    <li><a href="{{ route('services.view', 'endoscopic-spine-surgery') }}" class="text-slate-400 hover:text-teal-300 transition-colors">Endoscopic Spine Surgery</a></li>
+                    <li><a href="{{ route('services.view', 'cervical-thoracic-lumbar-spine-disorders') }}" class="text-slate-400 hover:text-teal-300 transition-colors">Spine & Back Care</a></li>
                     <li><a href="{{ route('services.view', 'knee-replacement-surgery') }}" class="text-slate-400 hover:text-teal-300 transition-colors">Knee Replacement Surgery</a></li>
                     <li><a href="{{ route('services.view', 'hip-replacement-surgery') }}" class="text-slate-400 hover:text-teal-300 transition-colors">Hip Replacement Surgery</a></li>
                     <li><a href="{{ route('services.view', 'sports-injury-treatment') }}" class="text-slate-400 hover:text-teal-300 transition-colors">Sports Injury & Arthroscopy</a></li>
@@ -85,7 +85,7 @@
                     </p>
                     <p class="flex items-center gap-2 text-slate-300">
                         <i class="ri-mail-fill text-teal-400 text-sm shrink-0"></i>
-                        <span>{{ setting('email', setting('contact_email', 'care@advanceorthospine.com')) }}</span>
+                        <span>{{ setting('email', setting('contact_email', 'contact@advorthospine.com')) }}</span>
                     </p>
                     <p class="text-[11px] text-slate-400 pt-1">OPD: {{ setting('opd_timings', 'Mon - Sat: 8:00 AM - 8:00 PM') }} • 24/7 Emergency</p>
                 </div>

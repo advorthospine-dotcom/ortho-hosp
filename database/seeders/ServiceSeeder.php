@@ -76,18 +76,7 @@ class ServiceSeeder extends Seeder
                 'features' => ['Cervical Disc Replacement', 'Lumbar Fusion (TLIF/PLIF)', 'Non-Surgical Pain Therapies'],
                 'is_active' => true,
             ],
-            [
-                'title' => 'Endoscopic Spine Surgery',
-                'slug' => 'endoscopic-spine-surgery',
-                'category' => 'spine',
-                'category_label' => 'Spine & Back Care',
-                'color' => 'sky',
-                'badge' => 'Keyhole Ultra-Precision',
-                'image' => 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80',
-                'desc' => 'Ultra-minimally invasive spinal discectomy and decompression performed through 7mm micro-incisions with zero back muscle damage and rapid recovery.',
-                'features' => ['7mm Keyhole Incisions', 'Same-Day / Overnight Discharge', 'Preserves Native Muscle'],
-                'is_active' => true,
-            ],
+
             [
                 'title' => 'Back Pain Treatment',
                 'slug' => 'back-pain-treatment',

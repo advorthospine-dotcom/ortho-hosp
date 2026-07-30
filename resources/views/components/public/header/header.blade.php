@@ -14,10 +14,10 @@
 
                 <span class="text-slate-800">|</span>
 
-                <a href="mailto:{{ setting('email', setting('contact_email', 'care@advanceorthospine.com')) }}" 
+                <a href="mailto:{{ setting('email', setting('contact_email', 'contact@advorthospine.com')) }}" 
                    class="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors text-[11px] sm:text-xs">
                     <i class="ri-mail-line text-emerald-400 text-sm"></i>
-                    <span>{{ setting('email', setting('contact_email', 'care@advanceorthospine.com')) }}</span>
+                    <span>{{ setting('email', setting('contact_email', 'contact@advorthospine.com')) }}</span>
                 </a>
             </div>
 
@@ -48,6 +48,7 @@
             <!-- Desktop Navigation Links -->
             <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-700">
                 <a href="{{ route('home') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-1 {{ request()->routeIs('home') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">Home</a>
+                <a href="{{ route('about') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-1 {{ request()->routeIs('about') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">About Us</a>
                 
                 <!-- Services Dropdown with Sub-Menu -->
                 <div class="relative" @mouseleave="servicesOpen = false">
@@ -83,11 +84,11 @@
                                 </div>
                                 <span>Trauma & Accident Care</span>
                             </a>
-                            <a href="{{ route('services.view', 'endoscopic-spine-surgery') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
+                            <a href="{{ route('services.view', 'cervical-thoracic-lumbar-spine-disorders') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
                                 <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
                                     <i class="ri-health-book-line text-sm"></i>
                                 </div>
-                                <span>Endoscopic Spine Surgery</span>
+                                <span>Spine & Back Care</span>
                             </a>
                             <a href="{{ route('services.view', 'knee-replacement-surgery') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
                                 <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
@@ -125,7 +126,7 @@
 
             <!-- CTA & Mobile Trigger Button -->
             <div class="flex items-center gap-3">
-                <a href="{{ route('home') }}#booking" wire:navigate class="hidden sm:inline-block px-5 py-2.5 bg-[#114b5f] hover:bg-[#0e3d4e] text-white font-bold text-xs rounded-xl transition-all shadow-md shadow-[#114b5f]/20">
+                <a href="{{ route('contact') }}" wire:navigate class="hidden sm:inline-block px-5 py-2.5 bg-[#114b5f] hover:bg-[#0e3d4e] text-white font-bold text-xs rounded-xl transition-all shadow-md shadow-[#114b5f]/20">
                     Book Appointment
                 </a>
 
@@ -181,6 +182,15 @@
                 <span>Home</span>
             </a>
 
+            <!-- About Us Link -->
+            <a href="{{ route('about') }}" 
+               wire:navigate 
+               @click="mobileMenuOpen = false" 
+               class="flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('about') ? 'bg-teal-50 text-[#114b5f] border border-teal-200/80 font-extrabold shadow-2xs' : 'text-slate-700 hover:bg-slate-50 hover:text-[#114b5f]' }}">
+                <i class="ri-hospital-line text-lg {{ request()->routeIs('about') ? 'text-[#114b5f]' : 'text-slate-400' }}"></i>
+                <span>About Us</span>
+            </a>
+
             <!-- Services Accordion Sub-Menu on Mobile -->
             <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-slate-50/50">
                 <button type="button" 
@@ -201,8 +211,8 @@
                     <a href="{{ route('services.view', 'trauma-and-accident-care') }}" wire:navigate @click="mobileMenuOpen = false" class="block px-3 py-2 font-medium text-slate-600 hover:text-[#114b5f] hover:bg-white rounded-lg transition-colors">
                         • Trauma & Accident Care
                     </a>
-                    <a href="{{ route('services.view', 'endoscopic-spine-surgery') }}" wire:navigate @click="mobileMenuOpen = false" class="block px-3 py-2 font-medium text-slate-600 hover:text-[#114b5f] hover:bg-white rounded-lg transition-colors">
-                        • Endoscopic Spine Surgery
+                    <a href="{{ route('services.view', 'cervical-thoracic-lumbar-spine-disorders') }}" wire:navigate @click="mobileMenuOpen = false" class="block px-3 py-2 font-medium text-slate-600 hover:text-[#114b5f] hover:bg-white rounded-lg transition-colors">
+                        • Spine & Back Care
                     </a>
                     <a href="{{ route('services.view', 'knee-replacement-surgery') }}" wire:navigate @click="mobileMenuOpen = false" class="block px-3 py-2 font-medium text-slate-600 hover:text-[#114b5f] hover:bg-white rounded-lg transition-colors">
                         • Knee & Hip Replacement
@@ -253,7 +263,7 @@
                 <span>24/7 Helpline: {{ setting('phone_number', '1-800-678-4677') }}</span>
             </a>
 
-            <a href="{{ route('home') }}#booking" 
+            <a href="{{ route('contact') }}" 
                wire:navigate 
                @click="mobileMenuOpen = false" 
                class="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs sm:text-sm rounded-xl shadow-md shadow-[#114b5f]/20 transition-all">

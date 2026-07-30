@@ -212,7 +212,7 @@
                             <h4 class="font-heading font-extrabold text-sm tracking-wide text-teal-100">Schedule Consultation</h4>
                             <p class="text-xs text-slate-300 leading-relaxed max-w-[220px] mx-auto">Book an evaluation with our expert spine and joint reconstructive team.</p>
                         </div>
-                        <a href="{{ route('home') }}#booking" class="inline-flex items-center justify-center w-full py-3 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs rounded-xl shadow-lg shadow-[#114b5f]/30 active:scale-[0.99] transition-all cursor-pointer">
+                        <a href="{{ route('contact') }}" wire:navigate class="inline-flex items-center justify-center w-full py-3 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs rounded-xl shadow-lg shadow-[#114b5f]/30 active:scale-[0.99] transition-all cursor-pointer">
                             Book Appointment Now
                         </a>
                     </div>

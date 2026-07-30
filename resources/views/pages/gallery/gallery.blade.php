@@ -413,7 +413,7 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
-                    <a href="{{ route('home') }}#booking" class="w-full sm:w-auto px-5 py-2.5 sm:py-3 bg-[#114b5f] hover:bg-[#0d3b4b] text-white font-bold text-xs rounded-xl shadow-md shadow-[#114b5f]/20 active:scale-[0.99] transition-all cursor-pointer inline-flex items-center justify-center gap-2">
+                    <a href="{{ route('contact') }}" wire:navigate class="w-full sm:w-auto px-5 py-2.5 sm:py-3 bg-[#114b5f] hover:bg-[#0d3b4b] text-white font-bold text-xs rounded-xl shadow-md shadow-[#114b5f]/20 active:scale-[0.99] transition-all cursor-pointer inline-flex items-center justify-center gap-2">
                         <i class="ri-calendar-check-fill text-sm"></i>
                         <span>Schedule Appointment</span>
                     </a>
