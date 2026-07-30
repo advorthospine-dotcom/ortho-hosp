@@ -20,6 +20,9 @@ class Service extends Model
         'image',
         'desc',
         'features',
+        'meta_title',
+        'meta_desc',
+        'meta_keywords',
         'is_active',
     ];
 

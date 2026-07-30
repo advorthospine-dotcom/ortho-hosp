@@ -382,7 +382,7 @@
                                     </h3>
 
                                     <p class="text-slate-600 text-xs sm:text-sm mt-2.5 leading-relaxed line-clamp-3">
-                                        {{ $desc }}
+                                        {{ strip_tags($desc) }}
                                     </p>
 
                                     @if(!empty($features))

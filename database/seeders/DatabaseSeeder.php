@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'admin@orthohosp.com'],
             [
                 'name' => 'System Administrator',
-                'password' => Hash::make('admin123'),
+                'password' => Hash::make('ortho#14412'),
             ]
         );
 
@@ -28,5 +28,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceSeeder::class);
         $this->call(GallerySeeder::class);
         $this->call(PageContentSeeder::class);
+        $this->call(SettingSeeder::class);
     }
 }

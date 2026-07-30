@@ -70,9 +70,31 @@
                             tinymce.init({
                                 target: $refs.editor,
                                 height: 420,
-                                menubar: false,
+                                menubar: 'insert format table tools',
                                 plugins: 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen insertdatetime media table help wordcount',
-                                toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | image link code | help',
+                                toolbar: 'undo redo | blocks | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table | removeformat | code help',
+                                image_title: true,
+                                automatic_uploads: true,
+                                file_picker_types: 'image',
+                                file_picker_callback: (cb, value, meta) => {
+                                    const input = document.createElement('input');
+                                    input.setAttribute('type', 'file');
+                                    input.setAttribute('accept', 'image/*');
+                                    input.addEventListener('change', (e) => {
+                                        const file = e.target.files[0];
+                                        const reader = new FileReader();
+                                        reader.addEventListener('load', () => {
+                                            const id = 'blobid' + (new Date()).getTime();
+                                            const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                                            const base64 = reader.result.split(',')[1];
+                                            const blobInfo = blobCache.create(id, file, base64);
+                                            blobCache.add(blobInfo);
+                                            cb(blobInfo.blobUri(), { title: file.name });
+                                        });
+                                        reader.readAsDataURL(file);
+                                    });
+                                    input.click();
+                                },
                                 setup: (editor) => {
                                     editor.on('init', () => {
                                         editor.setContent(this.content || '');

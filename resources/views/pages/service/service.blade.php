@@ -183,7 +183,7 @@
                                     </a>
                                 </h3>
                                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
-                                    {{ $desc }}
+                                    {{ strip_tags($desc) }}
                                 </p>
                             </div>
 

@@ -20,8 +20,11 @@ return new class extends Migration
             $table->string('color')->default('blue');
             $table->string('badge')->nullable();
             $table->string('image')->nullable();
-            $table->text('desc')->nullable();
+            $table->longText('desc')->nullable();
             $table->json('features')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_desc')->nullable();
+            $table->string('meta_keywords')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

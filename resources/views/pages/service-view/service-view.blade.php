@@ -1,7 +1,8 @@
-@section('title', isset($service) && data_get($service, 'title') ? data_get($service, 'title') . ' | Advance Orthopaedic & Spine Center' : 'Clinical Service')
-@section('meta_description', isset($service) && data_get($service, 'desc') ? Str::limit(strip_tags(data_get($service, 'desc')), 155) : 'Specialized orthopaedic procedure and treatment.')
-@section('og_title', data_get($service, 'title', ''))
-@section('og_description', isset($service) && data_get($service, 'desc') ? Str::limit(strip_tags(data_get($service, 'desc')), 155) : '')
+@section('title', data_get($service, 'meta_title') ?: (data_get($service, 'title') . ' | Advance Orthopaedic & Spine Center'))
+@section('meta_description', data_get($service, 'meta_desc') ?: (data_get($service, 'meta_description') ?: Str::limit(strip_tags(data_get($service, 'desc')), 155)))
+@section('meta_keywords', data_get($service, 'meta_keywords') ?: (data_get($service, 'title') . ', orthopaedic hospital, spine surgeon, Purnea'))
+@section('og_title', data_get($service, 'meta_title') ?: data_get($service, 'title', ''))
+@section('og_description', data_get($service, 'meta_desc') ?: (data_get($service, 'meta_description') ?: Str::limit(strip_tags(data_get($service, 'desc')), 155)))
 
 <div class="min-h-screen bg-slate-50/60 py-10 sm:py-14">
     @php
@@ -50,9 +51,22 @@
                             <p class="text-xs text-[#114b5f] font-bold uppercase tracking-wider">Advanced Hospital Specialty Treatment</p>
                         </div>
 
-                        <p class="text-sm sm:text-base text-slate-600 leading-relaxed pt-2 border-t border-slate-100">
-                            {{ $desc }}
-                        </p>
+                        <!-- Rich TinyMCE Service Description with Premium Design -->
+                        <div class="prose prose-slate max-w-none text-sm sm:text-base text-slate-700 leading-relaxed pt-4 border-t border-slate-100 
+                                    [&_h2]:text-xl [&_h2]:sm:text-2xl [&_h2]:font-heading [&_h2]:font-bold [&_h2]:text-slate-900 [&_h2]:mt-6 [&_h2]:mb-3 [&_h2]:border-b [&_h2]:border-slate-100 [&_h2]:pb-2
+                                    [&_h3]:text-lg [&_h3]:font-heading [&_h3]:font-bold [&_h3]:text-[#114b5f] [&_h3]:mt-5 [&_h3]:mb-2
+                                    [&_p]:mb-4 [&_p]:leading-relaxed
+                                    [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2 [&_ul]:mb-4 [&_ul]:text-slate-700
+                                    [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-2 [&_ol]:mb-4 [&_ol]:text-slate-700
+                                    [&_li]:marker:text-[#114b5f]
+                                    [&_a]:text-[#114b5f] [&_a]:font-bold [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-[#0d3b4b]
+                                    [&_blockquote]:border-l-4 [&_blockquote]:border-[#114b5f] [&_blockquote]:bg-teal-50/60 [&_blockquote]:p-4 [&_blockquote]:rounded-r-2xl [&_blockquote]:italic [&_blockquote]:my-5 [&_blockquote]:text-slate-800
+                                    [&_img]:rounded-2xl [&_img]:shadow-md [&_img]:border [&_img]:border-slate-200 [&_img]:my-6 [&_img]:mx-auto [&_img]:max-w-full [&_img]:h-auto
+                                    [&_table]:w-full [&_table]:border-collapse [&_table]:my-6 [&_table]:rounded-xl [&_table]:overflow-hidden [&_table]:border [&_table]:border-slate-200
+                                    [&_th]:bg-[#114b5f] [&_th]:text-white [&_th]:p-3 [&_th]:text-xs [&_th]:font-bold [&_th]:text-left
+                                    [&_td]:p-3 [&_td]:border-b [&_td]:border-slate-100 [&_td]:text-xs [&_td]:text-slate-700">
+                            {!! $desc !!}
+                        </div>
 
                         <!-- Hospital Quality Badges -->
                         <div class="pt-2 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-500">
