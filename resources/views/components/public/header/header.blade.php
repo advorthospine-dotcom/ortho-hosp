@@ -1,7 +1,7 @@
 <!-- CLEAN & PROFESSIONAL HEADER COMPONENT -->
 <div x-data="{ mobileMenuOpen: false, servicesOpen: false, mobileServicesOpen: false }" @keydown.escape.window="mobileMenuOpen = false">
-    <!-- Top Contact Bar (Dark Theme: Left = Phone & Email, Right = 24/7 Open) -->
-    <div class="bg-slate-950 text-slate-300 text-xs py-2.5 border-b border-slate-900">
+    <!-- Top Contact Bar (Dark Theme: Left = Phone & Email, Right = 24/7 Open - Hidden on mobile screens) -->
+    <div class="hidden sm:block bg-slate-950 text-slate-300 text-xs py-2.5 border-b border-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3">
             
             <!-- Left Side: Phone & Email -->

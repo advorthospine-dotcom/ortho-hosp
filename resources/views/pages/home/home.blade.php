@@ -143,8 +143,8 @@
         </div>
     </section>
 
-    <!-- 2. MARQUEE TICKER RIBBON DIRECTLY BELOW HERO -->
-    <div class="bg-[#114b5f] text-white py-3.5 overflow-hidden border-y border-[#1a6882]/40 shadow-sm">
+    <!-- 2. MARQUEE TICKER RIBBON DIRECTLY BELOW HERO (Hidden on phone screens) -->
+    <div class="hidden md:block bg-[#114b5f] text-white py-3.5 overflow-hidden border-y border-[#1a6882]/40 shadow-sm">
         <div class="animate-marquee whitespace-nowrap flex items-center gap-8 text-xs font-bold uppercase tracking-wider">
             <!-- Track 1 -->
             <div class="flex items-center gap-8">
