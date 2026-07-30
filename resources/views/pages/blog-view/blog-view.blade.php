@@ -5,7 +5,7 @@
 
 <div class="min-h-screen bg-slate-50/60 py-10 sm:py-14">
     
-    <!-- Scoped style sheet for TinyMCE HTML output with Navy & Cobalt theme -->
+    <!-- Scoped style sheet for TinyMCE HTML output with Brand Teal theme -->
     <style>
         .blog-rich-content {
             font-family: 'Inter', sans-serif;
@@ -65,12 +65,12 @@
             line-height: 1.75 !important;
         }
         .blog-rich-content blockquote {
-            border-left: 4px solid #2563eb !important;
+            border-left: 4px solid #114b5f !important;
             padding: 1.25rem 1.75rem !important;
             font-style: italic !important;
             color: #1e293b !important;
             margin: 2.25rem 0 !important;
-            background-color: #f0f7ff !important;
+            background-color: #f0fdfa !important;
             border-radius: 0 1rem 1rem 0;
             position: relative;
         }
@@ -79,16 +79,16 @@
             font-weight: 700 !important;
         }
         .blog-rich-content a {
-            color: #2563eb !important;
+            color: #114b5f !important;
             text-decoration: underline !important;
             font-weight: 600 !important;
         }
         .blog-rich-content a:hover {
-            color: #1d4ed8 !important;
+            color: #0d3b4b !important;
         }
         .blog-rich-content img {
             border-radius: 1.25rem !important;
-            box-shadow: 0 12px 32px -8px rgba(37,99,235,0.08) !important;
+            box-shadow: 0 12px 32px -8px rgba(17,75,95,0.08) !important;
             margin: 2.5rem auto !important;
             max-width: 100% !important;
             height: auto !important;
@@ -118,22 +118,6 @@
     <!-- Main Outer Container -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- Breadcrumbs Navigation -->
-        <nav class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-8 overflow-x-auto whitespace-nowrap pb-1 shrink-0">
-            <a href="{{ route('home') }}" class="hover:text-blue-600 transition-colors inline-flex items-center gap-1">
-                <i class="ri-home-4-line text-sm"></i> Home
-            </a>
-            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
-            <a href="{{ route('blog') }}" class="hover:text-blue-600 transition-colors">
-                Insights
-            </a>
-            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
-            <span class="text-blue-700 bg-blue-50 px-2 py-0.5 rounded font-bold">
-                {{ $blog->category->name }}
-            </span>
-            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
-            <span class="text-slate-600 truncate max-w-[240px]" title="{{ $blog->title }}">{{ $blog->title }}</span>
-        </nav>
 
         <!-- Main Content Layout Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
@@ -145,22 +129,22 @@
                 <div class="space-y-4">
                     <!-- Meta Row: Category, Date, Reading Time -->
                     <div class="flex items-center gap-3 flex-wrap">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 border border-blue-100 rounded-lg shadow-2xs">
-                            <i class="ri-price-tag-3-line text-blue-500 text-xs"></i>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#114b5f] bg-teal-50 border border-teal-200/60 rounded-lg shadow-2xs">
+                            <i class="ri-price-tag-3-line text-[#114b5f] text-xs"></i>
                             {{ $blog->category->name }}
                         </span>
 
                         <span class="text-slate-300 text-xs">•</span>
 
                         <span class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
-                            <i class="ri-calendar-line text-blue-600"></i>
+                            <i class="ri-calendar-line text-[#114b5f]"></i>
                             {{ $blog->created_at->format('F d, Y') }}
                         </span>
 
                         <span class="text-slate-300 text-xs">•</span>
 
                         <span class="text-xs font-semibold text-slate-500 flex items-center gap-1.5">
-                            <i class="ri-time-line text-blue-600"></i>
+                            <i class="ri-time-line text-[#114b5f]"></i>
                             {{ max(2, ceil(str_word_count(strip_tags($blog->content)) / 200)) }} min read
                         </span>
                     </div>
@@ -173,20 +157,20 @@
                     <!-- Author Badge Card -->
                     <div class="pt-2 flex items-center justify-between border-y border-slate-100 py-3.5">
                         <div class="flex items-center gap-3.5">
-                            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex items-center justify-center text-xs font-extrabold uppercase shadow-md border-2 border-white">
+                            <div class="w-10 h-10 rounded-full bg-[#114b5f] text-white flex items-center justify-center text-xs font-extrabold uppercase shadow-md border-2 border-white">
                                 {{ substr($blog->authorUser->name ?? 'D', 0, 2) }}
                             </div>
                             <div>
                                 <div class="flex items-center gap-1.5">
                                     <p class="font-bold text-slate-800 text-sm leading-tight">{{ $blog->authorUser->name ?? 'Specialist Surgeon' }}</p>
-                                    <span class="text-blue-600 text-xs" title="Verified Medical Author"><i class="ri-verified-badge-fill"></i></span>
+                                    <span class="text-[#114b5f] text-xs" title="Verified Medical Author"><i class="ri-verified-badge-fill"></i></span>
                                 </div>
                                 <p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mt-0.5">Clinical Faculty & Staff</p>
                             </div>
                         </div>
 
                         <!-- Back Button Pill -->
-                        <a href="{{ route('blog') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-blue-600 bg-slate-100 hover:bg-slate-200/70 px-3 py-1.5 rounded-xl transition-all cursor-pointer">
+                        <a href="{{ route('blog') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-[#114b5f] bg-slate-100 hover:bg-slate-200/70 px-3 py-1.5 rounded-xl transition-all cursor-pointer">
                             <i class="ri-arrow-left-line"></i> <span class="hidden sm:inline">Back to Insights</span>
                         </a>
                     </div>
@@ -212,12 +196,12 @@
                 </div>
 
                 <!-- Medical Disclaimer Callout Box -->
-                <div class="mt-8 bg-blue-50/70 border border-blue-100 rounded-2xl p-5 flex items-start gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center text-lg shrink-0 shadow-sm mt-0.5">
+                <div class="mt-8 bg-teal-50/70 border border-teal-200/80 rounded-2xl p-5 flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-[#114b5f] text-white flex items-center justify-center text-lg shrink-0 shadow-sm mt-0.5">
                         <i class="ri-shield-cross-fill"></i>
                     </div>
                     <div class="space-y-1 text-xs">
-                        <h4 class="font-heading font-extrabold text-blue-950">Clinical Information Disclaimer</h4>
+                        <h4 class="font-heading font-extrabold text-slate-900">Clinical Information Disclaimer</h4>
                         <p class="text-slate-600 leading-relaxed">
                             This publication is authored by clinical staff at Advance Orthopaedic & Spine Center for informational purposes only. It is not a substitute for formal clinical diagnosis or personalized medical evaluation.
                         </p>
@@ -233,7 +217,7 @@
                             <!-- Facebook -->
                             <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl)" 
                                target="_blank" 
-                               class="w-9 h-9 rounded-xl bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center text-base shadow-sm hover:scale-105 transition-all"
+                               class="w-9 h-9 rounded-xl bg-[#114b5f] hover:bg-[#0d3b4b] text-white flex items-center justify-center text-base shadow-sm hover:scale-105 transition-all"
                                title="Share on Facebook">
                                 <i class="ri-facebook-fill"></i>
                             </a>
@@ -270,7 +254,7 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('blog') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 transition-colors">
+                    <a href="{{ route('blog') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#114b5f] hover:text-[#0d3b4b] transition-colors">
                         <i class="ri-arrow-left-line"></i> View All Medical Insights
                     </a>
                 </div>
@@ -284,14 +268,14 @@
                 <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-4"
                      x-data="{ copied: false, shareUrl: window.location.href }">
                     <h3 class="font-heading font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
-                        <i class="ri-share-forward-line text-blue-600"></i> Share Knowledge
+                        <i class="ri-share-forward-line text-[#114b5f]"></i> Share Knowledge
                     </h3>
                     <div class="grid grid-cols-2 gap-2.5">
                         <!-- Facebook -->
                         <a :href="'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl)" 
                            target="_blank" 
-                           class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-blue-50 hover:bg-blue-100 border border-blue-200/60 text-blue-700 text-xs font-bold transition-all">
-                            <i class="ri-facebook-circle-fill text-blue-600 text-base"></i>
+                           class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-teal-50 hover:bg-teal-100 border border-teal-200/60 text-[#114b5f] text-xs font-bold transition-all">
+                            <i class="ri-facebook-circle-fill text-[#114b5f] text-base"></i>
                             <span>Facebook</span>
                         </a>
 
@@ -333,7 +317,7 @@
                 <!-- Related Insights Widget -->
                 <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm space-y-4">
                     <h3 class="font-heading font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
-                        <i class="ri-git-repository-line text-blue-600"></i> Related Insights
+                        <i class="ri-git-repository-line text-[#114b5f]"></i> Related Insights
                     </h3>
                     <div class="space-y-4">
                         @forelse($relatedBlogs as $rel)
@@ -342,10 +326,10 @@
                                     <img src="{{ $rel->image_url }}" alt="{{ $rel->image_alt }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 </div>
                                 <div class="min-w-0 space-y-1">
-                                    <span class="text-[9px] font-extrabold uppercase tracking-wider text-blue-600 block">
+                                    <span class="text-[9px] font-extrabold uppercase tracking-wider text-[#114b5f] block">
                                         {{ $rel->category->name ?? 'Clinical' }}
                                     </span>
-                                    <h4 class="text-xs font-bold text-slate-800 leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+                                    <h4 class="text-xs font-bold text-slate-800 leading-snug line-clamp-2 group-hover:text-[#114b5f] transition-colors">
                                         {{ $rel->title }}
                                     </h4>
                                     <p class="text-[10px] text-slate-400 font-medium">
@@ -360,19 +344,19 @@
                 </div>
 
                 <!-- Doctor Appointment CTA Widget -->
-                <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 border border-blue-900/60 rounded-2xl p-6 shadow-xl text-white text-center relative overflow-hidden">
-                    <div class="absolute -top-20 -right-20 w-44 h-44 rounded-full bg-blue-500/20 blur-3xl pointer-events-none"></div>
-                    <div class="absolute -bottom-20 -left-20 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"></div>
+                <div class="bg-gradient-to-br from-slate-950 via-[#0a2f3c] to-slate-950 border border-[#114b5f]/40 rounded-2xl p-6 shadow-xl text-white text-center relative overflow-hidden">
+                    <div class="absolute -top-20 -right-20 w-44 h-44 rounded-full bg-[#114b5f]/20 blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-20 -left-20 w-44 h-44 rounded-full bg-[#3b774b]/10 blur-3xl pointer-events-none"></div>
                     
                     <div class="relative z-10 space-y-4 flex flex-col items-center">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/15 border border-blue-400/20 flex items-center justify-center text-blue-400 shadow-lg">
+                        <div class="w-12 h-12 rounded-xl bg-[#114b5f]/30 border border-teal-400/30 flex items-center justify-center text-teal-300 shadow-lg">
                             <i class="ri-calendar-check-fill text-2xl"></i>
                         </div>
                         <div class="space-y-1.5">
-                            <h4 class="font-heading font-extrabold text-sm tracking-wide text-blue-100">Need Expert Evaluation?</h4>
+                            <h4 class="font-heading font-extrabold text-sm tracking-wide text-teal-100">Need Expert Evaluation?</h4>
                             <p class="text-xs text-slate-300 leading-relaxed max-w-[220px] mx-auto">Book an evaluation with our expert spine and joint reconstructive team.</p>
                         </div>
-                        <a href="{{ route('home') }}#booking" class="inline-flex items-center justify-center w-full py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold text-xs rounded-xl shadow-lg shadow-blue-600/30 active:scale-[0.99] transition-all cursor-pointer">
+                        <a href="{{ route('home') }}#booking" class="inline-flex items-center justify-center w-full py-3 bg-[#114b5f] hover:bg-[#0d3b4b] text-white font-bold text-xs rounded-xl shadow-lg shadow-[#114b5f]/30 active:scale-[0.99] transition-all cursor-pointer">
                             Schedule Appointment
                         </a>
                     </div>

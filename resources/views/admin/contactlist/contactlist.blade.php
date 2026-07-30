@@ -26,12 +26,12 @@
             <!-- Search Filter Input -->
             <div class="max-w-md relative group w-full">
                 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <i class="ri-search-2-line text-slate-400 group-focus-within:text-sky-600 transition-colors"></i>
+                    <i class="ri-search-2-line text-slate-400 group-focus-within:text-[#114b5f] transition-colors"></i>
                 </div>
                 <input type="text" 
                        wire:model.live.debounce.300ms="search" 
                        placeholder="Search by name, phone, email, or message..." 
-                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
             </div>
 
             <!-- Status Filter Segmented Toggle -->
@@ -69,7 +69,7 @@
                 </thead>
                 <tbody class="divide-y divide-slate-50 text-xs">
                     @forelse($contacts as $contact)
-                        <tr class="hover:bg-slate-50/50 transition-colors {{ !$contact->is_read ? 'bg-sky-50/20 font-medium' : '' }}">
+                        <tr class="hover:bg-slate-50/50 transition-colors {{ !$contact->is_read ? 'bg-teal-50/30 font-medium' : '' }}">
                             <!-- Status Indicator -->
                             <td class="py-4 px-6">
                                 @if(!$contact->is_read)
@@ -94,12 +94,12 @@
                             <td class="py-4 px-6">
                                 <div class="font-semibold text-slate-800 flex items-center gap-1 font-mono text-xs">
                                     <i class="ri-phone-line text-slate-400"></i>
-                                    <a href="tel:{{ $contact->phone }}" class="hover:text-sky-600 hover:underline">{{ $contact->phone }}</a>
+                                    <a href="tel:{{ $contact->phone }}" class="hover:text-[#114b5f] hover:underline">{{ $contact->phone }}</a>
                                 </div>
                                 @if($contact->email)
                                     <div class="text-[11px] text-slate-500 truncate mt-0.5 flex items-center gap-1">
                                         <i class="ri-mail-line text-slate-400"></i>
-                                        <a href="mailto:{{ $contact->email }}" class="hover:text-sky-600 hover:underline">{{ $contact->email }}</a>
+                                        <a href="mailto:{{ $contact->email }}" class="hover:text-[#114b5f] hover:underline">{{ $contact->email }}</a>
                                     </div>
                                 @endif
                             </td>
@@ -132,7 +132,7 @@
                             <!-- Actions -->
                             <td class="py-4 px-6 text-right space-x-1 whitespace-nowrap">
                                 <button wire:click="viewDetails({{ $contact->id }})" 
-                                        class="p-2 rounded-lg bg-sky-50 text-sky-700 hover:bg-sky-600 hover:text-white transition-all cursor-pointer inline-flex items-center gap-1 font-semibold text-xs border border-sky-200/60 shadow-xs"
+                                        class="p-2 rounded-lg bg-teal-50 text-[#114b5f] hover:bg-[#114b5f] hover:text-white transition-all cursor-pointer inline-flex items-center gap-1 font-semibold text-xs border border-teal-200/60 shadow-xs"
                                         title="View Full Details">
                                     <i class="ri-eye-fill text-sm"></i> View
                                 </button>
@@ -201,7 +201,7 @@
                 <!-- Modal Header -->
                 <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-sky-600/20 border border-sky-500/30 flex items-center justify-center text-sky-400 font-bold text-lg">
+                        <div class="w-10 h-10 rounded-xl bg-[#114b5f]/20 border border-teal-500/30 flex items-center justify-center text-teal-400 font-bold text-lg">
                             <i class="ri-user-heart-line"></i>
                         </div>
                         <div>
@@ -233,8 +233,8 @@
                         <div class="space-y-1">
                             <span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Email Address</span>
                             <div class="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
-                                <i class="ri-mail-fill text-sky-600"></i>
-                                <a href="mailto:{{ $activeContact['email'] }}" class="hover:underline text-sky-700">{{ $activeContact['email'] ?: 'N/A' }}</a>
+                                <i class="ri-mail-fill text-[#114b5f]"></i>
+                                <a href="mailto:{{ $activeContact['email'] }}" class="hover:underline text-[#114b5f]">{{ $activeContact['email'] ?: 'N/A' }}</a>
                             </div>
                         </div>
 
@@ -275,7 +275,7 @@
                         </a>
                         @if($activeContact['email'])
                             <a href="mailto:{{ $activeContact['email'] }}" 
-                               class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5">
+                               class="px-4 py-2 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-semibold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5">
                                 <i class="ri-mail-send-line"></i> Send Email
                             </a>
                         @endif

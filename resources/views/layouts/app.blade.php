@@ -104,6 +104,31 @@
     <!-- PUBLIC FOOTER COMPONENT -->
     @include('components.public.footer.footer')
 
+    <!-- FLOATING WHATSAPP BUTTON -->
+    @php
+        $waNum = setting('whatsapp_number') ?: setting('phone_number', '18006784677');
+        $waClean = preg_replace('/[^0-9]/', '', $waNum);
+        if (empty($waClean)) {
+            $waClean = '18006784677';
+        }
+        $waUrl = "https://wa.me/" . $waClean . "?text=" . urlencode("Hello! I would like to inquire about appointments and orthopaedic services at Advance Orthopaedic & Spine Center.");
+    @endphp
+
+    <a href="{{ $waUrl }}" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 group flex items-center justify-center bg-[#25D366] hover:bg-[#20ba5a] text-white w-14 h-14 sm:w-auto sm:h-14 sm:px-5 rounded-full shadow-[0_8px_30px_rgba(37,211,102,0.45)] hover:shadow-[0_12px_40px_rgba(37,211,102,0.65)] transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer shrink-0"
+       aria-label="Chat on WhatsApp">
+        
+        <!-- WhatsApp Icon -->
+        <i class="ri-whatsapp-fill text-3xl leading-none"></i>
+
+        <!-- Expandable Label Text on Desktop Hover -->
+        <span class="hidden sm:inline-block max-w-0 overflow-hidden group-hover:max-w-xs whitespace-nowrap text-xs font-bold tracking-wide transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:ml-2">
+            Chat on WhatsApp
+        </span>
+    </a>
+
     <!-- Livewire Scripts -->
     @livewireScripts
 </body>

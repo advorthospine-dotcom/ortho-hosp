@@ -4,19 +4,19 @@
 
 <div class="min-h-screen bg-slate-50/60 pb-20">
     
-    <!-- Hero Banner Header -->
-    <div class="relative bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 text-white overflow-hidden py-16 sm:py-20 border-b border-blue-500/10">
+    <!-- Hero Banner Header (Brand Teal Theme) -->
+    <div class="relative bg-gradient-to-br from-slate-950 via-[#0a2f3c] to-slate-950 text-white overflow-hidden py-16 sm:py-20 border-b border-slate-800">
         <!-- Ambient Grid Pattern & Radial Glows -->
-        <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-        <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-blue-600/15 blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute inset-0 opacity-10 bg-[linear-gradient(to_right,#0d9488_1px,transparent_1px),linear-gradient(to_bottom,#0d9488_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+        <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-[#114b5f]/30 blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-[#3b774b]/20 blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-5">
-            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 tracking-wider uppercase shadow-inner">
-                <i class="ri-customer-service-2-fill text-blue-400"></i> 24/7 Hospital Care & Inquiries
+            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#114b5f]/40 text-teal-300 border border-teal-400/30 tracking-wider uppercase shadow-inner">
+                <i class="ri-customer-service-2-fill text-teal-300"></i> 24/7 Hospital Care & Inquiries
             </span>
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight max-w-4xl mx-auto leading-tight text-white">
-                Get in Touch with Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-200">Clinical Team</span>
+                Get in Touch with Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-emerald-300 to-teal-100">Clinical Team</span>
             </h1>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-medium">
                 Have questions regarding knee replacement, endoscopic spine surgery, or emergency trauma admissions? We are available 24/7 to assist you.
@@ -47,29 +47,29 @@
 
             <!-- 2. Hospital Address -->
             <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all space-y-3 group relative overflow-hidden">
-                <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform">
+                <div class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 text-[#114b5f] flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform">
                     <i class="ri-map-pin-2-fill"></i>
                 </div>
                 <div>
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-blue-600">Hospital Location</span>
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#114b5f]">Hospital Location</span>
                     <h3 class="font-heading font-bold text-slate-900 text-sm mt-0.5">Main Medical Campus</h3>
                 </div>
                 <p class="text-xs font-bold text-slate-800 leading-tight">
-                    450 Health Avenue, Medical District, NY 10001
+                    {{ setting('address', '450 Health Avenue, Medical District, NY 10001') }}
                 </p>
                 <p class="text-xs text-slate-500 leading-relaxed">Gate 2 Visitor Parking & Emergency Bay Entrance.</p>
             </div>
 
             <!-- 3. Direct Email -->
             <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all space-y-3 group relative overflow-hidden">
-                <div class="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-100 text-sky-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform">
+                <div class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 text-[#114b5f] flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform">
                     <i class="ri-mail-open-fill"></i>
                 </div>
                 <div>
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-sky-600">Email Inquiries</span>
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#114b5f]">Email Inquiries</span>
                     <h3 class="font-heading font-bold text-slate-900 text-sm mt-0.5">Patient Support Desk</h3>
                 </div>
-                <a href="mailto:{{ setting('email', 'care@advanceorthospine.com') }}" class="text-xs font-bold text-slate-800 hover:text-sky-600 transition-colors block truncate" title="{{ setting('email', 'care@advanceorthospine.com') }}">
+                <a href="mailto:{{ setting('email', 'care@advanceorthospine.com') }}" class="text-xs font-bold text-slate-800 hover:text-[#114b5f] transition-colors block truncate" title="{{ setting('email', 'care@advanceorthospine.com') }}">
                     {{ setting('email', 'care@advanceorthospine.com') }}
                 </a>
                 <p class="text-xs text-slate-500 leading-relaxed">Guaranteed response within 2 hours during OPD working shifts.</p>
@@ -77,16 +77,15 @@
 
             <!-- 4. OPD Working Hours -->
             <div class="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-lg transition-all space-y-3 group relative overflow-hidden">
-                <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 text-[#3b774b] flex items-center justify-center text-xl shadow-xs group-hover:scale-105 transition-transform">
                     <i class="ri-time-fill"></i>
                 </div>
                 <div>
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">Consultation Timings</span>
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-[#3b774b]">Consultation Timings</span>
                     <h3 class="font-heading font-bold text-slate-900 text-sm mt-0.5">OPD Working Hours</h3>
                 </div>
                 <div class="text-xs text-slate-800 font-bold space-y-0.5">
-                    <p>Mon - Sat: 8:00 AM - 8:00 PM</p>
-                    <p class="text-emerald-700">Sunday: 9:00 AM - 2:00 PM</p>
+                    <p>{{ setting('opd_timings', 'Mon - Sat: 8:00 AM - 8:00 PM') }}</p>
                 </div>
                 <p class="text-xs text-slate-500 leading-relaxed">Trauma & Emergency admissions remain open 24/7.</p>
             </div>
@@ -100,8 +99,8 @@
             <div class="lg:col-span-2 bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
                 
                 <div class="space-y-1.5 border-b border-slate-100 pb-5">
-                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 uppercase tracking-wider bg-blue-50 px-2.5 py-1 rounded-md">
-                        <i class="ri-send-plane-fill text-blue-500"></i> Direct Patient Inquiry
+                    <span class="inline-flex items-center gap-1.5 text-xs font-bold text-[#114b5f] uppercase tracking-wider bg-teal-50 px-2.5 py-1 rounded-md border border-teal-200/60">
+                        <i class="ri-send-plane-fill text-[#114b5f]"></i> Direct Patient Inquiry
                     </span>
                     <h2 class="text-2xl font-heading font-extrabold text-slate-900 tracking-tight">
                         Send Us a Message or Request Consultation
@@ -113,7 +112,7 @@
                 @if($submitted)
                     <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-2 flex items-start justify-between shadow-xs">
                         <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg shrink-0 mt-0.5 shadow-xs">
+                            <div class="w-8 h-8 rounded-xl bg-[#3b774b] text-white flex items-center justify-center text-lg shrink-0 mt-0.5 shadow-xs">
                                 <i class="ri-checkbox-circle-fill"></i>
                             </div>
                             <div class="space-y-1 text-xs">
@@ -145,7 +144,7 @@
                                 <input type="text" 
                                        wire:model="name" 
                                        placeholder="e.g. Dr. Robert Johnson" 
-                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50/50" />
+                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-[#114b5f]/20 transition-all bg-slate-50/50" />
                             </div>
                             @error('name') <span class="text-rose-600 text-[11px] font-bold block">{{ $message }}</span> @enderror
                         </div>
@@ -162,7 +161,7 @@
                                 <input type="email" 
                                        wire:model="email" 
                                        placeholder="e.g. robert@example.com" 
-                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50/50" />
+                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-[#114b5f]/20 transition-all bg-slate-50/50" />
                             </div>
                             @error('email') <span class="text-rose-600 text-[11px] font-bold block">{{ $message }}</span> @enderror
                         </div>
@@ -181,7 +180,7 @@
                                 <input type="text" 
                                        wire:model="phone" 
                                        placeholder="e.g. +1 (555) 019-2834" 
-                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50/50" />
+                                       class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-[#114b5f]/20 transition-all bg-slate-50/50" />
                             </div>
                             @error('phone') <span class="text-rose-600 text-[11px] font-bold block">{{ $message }}</span> @enderror
                         </div>
@@ -196,7 +195,7 @@
                                     <i class="ri-stethoscope-line text-sm"></i>
                                 </div>
                                 <select wire:model="department" 
-                                        class="w-full pl-10 pr-8 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all bg-slate-50/50 appearance-none">
+                                        class="w-full pl-10 pr-8 py-3 rounded-xl border border-slate-200/90 text-xs text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-[#114b5f]/20 transition-all bg-slate-50/50 appearance-none">
                                     <option value="General Inquiry">General Inquiry</option>
                                     <option value="Trauma & Emergency Care">Trauma & Emergency Care</option>
                                     <option value="Knee & Hip Surgery">Knee & Hip Surgery</option>
@@ -225,7 +224,7 @@
 
                     <!-- Submit Button -->
                     <button type="submit" 
-                            class="w-full sm:w-auto px-6 py-3 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs sm:text-sm rounded-xl shadow-md shadow-[#114b5f]/20 active:scale-[0.99] transition-all cursor-pointer inline-flex items-center justify-center gap-2">
+                            class="w-full sm:w-auto px-6 py-3 bg-[#114b5f] hover:bg-[#0d3b4b] text-white font-bold text-xs sm:text-sm rounded-xl shadow-md shadow-[#114b5f]/20 active:scale-[0.99] transition-all cursor-pointer inline-flex items-center justify-center gap-2">
                         <span wire:loading.delay class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         <span wire:loading.remove.delay><i class="ri-send-plane-fill"></i> Send Message</span>
                         <span wire:loading.delay>Submitting...</span>
@@ -240,12 +239,12 @@
                 <!-- Arrival Guide Box -->
                 <div class="bg-white border border-slate-200/80 rounded-3xl p-6 shadow-sm space-y-5">
                     <h3 class="font-heading font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
-                        <i class="ri-car-fill text-blue-600"></i> Campus Arrival & Access
+                        <i class="ri-car-fill text-[#114b5f]"></i> Campus Arrival & Access
                     </h3>
 
                     <div class="space-y-4">
                         <div class="flex items-start gap-3">
-                            <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                            <div class="w-8 h-8 rounded-xl bg-teal-50 text-[#114b5f] flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
                                 <i class="ri-parking-box-fill"></i>
                             </div>
                             <div class="space-y-0.5 text-xs">
@@ -277,9 +276,9 @@
                 </div>
 
                 <!-- Emergency Contact CTA Card -->
-                <div class="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 border border-blue-900/60 rounded-3xl p-6 shadow-xl text-white text-center relative overflow-hidden space-y-4">
-                    <div class="absolute -top-20 -right-20 w-44 h-44 rounded-full bg-blue-500/20 blur-3xl pointer-events-none"></div>
-                    <div class="absolute -bottom-20 -left-20 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"></div>
+                <div class="bg-gradient-to-br from-slate-950 via-[#0a2f3c] to-slate-950 border border-[#114b5f]/40 rounded-3xl p-6 shadow-xl text-white text-center relative overflow-hidden space-y-4">
+                    <div class="absolute -top-20 -right-20 w-44 h-44 rounded-full bg-[#114b5f]/20 blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-20 -left-20 w-44 h-44 rounded-full bg-[#3b774b]/10 blur-3xl pointer-events-none"></div>
                     
                     <div class="relative z-10 space-y-4 flex flex-col items-center">
                         <div class="w-12 h-12 rounded-xl bg-rose-500/20 border border-rose-400/30 flex items-center justify-center text-rose-400 shadow-lg">
@@ -303,7 +302,7 @@
         <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-5">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg font-bold shadow-xs">
+                    <div class="w-10 h-10 rounded-2xl bg-teal-50 text-[#114b5f] flex items-center justify-center text-lg font-bold shadow-xs">
                         <i class="ri-map-2-fill"></i>
                     </div>
                     <div>
@@ -312,7 +311,7 @@
                     </div>
                 </div>
 
-                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-xl transition-all cursor-pointer self-start sm:self-auto border border-blue-200/60">
+                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#114b5f] hover:text-[#0d3b4b] bg-teal-50 hover:bg-teal-100 px-4 py-2 rounded-xl transition-all cursor-pointer self-start sm:self-auto border border-teal-200/60">
                     <span>Open in Google Maps App</span>
                     <i class="ri-external-link-line"></i>
                 </a>
@@ -328,7 +327,7 @@
 
                 <!-- Map Overlay Campus Tag -->
                 <div class="absolute bottom-4 left-4 right-4 sm:right-auto max-w-sm bg-slate-950/90 backdrop-blur-md text-white p-4 rounded-2xl border border-white/10 shadow-2xl space-y-1">
-                    <div class="flex items-center gap-2 text-xs font-bold text-sky-400">
+                    <div class="flex items-center gap-2 text-xs font-bold text-teal-300">
                         <i class="ri-hospital-fill text-base"></i>
                         <span>Advance Orthopaedic & Spine Center</span>
                     </div>

@@ -20,12 +20,12 @@
         <div class="p-5 border-b border-slate-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div class="max-w-md relative group w-full">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i class="ri-search-2-line text-slate-400 group-focus-within:text-sky-600 transition-colors"></i>
+                    <i class="ri-search-2-line text-slate-400 group-focus-within:text-[#114b5f] transition-colors"></i>
                 </div>
                 <input type="text" 
                        wire:model.live.debounce.300ms="search" 
                        placeholder="Search by page name, slug, or title..." 
-                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
             </div>
 
             <div class="flex items-center gap-2 text-xs text-slate-500">
@@ -77,7 +77,7 @@
                             </td>
                             <td class="py-4 px-6 text-right space-x-1">
                                 <button @click="isOpen = true; $wire.edit({{ $page->id }})" 
-                                        class="p-2 rounded-lg hover:bg-sky-50 text-slate-600 hover:text-sky-600 transition-all cursor-pointer inline-flex items-center gap-1 font-medium text-xs border border-slate-200 hover:border-sky-200 shadow-xs"
+                                        class="p-2 rounded-lg hover:bg-teal-50 text-slate-600 hover:text-[#114b5f] transition-all cursor-pointer inline-flex items-center gap-1 font-medium text-xs border border-slate-200 hover:border-teal-200 shadow-xs"
                                         title="Edit SEO Metadata">
                                     <i class="ri-pencil-fill text-sm"></i> Edit SEO
                                 </button>
@@ -141,7 +141,7 @@
             <!-- Modal Header -->
             <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0 border-b border-slate-800">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-sky-600/20 border border-sky-500/30 flex items-center justify-center text-sky-400">
+                    <div class="w-9 h-9 rounded-xl bg-[#114b5f]/20 border border-teal-500/30 flex items-center justify-center text-teal-400">
                         <i class="ri-search-eye-line text-lg"></i>
                     </div>
                     <div>
@@ -164,16 +164,16 @@
                     <!-- Live Google Search SERP Preview Box -->
                     <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2">
                         <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
-                            <i class="ri-google-fill text-sky-600"></i> Live Search Engine Result Preview (SERP)
+                            <i class="ri-google-fill text-[#114b5f]"></i> Live Search Engine Result Preview (SERP)
                         </div>
                         <div class="bg-white p-4 rounded-lg border border-slate-200/80 shadow-xs space-y-1">
                             <div class="text-xs text-slate-600 truncate flex items-center gap-1 font-sans">
-                                <span class="w-4 h-4 rounded-full bg-sky-100 text-sky-700 font-bold text-[10px] inline-flex items-center justify-center">AO</span>
+                                <span class="w-4 h-4 rounded-full bg-teal-100 text-teal-800 font-bold text-[10px] inline-flex items-center justify-center">AO</span>
                                 <span class="font-medium text-slate-800">orthohosp.com</span>
                                 <span class="text-slate-400">›</span>
                                 <span class="text-slate-500">{{ $slug ?: 'page-url' }}</span>
                             </div>
-                            <div class="text-base font-semibold text-blue-800 hover:underline truncate cursor-pointer">
+                            <div class="text-base font-semibold text-[#114b5f] hover:underline truncate cursor-pointer">
                                 {{ $meta_title ?: ($page_name ? $page_name . ' | Advance Orthopaedic & Spine Center' : 'Page Title - Advance Orthopaedic Hospital') }}
                             </div>
                             <div class="text-xs text-slate-600 line-clamp-2 leading-relaxed">
@@ -194,7 +194,7 @@
                                    type="text" 
                                    wire:model.live="page_name" 
                                    placeholder="e.g. Home Page, Joint Care Services" 
-                                   class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('page_name') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
+                                   class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('page_name') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
                                    required />
                             @error('page_name')
                                 <span class="text-xs font-medium text-rose-500 flex items-center gap-1 mt-1">
@@ -215,7 +215,7 @@
                                        type="text" 
                                        wire:model="slug" 
                                        placeholder="home, about, services, contact" 
-                                       class="w-full pl-7 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 font-mono text-xs focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('slug') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
+                                       class="w-full pl-7 pr-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 font-mono text-xs focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('slug') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
                                        required />
                             </div>
                             @error('slug')
@@ -238,7 +238,7 @@
                                type="text" 
                                wire:model.live="meta_title" 
                                placeholder="e.g. Advance Orthopaedic & Spine Center | Super-Specialty Hospital" 
-                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('meta_title') border-rose-400 @enderror" />
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('meta_title') border-rose-400 @enderror" />
                         @error('meta_title')
                             <span class="text-xs font-medium text-rose-500 flex items-center gap-1 mt-1">
                                 <i class="ri-error-warning-line"></i> {{ $message }}
@@ -258,7 +258,7 @@
                                   rows="3" 
                                   wire:model.live="meta_description" 
                                   placeholder="Write a clear, concise summary of this page content to maximize click-through rate on search results..." 
-                                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('meta_description') border-rose-400 @enderror"></textarea>
+                                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('meta_description') border-rose-400 @enderror"></textarea>
                         @error('meta_description')
                             <span class="text-xs font-medium text-rose-500 flex items-center gap-1 mt-1">
                                 <i class="ri-error-warning-line"></i> {{ $message }}
@@ -276,13 +276,13 @@
                                type="text" 
                                wire:model="meta_keywords" 
                                placeholder="orthopaedic hospital, spine surgeon, knee replacement, trauma care" 
-                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                     </div>
 
                     <!-- OpenGraph Accordion/Fields -->
                     <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50 space-y-4">
                         <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                            <i class="ri-share-line text-sky-600"></i> Open Graph & Social Sharing Tags (Facebook, WhatsApp, Twitter)
+                            <i class="ri-share-line text-[#114b5f]"></i> Open Graph & Social Sharing Tags (Facebook, WhatsApp, Twitter)
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -293,7 +293,7 @@
                                        type="text" 
                                        wire:model="og_title" 
                                        placeholder="Title for social media shares" 
-                                       class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-sky-500 bg-white" />
+                                       class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-[#114b5f] bg-white" />
                             </div>
 
                             <!-- OG Description -->
@@ -303,7 +303,7 @@
                                        type="text" 
                                        wire:model="og_description" 
                                        placeholder="Summary snippet for social posts" 
-                                       class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-sky-500 bg-white" />
+                                       class="w-full px-3 py-2 rounded-lg border border-slate-200 text-xs text-slate-800 focus:outline-none focus:border-[#114b5f] bg-white" />
                             </div>
                         </div>
                     </div>

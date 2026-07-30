@@ -14,10 +14,10 @@
 
                 <span class="text-slate-800">|</span>
 
-                <a href="mailto:{{ setting('contact_email', 'info@orthohosp.com') }}" 
+                <a href="mailto:{{ setting('email', setting('contact_email', 'care@advanceorthospine.com')) }}" 
                    class="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors text-[11px] sm:text-xs">
                     <i class="ri-mail-line text-emerald-400 text-sm"></i>
-                    <span>{{ setting('contact_email', 'info@orthohosp.com') }}</span>
+                    <span>{{ setting('email', setting('contact_email', 'care@advanceorthospine.com')) }}</span>
                 </a>
             </div>
 

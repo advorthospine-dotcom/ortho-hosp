@@ -1,322 +1,307 @@
 <div class="space-y-6">
+
     <!-- Dashboard Header -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200/80 pb-5">
         <div>
-            <h1 class="text-2xl font-heading font-bold text-slate-900 tracking-tight">Overview Dashboard</h1>
-            <p class="text-slate-500 text-sm mt-0.5">Real-time clinical metrics, bed allocations, and appointments.</p>
+            <h1 class="text-2xl font-heading font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                <span>Executive Overview Dashboard</span>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-teal-50 text-[#114b5f] border border-teal-200/80">Live Data</span>
+            </h1>
+            <p class="text-slate-500 text-sm mt-0.5">Real-time clinical inquiries, patient appointment requests, and content management overview.</p>
         </div>
-        <div class="flex items-center gap-2">
-            <button class="inline-flex items-center justify-center gap-2 px-4 py-2 border border-slate-200 bg-white hover:bg-slate-50 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 transition-all shadow-sm cursor-pointer">
-                <i class="ri-refresh-line"></i> Refresh Data
+
+        <div class="flex items-center gap-2.5">
+            <button wire:click="loadDashboardMetrics" 
+                    type="button"
+                    class="inline-flex items-center justify-center gap-2 px-4 py-2 border border-slate-200 bg-white hover:bg-slate-50 rounded-xl text-xs font-semibold text-slate-700 hover:text-slate-900 transition-all shadow-xs cursor-pointer">
+                <i class="ri-refresh-line text-sm text-[#114b5f]"></i>
+                <span>Refresh Metrics</span>
             </button>
-            <button class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-700 rounded-xl text-xs font-semibold text-white transition-all shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 cursor-pointer">
-                <i class="ri-file-chart-line"></i> Export PDF Report
-            </button>
+
+            <a href="{{ route('admin.settings.index') }}" 
+               wire:navigate
+               class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#114b5f] hover:bg-[#0e3b4b] rounded-xl text-xs font-bold text-white transition-all shadow-md shadow-[#114b5f]/15 cursor-pointer">
+                <i class="ri-settings-4-line text-sm"></i>
+                <span>System Settings</span>
+            </a>
         </div>
     </div>
 
-    <!-- Stats Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <!-- 4 Key Metric Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         
-        <!-- Card 1: Appointments -->
-        <div class="bg-white border border-slate-100 rounded-2xl p-5 hover:shadow-lg hover:shadow-slate-200/30 transition-all duration-300 group">
+        <!-- Card 1: Patient Inquiries / Appointments -->
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs hover:shadow-md transition-all duration-300 group">
             <div class="flex items-center justify-between">
-                <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <div class="w-12 h-12 rounded-xl bg-teal-50 text-[#114b5f] border border-teal-100 flex items-center justify-center group-hover:scale-105 transition-transform">
                     <i class="ri-calendar-check-fill text-2xl"></i>
                 </div>
-                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                    <i class="ri-arrow-right-up-line"></i> +12.5%
-                </span>
+                @if($unreadInquiries > 0)
+                    <span class="inline-flex items-center gap-1 text-[10px] font-extrabold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200/80">
+                        <i class="ri-notification-3-fill"></i> {{ $unreadInquiries }} Pending
+                    </span>
+                @else
+                    <span class="inline-flex items-center gap-1 text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/80">
+                        <i class="ri-checkbox-circle-fill"></i> All Reviewed
+                    </span>
+                @endif
             </div>
             <div class="mt-4">
-                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Total Appointments</h3>
-                <p class="text-2xl font-bold text-slate-900 mt-1">248</p>
-                <span class="text-[10px] text-slate-400 mt-1 block">Scheduled for today</span>
+                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Patient Inquiries</h3>
+                <p class="text-3xl font-heading font-extrabold text-slate-900 mt-1">{{ $totalAppointments }}</p>
+                <span class="text-[11px] text-slate-500 mt-1 block">Total appointment requests received</span>
             </div>
         </div>
 
-        <!-- Card 2: Patients -->
-        <div class="bg-white border border-slate-100 rounded-2xl p-5 hover:shadow-lg hover:shadow-slate-200/30 transition-all duration-300 group">
+        <!-- Card 2: Clinical Services -->
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs hover:shadow-md transition-all duration-300 group">
             <div class="flex items-center justify-between">
-                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <i class="ri-user-heart-fill text-2xl"></i>
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-[#3b774b] border border-emerald-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <i class="ri-stethoscope-fill text-2xl"></i>
                 </div>
-                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                    <i class="ri-arrow-right-up-line"></i> +4.1%
+                <span class="inline-flex items-center gap-1 text-[10px] font-extrabold text-[#3b774b] bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200/80">
+                    Active Catalog
                 </span>
             </div>
             <div class="mt-4">
-                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Admitted Patients</h3>
-                <p class="text-2xl font-bold text-slate-900 mt-1">84</p>
-                <span class="text-[10px] text-slate-400 mt-1 block">12 discharges pending</span>
+                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Medical Specialties</h3>
+                <p class="text-3xl font-heading font-extrabold text-slate-900 mt-1">{{ $totalServices }}</p>
+                <span class="text-[11px] text-slate-500 mt-1 block">Surgical & OPD service procedures</span>
             </div>
         </div>
 
-        <!-- Card 3: Doctors -->
-        <div class="bg-white border border-slate-100 rounded-2xl p-5 hover:shadow-lg hover:shadow-slate-200/30 transition-all duration-300 group">
+        <!-- Card 3: Medical Blog Articles -->
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs hover:shadow-md transition-all duration-300 group">
             <div class="flex items-center justify-between">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <i class="ri-nurse-fill text-2xl"></i>
+                <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <i class="ri-article-fill text-2xl"></i>
                 </div>
-                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
-                    On Duty
+                <span class="inline-flex items-center gap-1 text-[10px] font-extrabold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                    Published
                 </span>
             </div>
             <div class="mt-4">
-                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Active Staff</h3>
-                <p class="text-2xl font-bold text-slate-900 mt-1">19</p>
-                <span class="text-[10px] text-slate-400 mt-1 block">9 orthopaedic specialists</span>
+                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Blog Articles</h3>
+                <p class="text-3xl font-heading font-extrabold text-slate-900 mt-1">{{ $totalBlogs }}</p>
+                <span class="text-[11px] text-slate-500 mt-1 block">Health insights & patient guides</span>
             </div>
         </div>
 
-        <!-- Card 4: ICU / Beds -->
-        <div class="bg-white border border-slate-100 rounded-2xl p-5 hover:shadow-lg hover:shadow-slate-200/30 transition-all duration-300 group">
+        <!-- Card 4: Photo Gallery Media -->
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs hover:shadow-md transition-all duration-300 group">
             <div class="flex items-center justify-between">
-                <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <i class="ri-hotel-bed-fill text-2xl"></i>
+                <div class="w-12 h-12 rounded-xl bg-teal-50 text-[#114b5f] border border-teal-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <i class="ri-gallery-fill text-2xl"></i>
                 </div>
-                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">
-                    Critical Load
+                <span class="inline-flex items-center gap-1 text-[10px] font-extrabold text-teal-800 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200">
+                    Gallery Assets
                 </span>
             </div>
             <div class="mt-4">
-                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Bed Capacity</h3>
-                <p class="text-2xl font-bold text-slate-900 mt-1">88%</p>
-                <div class="w-full bg-slate-100 rounded-full h-1.5 mt-2 overflow-hidden">
-                    <div class="bg-rose-500 h-1.5 rounded-full" style="width: 88%"></div>
-                </div>
+                <h3 class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Photo Gallery</h3>
+                <p class="text-3xl font-heading font-extrabold text-slate-900 mt-1">{{ $totalGallery }}</p>
+                <span class="text-[11px] text-slate-500 mt-1 block">Infrastructure & campus photos</span>
             </div>
         </div>
 
     </div>
 
-    <!-- Main Content Panels -->
+    <!-- Main Content Panels (2 Cols Left + 1 Col Right) -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- Left Panel: Recent Appointments (Takes 2/3 cols) -->
-        <div class="lg:col-span-2 bg-white border border-slate-100 rounded-2xl shadow-sm flex flex-col overflow-hidden">
-            <div class="p-5 border-b border-slate-50 flex items-center justify-between flex-wrap gap-2">
+        <!-- Left Panel: Recent Patient Inquiries (Takes 2/3 cols) -->
+        <div class="lg:col-span-2 bg-white border border-slate-200/80 rounded-2xl shadow-xs flex flex-col overflow-hidden">
+            
+            <!-- Panel Header -->
+            <div class="p-5 border-b border-slate-100 flex items-center justify-between flex-wrap gap-2 bg-slate-50/50">
                 <div>
-                    <h2 class="text-base font-bold text-slate-900 leading-none">Today's Appointment Schedule</h2>
-                    <span class="text-[10px] text-slate-400 font-medium block mt-1">Realtime updating via clinical reception desk</span>
+                    <h2 class="text-base font-heading font-bold text-slate-900 flex items-center gap-2">
+                        <i class="ri-inbox-archive-line text-[#114b5f]"></i>
+                        <span>Recent Appointment Requests</span>
+                    </h2>
+                    <span class="text-xs text-slate-400 block mt-0.5">Latest consultation forms submitted by site visitors</span>
                 </div>
-                <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-200/80 rounded-lg p-0.5">
-                    <button class="px-2.5 py-1 text-[11px] font-semibold bg-white rounded-md shadow-sm text-slate-800 focus:outline-none">All</button>
-                    <button class="px-2.5 py-1 text-[11px] font-semibold text-slate-500 hover:text-slate-800 rounded-md focus:outline-none">Spine</button>
-                    <button class="px-2.5 py-1 text-[11px] font-semibold text-slate-500 hover:text-slate-800 rounded-md focus:outline-none">Joints</button>
-                </div>
+                <a href="{{ route('admin.contacts.index') }}" wire:navigate class="text-xs font-bold text-[#114b5f] hover:underline flex items-center gap-1">
+                    <span>View All Inquiries</span>
+                    <i class="ri-arrow-right-line"></i>
+                </a>
             </div>
 
-            <!-- Table -->
+            <!-- Inquiries Table -->
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
-                        <tr class="bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
-                            <th class="py-3 px-5">Patient Name</th>
-                            <th class="py-3 px-5">Specialist</th>
+                        <tr class="bg-slate-50/80 text-[10px] font-extrabold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+                            <th class="py-3 px-5">Patient Details</th>
                             <th class="py-3 px-5">Department</th>
-                            <th class="py-3 px-5">Time</th>
+                            <th class="py-3 px-5">Preferred Date</th>
                             <th class="py-3 px-5">Status</th>
                             <th class="py-3 px-5 text-right">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-50 text-xs">
-                        
-                        <!-- Row 1 -->
-                        <tr class="hover:bg-slate-50/50 transition-colors group">
-                            <td class="py-3.5 px-5">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 shadow-inner">
-                                        JD
+                    <tbody class="divide-y divide-slate-100 text-xs">
+                        @forelse ($recentInquiries as $inquiry)
+                            <tr class="hover:bg-slate-50/70 transition-colors group">
+                                <td class="py-3.5 px-5">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center font-bold text-[#114b5f] shrink-0">
+                                            {{ strtoupper(substr($inquiry->name ?? 'P', 0, 2)) }}
+                                        </div>
+                                        <div class="flex flex-col min-w-0">
+                                            <span class="font-bold text-slate-900 truncate">{{ $inquiry->name }}</span>
+                                            <span class="text-[11px] text-slate-500 truncate">{{ $inquiry->phone ?? $inquiry->email }}</span>
+                                        </div>
                                     </div>
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold text-slate-900">John Doe</span>
-                                        <span class="text-[10px] text-slate-400">ID: #PT-8390</span>
+                                </td>
+                                <td class="py-3.5 px-5 font-medium text-slate-700">
+                                    <span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg font-semibold text-[11px]">
+                                        {{ $inquiry->department ?? 'General OPD' }}
+                                    </span>
+                                </td>
+                                <td class="py-3.5 px-5 text-slate-600 font-medium whitespace-nowrap">
+                                    {{ $inquiry->preferred_date ? \Carbon\Carbon::parse($inquiry->preferred_date)->format('M d, Y') : 'Flexible' }}
+                                </td>
+                                <td class="py-3.5 px-5 whitespace-nowrap">
+                                    @if ($inquiry->is_read)
+                                        <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 border border-emerald-200/80 font-bold px-2.5 py-0.5 rounded-full text-[10px]">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Reviewed
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center gap-1 bg-amber-50 text-amber-700 border border-amber-200/80 font-bold px-2.5 py-0.5 rounded-full text-[10px]">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Pending Review
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="py-3.5 px-5 text-right whitespace-nowrap space-x-1">
+                                    @if (!$inquiry->is_read)
+                                        <button wire:click="markAsRead({{ $inquiry->id }})" 
+                                                type="button"
+                                                class="px-2.5 py-1 bg-teal-50 hover:bg-[#114b5f] text-[#114b5f] hover:text-white rounded-lg font-semibold text-[11px] transition-colors cursor-pointer"
+                                                title="Mark as reviewed">
+                                            Mark Read
+                                        </button>
+                                    @endif
+                                    <button wire:click="deleteInquiry({{ $inquiry->id }})"
+                                            wire:confirm="Are you sure you want to delete this inquiry record?"
+                                            type="button"
+                                            class="p-1.5 rounded-lg hover:bg-rose-50 text-slate-400 hover:text-rose-600 transition-colors cursor-pointer"
+                                            title="Delete Record">
+                                        <i class="ri-delete-bin-line text-sm"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="py-12 px-5 text-center text-slate-400">
+                                    <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+                                        <i class="ri-inbox-line text-2xl"></i>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="py-3.5 px-5 font-medium text-slate-700">Dr. Sarah Jenkins</td>
-                            <td class="py-3.5 px-5">
-                                <span class="bg-sky-50 text-sky-700 font-semibold px-2 py-0.5 rounded text-[10px]">Spine Surgery</span>
-                            </td>
-                            <td class="py-3.5 px-5 text-slate-500 font-medium">10:30 AM</td>
-                            <td class="py-3.5 px-5">
-                                <span class="inline-flex items-center gap-1 bg-amber-50 text-amber-700 font-bold px-2 py-0.5 rounded-full text-[10px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> In Progress
-                                </span>
-                            </td>
-                            <td class="py-3.5 px-5 text-right">
-                                <button class="p-1 rounded hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors">
-                                    <i class="ri-more-2-fill text-lg"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- Row 2 -->
-                        <tr class="hover:bg-slate-50/50 transition-colors group">
-                            <td class="py-3.5 px-5">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 shadow-inner">
-                                        AS
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold text-slate-900">Alice Smith</span>
-                                        <span class="text-[10px] text-slate-400">ID: #PT-4923</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="py-3.5 px-5 font-medium text-slate-700">Dr. Robert Chen</td>
-                            <td class="py-3.5 px-5">
-                                <span class="bg-indigo-50 text-indigo-700 font-semibold px-2 py-0.5 rounded text-[10px]">Knee Care</span>
-                            </td>
-                            <td class="py-3.5 px-5 text-slate-500 font-medium">11:15 AM</td>
-                            <td class="py-3.5 px-5">
-                                <span class="inline-flex items-center gap-1 bg-sky-50 text-sky-700 font-bold px-2 py-0.5 rounded-full text-[10px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span> Scheduled
-                                </span>
-                            </td>
-                            <td class="py-3.5 px-5 text-right">
-                                <button class="p-1 rounded hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors">
-                                    <i class="ri-more-2-fill text-lg"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- Row 3 -->
-                        <tr class="hover:bg-slate-50/50 transition-colors group">
-                            <td class="py-3.5 px-5">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 shadow-inner">
-                                        MB
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold text-slate-900">Marcus Brown</span>
-                                        <span class="text-[10px] text-slate-400">ID: #PT-1102</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="py-3.5 px-5 font-medium text-slate-700">Dr. Sarah Jenkins</td>
-                            <td class="py-3.5 px-5">
-                                <span class="bg-sky-50 text-sky-700 font-semibold px-2 py-0.5 rounded text-[10px]">Spine Surgery</span>
-                            </td>
-                            <td class="py-3.5 px-5 text-slate-500 font-medium">09:00 AM</td>
-                            <td class="py-3.5 px-5">
-                                <span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded-full text-[10px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Completed
-                                </span>
-                            </td>
-                            <td class="py-3.5 px-5 text-right">
-                                <button class="p-1 rounded hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors">
-                                    <i class="ri-more-2-fill text-lg"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <!-- Row 4 -->
-                        <tr class="hover:bg-slate-50/50 transition-colors group">
-                            <td class="py-3.5 px-5">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center font-bold text-slate-700 shadow-inner">
-                                        EH
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="font-semibold text-slate-900">Emily Hunter</span>
-                                        <span class="text-[10px] text-slate-400">ID: #PT-7734</span>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="py-3.5 px-5 font-medium text-slate-700">Dr. Liam O'Connor</td>
-                            <td class="py-3.5 px-5">
-                                <span class="bg-rose-50 text-rose-700 font-semibold px-2 py-0.5 rounded text-[10px]">Trauma Emergency</span>
-                            </td>
-                            <td class="py-3.5 px-5 text-slate-500 font-medium">08:15 AM</td>
-                            <td class="py-3.5 px-5">
-                                <span class="inline-flex items-center gap-1 bg-rose-50 text-rose-700 font-bold px-2 py-0.5 rounded-full text-[10px]">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Critical
-                                </span>
-                            </td>
-                            <td class="py-3.5 px-5 text-right">
-                                <button class="p-1 rounded hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors">
-                                    <i class="ri-more-2-fill text-lg"></i>
-                                </button>
-                            </td>
-                        </tr>
-
+                                    <p class="text-xs font-semibold text-slate-600">No appointment inquiries received yet.</p>
+                                    <p class="text-[11px] text-slate-400 mt-1">Submissions from the Contact page form will automatically appear here.</p>
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
 
-            <!-- Footer Pagination -->
-            <div class="p-4 border-t border-slate-50 bg-slate-50/50 flex items-center justify-between text-xs text-slate-500">
-                <span>Showing 4 of 24 appointments</span>
-                <div class="flex items-center gap-1">
-                    <button class="px-2.5 py-1.5 border border-slate-200 bg-white hover:bg-slate-50 rounded-lg font-semibold text-slate-600 disabled:opacity-50" disabled>Previous</button>
-                    <button class="px-2.5 py-1.5 border border-slate-200 bg-white hover:bg-slate-50 rounded-lg font-semibold text-slate-600">Next</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right Panel: Clinical Stats / Load (Takes 1 col) -->
-        <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-5 space-y-6 flex flex-col justify-between">
-            <div>
-                <h2 class="text-base font-bold text-slate-900 leading-none">Clinical Unit Load</h2>
-                <span class="text-[10px] text-slate-400 font-medium block mt-1">Bed occupancy rates per speciality unit</span>
-            </div>
-
-            <div class="space-y-4 my-auto">
-                
-                <!-- Unit 1 -->
-                <div class="space-y-1.5">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-semibold text-slate-700">Joint Replacement</span>
-                        <span class="text-slate-500 font-bold">12/15 Beds</span>
-                    </div>
-                    <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                        <div class="bg-sky-500 h-2 rounded-full" style="width: 80%"></div>
-                    </div>
-                </div>
-
-                <!-- Unit 2 -->
-                <div class="space-y-1.5">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-semibold text-slate-700">Endoscopic Spine Surgery</span>
-                        <span class="text-slate-500 font-bold">18/20 Beds</span>
-                    </div>
-                    <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                        <div class="bg-sky-600 h-2 rounded-full" style="width: 90%"></div>
-                    </div>
-                </div>
-
-                <!-- Unit 3 -->
-                <div class="space-y-1.5">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-semibold text-slate-700">Sports Medicine & Rehab</span>
-                        <span class="text-slate-500 font-bold">4/10 Beds</span>
-                    </div>
-                    <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                        <div class="bg-indigo-500 h-2 rounded-full" style="width: 40%"></div>
-                    </div>
-                </div>
-
-                <!-- Unit 4 -->
-                <div class="space-y-1.5">
-                    <div class="flex items-center justify-between text-xs">
-                        <span class="font-semibold text-slate-700">Trauma ICU (Level 1)</span>
-                        <span class="text-slate-500 font-bold">5/6 Beds</span>
-                    </div>
-                    <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
-                        <div class="bg-rose-500 h-2 rounded-full" style="width: 83%"></div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="pt-4 border-t border-slate-50 text-center">
-                <a href="#" class="inline-flex items-center gap-1 text-xs font-semibold text-sky-600 hover:text-sky-700">
-                    Manage Department Beds <i class="ri-arrow-right-line"></i>
+            <!-- Panel Footer -->
+            <div class="p-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between text-xs text-slate-500">
+                <span>Showing latest {{ count($recentInquiries) }} inquiry records</span>
+                <a href="{{ route('admin.contacts.index') }}" wire:navigate class="font-bold text-[#114b5f] hover:underline flex items-center gap-1">
+                    Manage All Inquiries <i class="ri-arrow-right-s-line"></i>
                 </a>
             </div>
         </div>
 
+        <!-- Right Panel: Hospital Live Overview & Quick Links (Takes 1 col) -->
+        <div class="space-y-6">
+            
+            <!-- Card 1: Active System Info Summary -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-4">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                    <h2 class="text-sm font-heading font-bold text-slate-900 flex items-center gap-2">
+                        <i class="ri-[#114b5f] ri-hospital-line text-[#114b5f]"></i>
+                        <span>Hospital Configuration</span>
+                    </h2>
+                    <a href="{{ route('admin.settings.index') }}" wire:navigate class="text-xs font-semibold text-[#114b5f] hover:underline">Edit</a>
+                </div>
+
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Center Name</span>
+                        <p class="font-bold text-slate-800 mt-0.5 truncate">{{ setting('hospital_name', 'Advance Ortho & Spine Center') }}</p>
+                    </div>
+
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">24/7 Helpline</span>
+                        <p class="font-bold text-emerald-700 mt-0.5 flex items-center gap-1.5">
+                            <i class="ri-phone-fill text-xs"></i>
+                            <span>{{ setting('phone_number', '+1 (555) 234-5678') }}</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">WhatsApp Desk</span>
+                        <p class="font-bold text-emerald-600 mt-0.5 flex items-center gap-1.5">
+                            <i class="ri-whatsapp-line text-xs"></i>
+                            <span>{{ setting('whatsapp_number', '+1 (555) 987-6543') }}</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Hospital Address</span>
+                        <p class="text-slate-600 mt-0.5 leading-snug">{{ setting('address', '450 Health Avenue, Medical District, NY 10001') }}</p>
+                    </div>
+
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">OPD Hours</span>
+                        <p class="text-slate-600 mt-0.5">{{ setting('opd_timings', 'Mon - Sat: 8:00 AM - 8:00 PM') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Quick Management Shortcuts -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-5 shadow-xs space-y-3">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Quick Management</h2>
+                
+                <div class="space-y-2">
+                    <a href="{{ route('admin.services.index') }}" wire:navigate class="w-full flex items-center justify-between px-3.5 py-2.5 bg-slate-50 hover:bg-teal-50/80 rounded-xl text-xs font-bold text-slate-700 hover:text-[#114b5f] border border-slate-200/80 transition-colors">
+                        <div class="flex items-center gap-2.5">
+                            <i class="ri-stethoscope-line text-base text-[#114b5f]"></i>
+                            <span>Clinical Services ({{ $totalServices }})</span>
+                        </div>
+                        <i class="ri-arrow-right-s-line text-slate-400"></i>
+                    </a>
+
+                    <a href="{{ route('admin.blogs.index') }}" wire:navigate class="w-full flex items-center justify-between px-3.5 py-2.5 bg-slate-50 hover:bg-teal-50/80 rounded-xl text-xs font-bold text-slate-700 hover:text-[#114b5f] border border-slate-200/80 transition-colors">
+                        <div class="flex items-center gap-2.5">
+                            <i class="ri-article-line text-base text-[#114b5f]"></i>
+                            <span>Blog Articles ({{ $totalBlogs }})</span>
+                        </div>
+                        <i class="ri-arrow-right-s-line text-slate-400"></i>
+                    </a>
+
+                    <a href="{{ route('admin.gallery.index') }}" wire:navigate class="w-full flex items-center justify-between px-3.5 py-2.5 bg-slate-50 hover:bg-teal-50/80 rounded-xl text-xs font-bold text-slate-700 hover:text-[#114b5f] border border-slate-200/80 transition-colors">
+                        <div class="flex items-center gap-2.5">
+                            <i class="ri-gallery-line text-base text-[#114b5f]"></i>
+                            <span>Photo Gallery ({{ $totalGallery }})</span>
+                        </div>
+                        <i class="ri-arrow-right-s-line text-slate-400"></i>
+                    </a>
+
+                    <a href="{{ route('admin.settings.index') }}" wire:navigate class="w-full flex items-center justify-between px-3.5 py-2.5 bg-slate-50 hover:bg-teal-50/80 rounded-xl text-xs font-bold text-slate-700 hover:text-[#114b5f] border border-slate-200/80 transition-colors">
+                        <div class="flex items-center gap-2.5">
+                            <i class="ri-settings-4-line text-base text-[#114b5f]"></i>
+                            <span>System Settings</span>
+                        </div>
+                        <i class="ri-arrow-right-s-line text-slate-400"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
     </div>
+
 </div>

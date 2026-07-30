@@ -9,7 +9,7 @@
             <p class="text-slate-500 text-sm mt-0.5">Manage taxonomy groupings for clinical research, hospital news, and surgeon publications.</p>
         </div>
         <button @click="isOpen = true; $wire.create()" 
-                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.98] transition-all cursor-pointer">
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#114b5f]/15 active:scale-[0.98] transition-all cursor-pointer">
             <i class="ri-folder-add-fill text-lg"></i> Add New Category
         </button>
     </div>
@@ -20,12 +20,12 @@
         <div class="p-5 border-b border-slate-50">
             <div class="max-w-md relative group">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i class="ri-search-2-line text-slate-400 group-focus-within:text-sky-600 transition-colors"></i>
+                    <i class="ri-search-2-line text-slate-400 group-focus-within:text-[#114b5f] transition-colors"></i>
                 </div>
                 <input type="text" 
                        wire:model.live.debounce.300ms="search" 
                        placeholder="Search by category name or slug..." 
-                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
             </div>
         </div>
 
@@ -60,7 +60,7 @@
                             </td>
                             <td class="py-3.5 px-6 text-right space-x-1">
                                 <button @click="isOpen = true; $wire.edit({{ $category->id }})" 
-                                        class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-sky-600 transition-all cursor-pointer inline-flex"
+                                        class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-[#114b5f] transition-all cursor-pointer inline-flex"
                                         title="Edit Category">
                                     <i class="ri-pencil-fill text-base"></i>
                                 </button>
@@ -142,7 +142,7 @@
                                type="text" 
                                wire:model.live="name" 
                                placeholder="e.g. Spine Surgery, Sports Medicine" 
-                               class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('name') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
+                               class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('name') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
                                required />
                         @error('name')
                             <span class="text-xs font-medium text-rose-500 flex items-center gap-1 mt-1">
@@ -158,7 +158,7 @@
                                type="text" 
                                wire:model="slug" 
                                placeholder="e.g. spine-surgery" 
-                               class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 font-mono text-xs focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('slug') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
+                               class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 font-mono text-xs focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('slug') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
                                required />
                         @error('slug')
                             <span class="text-xs font-medium text-rose-500 flex items-center gap-1 mt-1">
@@ -177,7 +177,7 @@
                         Cancel
                     </button>
                     <button type="submit" 
-                            class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
+                            class="px-4 py-2 bg-[#114b5f] hover:bg-[#0e3b4b] text-white rounded-xl text-xs font-semibold shadow-md shadow-[#114b5f]/15 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
                         <span wire:loading.delay class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         <span wire:loading.remove.delay>Save Category</span>
                         <span wire:loading.delay>Saving...</span>

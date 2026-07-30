@@ -12,7 +12,7 @@
         <div>
             <div class="flex items-center gap-2">
                 <h1 class="text-2xl font-heading font-bold text-slate-900 tracking-tight">Clinical Services Management</h1>
-                <span class="bg-sky-50 text-sky-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-sky-200/60">
+                <span class="bg-teal-50 text-[#114b5f] text-xs font-semibold px-2.5 py-0.5 rounded-full border border-teal-200/60">
                     {{ $services->total() }} Total
                 </span>
             </div>
@@ -20,7 +20,7 @@
         </div>
         
         <button @click="serviceModalOpen = true; $wire.create()" 
-                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.98] transition-all cursor-pointer">
+                class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#114b5f]/15 active:scale-[0.98] transition-all cursor-pointer">
             <i class="ri-add-line text-lg"></i>
             <span>Add New Service</span>
         </button>
@@ -36,7 +36,7 @@
             <input type="text" 
                    wire:model.live.debounce.300ms="search" 
                    placeholder="Search service title, slug, description..." 
-                   class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                   class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
         </div>
 
         <!-- Category Dropdown Filter -->
@@ -44,7 +44,7 @@
             <label for="filter-category" class="text-xs font-semibold text-slate-500">Department:</label>
             <select id="filter-category" 
                     wire:model.live="categoryFilter" 
-                    class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-slate-50 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 cursor-pointer">
+                    class="px-3 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-slate-50 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 cursor-pointer">
                 <option value="all">All Departments</option>
                 <option value="trauma">Trauma & Emergency</option>
                 <option value="spine">Spine & Back Care</option>
@@ -92,7 +92,7 @@
 
                             <!-- Category -->
                             <td class="py-4 px-6">
-                                <span class="bg-sky-50 text-sky-700 font-semibold px-2.5 py-1 rounded-lg text-xs border border-sky-100 inline-block">
+                                <span class="bg-teal-50 text-[#114b5f] font-semibold px-2.5 py-1 rounded-lg text-xs border border-teal-100 inline-block">
                                     {{ $item->category_label ?: ucfirst($item->category) }}
                                 </span>
                             </td>
@@ -108,7 +108,7 @@
                             <td class="py-4 px-6">
                                 <button type="button" 
                                         wire:click="toggleStatus({{ $item->id }})"
-                                        class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $item->is_active ? 'bg-sky-600' : 'bg-slate-300' }}"
+                                        class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $item->is_active ? 'bg-[#114b5f]' : 'bg-slate-300' }}"
                                         role="switch">
                                     <span class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $item->is_active ? 'translate-x-4' : 'translate-x-0' }}"></span>
                                 </button>
@@ -117,7 +117,7 @@
                             <!-- Action Buttons -->
                             <td class="py-4 px-6 text-right space-x-1">
                                 <button wire:click="edit({{ $item->id }})" 
-                                        class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-sky-600 transition-all cursor-pointer inline-flex"
+                                        class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-[#114b5f] transition-all cursor-pointer inline-flex"
                                         title="Edit Service">
                                     <i class="ri-pencil-line text-base"></i>
                                 </button>
@@ -204,7 +204,7 @@
                                type="text" 
                                wire:model.live.debounce.300ms="title" 
                                placeholder="e.g. Knee Replacement Surgery" 
-                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('title') border-rose-400 @enderror" 
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('title') border-rose-400 @enderror" 
                                required />
                         @error('title') <span class="text-xs font-medium text-rose-500 block">{{ $message }}</span> @enderror
                     </div>
@@ -216,7 +216,7 @@
                                type="text" 
                                wire:model="slug" 
                                placeholder="e.g. knee-replacement-surgery" 
-                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-mono text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('slug') border-rose-400 @enderror" 
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-mono text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('slug') border-rose-400 @enderror" 
                                required />
                         @error('slug') <span class="text-xs font-medium text-rose-500 block">{{ $message }}</span> @enderror
                     </div>
@@ -228,7 +228,7 @@
                         <label for="srv-category" class="text-xs font-semibold text-slate-700">Department <span class="text-rose-500">*</span></label>
                         <select id="srv-category" 
                                 wire:model.live="category" 
-                                class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-sky-500 transition-all bg-white cursor-pointer">
+                                class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#114b5f] transition-all bg-white cursor-pointer">
                             <option value="trauma">Trauma & Emergency</option>
                             <option value="spine">Spine & Back Care</option>
                             <option value="joints">Joint Replacements</option>
@@ -244,7 +244,7 @@
                                type="text" 
                                wire:model="category_label" 
                                placeholder="e.g. Joint Replacements" 
-                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 transition-all" />
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] transition-all" />
                     </div>
 
                     <!-- Badge / Tag -->
@@ -254,7 +254,7 @@
                                type="text" 
                                wire:model="badge" 
                                placeholder="e.g. Advanced & Conventional" 
-                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 transition-all" />
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] transition-all" />
                     </div>
                 </div>
 
@@ -263,7 +263,7 @@
                     <label for="srv-color" class="text-xs font-semibold text-slate-700">Color Accent Theme</label>
                     <select id="srv-color" 
                             wire:model="color" 
-                            class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-sky-500 transition-all bg-white cursor-pointer">
+                            class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-800 focus:outline-none focus:border-[#114b5f] transition-all bg-white cursor-pointer">
                         <option value="rose">Rose (Emergency)</option>
                         <option value="sky">Sky Blue (Spine)</option>
                         <option value="blue">Blue (Joints)</option>
@@ -297,7 +297,7 @@
                         
                         <div class="flex-1 space-y-2 w-full text-center sm:text-left">
                             <div class="flex flex-wrap items-center gap-2">
-                                <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-sm transition-all cursor-pointer">
+                                <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#114b5f] hover:bg-[#0e3b4b] text-white text-xs font-semibold shadow-sm transition-all cursor-pointer">
                                     <i class="ri-upload-2-line"></i>
                                     <span>Choose Image File</span>
                                     <input type="file" 
@@ -327,7 +327,7 @@
                               wire:model="desc" 
                               rows="3" 
                               placeholder="Enter short clinical summary of the procedure..." 
-                              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('desc') border-rose-400 @enderror"
+                              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('desc') border-rose-400 @enderror"
                               required></textarea>
                     @error('desc') <span class="text-xs font-medium text-rose-500 block">{{ $message }}</span> @enderror
                 </div>
@@ -339,7 +339,7 @@
                               wire:model="featuresInput" 
                               rows="3" 
                               placeholder="3D CT Pre-Op Planning&#10;Muscle-Sparing Technique&#10;Walk within 24 Hours" 
-                              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all leading-relaxed"></textarea>
+                              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all leading-relaxed"></textarea>
                 </div>
 
                 <!-- Active Status -->
@@ -350,7 +350,7 @@
                     </div>
                     <button type="button" 
                             wire:click="$toggle('is_active')"
-                            class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $is_active ? 'bg-sky-600' : 'bg-slate-300' }}"
+                            class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $is_active ? 'bg-[#114b5f]' : 'bg-slate-300' }}"
                             role="switch">
                         <span class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $is_active ? 'translate-x-4' : 'translate-x-0' }}"></span>
                     </button>
@@ -364,7 +364,7 @@
                         Cancel
                     </button>
                     <button type="submit" 
-                            class="px-5 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
+                            class="px-5 py-2 bg-[#114b5f] hover:bg-[#0e3b4b] text-white rounded-xl text-xs font-semibold shadow-md shadow-[#114b5f]/15 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
                         <span wire:loading wire:target="save" class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         <span wire:loading.remove wire:target="save"><i class="ri-save-line"></i> Save Service</span>
                         <span wire:loading wire:target="save">Saving...</span>

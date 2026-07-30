@@ -23,6 +23,12 @@ new #[Layout('layouts::admin')] #[Title('Settings | Admin')] class extends Compo
 
     public string $email = '';
 
+    public string $address = '';
+
+    public string $opd_timings = '';
+
+    public string $google_maps_url = '';
+
     // Social Media Links
     public string $social_instagram = '';
 
@@ -47,7 +53,10 @@ new #[Layout('layouts::admin')] #[Title('Settings | Admin')] class extends Compo
         $this->hospital_name = Setting::get('hospital_name', 'Advance Ortho & Spine Center');
         $this->phone_number = Setting::get('phone_number', '+1 (555) 234-5678');
         $this->whatsapp_number = Setting::get('whatsapp_number', '+1 (555) 987-6543');
-        $this->email = Setting::get('email', 'contact@orthohosp.com');
+        $this->email = Setting::get('email', 'care@advanceorthospine.com');
+        $this->address = Setting::get('address', '450 Health Avenue, Medical District, NY 10001');
+        $this->opd_timings = Setting::get('opd_timings', 'Mon - Sat: 8:00 AM - 8:00 PM');
+        $this->google_maps_url = Setting::get('google_maps_url', 'https://maps.google.com');
 
         $this->social_instagram = Setting::get('social_instagram', 'https://instagram.com/orthohosp');
         $this->social_facebook = Setting::get('social_facebook', 'https://facebook.com/orthohosp');
@@ -70,12 +79,18 @@ new #[Layout('layouts::admin')] #[Title('Settings | Admin')] class extends Compo
             'phone_number' => 'nullable|string|max:50',
             'whatsapp_number' => 'nullable|string|max:50',
             'email' => 'nullable|email|max:255',
+            'address' => 'nullable|string|max:500',
+            'opd_timings' => 'nullable|string|max:255',
+            'google_maps_url' => 'nullable|url|max:500',
         ]);
 
         Setting::set('hospital_name', $this->hospital_name);
         Setting::set('phone_number', $this->phone_number);
         Setting::set('whatsapp_number', $this->whatsapp_number);
         Setting::set('email', $this->email);
+        Setting::set('address', $this->address);
+        Setting::set('opd_timings', $this->opd_timings);
+        Setting::set('google_maps_url', $this->google_maps_url);
 
         $this->dispatch('toast-show', [
             'message' => 'Hospital information updated successfully!',

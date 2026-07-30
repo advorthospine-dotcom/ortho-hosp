@@ -3,7 +3,7 @@
     <!-- Header Section -->
     <div class="border-b border-slate-200/80 pb-5">
         <h1 class="text-2xl font-heading font-bold text-slate-900 tracking-tight">System Settings</h1>
-        <p class="text-slate-500 text-sm mt-1">Configure hospital contact credentials, social media channels, and homepage hero banner settings.</p>
+        <p class="text-slate-500 text-sm mt-1">Configure hospital contact credentials, physical address, consultation timings, social media channels, and homepage hero banner settings.</p>
     </div>
 
     <!-- Settings Container with Sidebar Tabs -->
@@ -12,16 +12,16 @@
         <!-- Tabs Navigation Left -->
         <div class="p-4 bg-slate-50/70 border-b lg:border-b-0 lg:border-r border-slate-200/80 space-y-1.5 shrink-0">
             <button wire:click="$set('activeTab', 'hospital')" 
-                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-left {{ $activeTab === 'hospital' ? 'bg-sky-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-200/60 hover:text-slate-900' }}">
+                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-left {{ $activeTab === 'hospital' ? 'bg-[#114b5f] text-white shadow-sm font-bold' : 'text-slate-600 hover:bg-slate-200/60 hover:text-slate-900' }}">
                 <i class="ri-hospital-line text-lg"></i>
                 <div>
                     <span class="block">Hospital Info</span>
-                    <span class="text-[10px] opacity-80 font-normal">Phone, WhatsApp, Email</span>
+                    <span class="text-[10px] opacity-80 font-normal">Phone, Address, OPD Hours</span>
                 </div>
             </button>
 
             <button wire:click="$set('activeTab', 'social')" 
-                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-left {{ $activeTab === 'social' ? 'bg-sky-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-200/60 hover:text-slate-900' }}">
+                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-left {{ $activeTab === 'social' ? 'bg-[#114b5f] text-white shadow-sm font-bold' : 'text-slate-600 hover:bg-slate-200/60 hover:text-slate-900' }}">
                 <i class="ri-share-line text-lg"></i>
                 <div>
                     <span class="block">Social Links</span>
@@ -30,7 +30,7 @@
             </button>
 
             <button wire:click="$set('activeTab', 'hero')" 
-                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-left {{ $activeTab === 'hero' ? 'bg-sky-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-200/60 hover:text-slate-900' }}">
+                    class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold transition-all cursor-pointer text-left {{ $activeTab === 'hero' ? 'bg-[#114b5f] text-white shadow-sm font-bold' : 'text-slate-600 hover:bg-slate-200/60 hover:text-slate-900' }}">
                 <i class="ri-slideshow-3-line text-lg"></i>
                 <div>
                     <span class="block">Hero Section & Slider</span>
@@ -47,9 +47,9 @@
                 <div class="space-y-6">
                     <div class="border-b border-slate-100 pb-4">
                         <h2 class="text-base font-heading font-bold text-slate-800 flex items-center gap-2">
-                            <i class="ri-building-4-line text-sky-600"></i> Hospital Contact Information
+                            <i class="ri-building-4-line text-[#114b5f]"></i> Hospital Contact Information & OPD
                         </h2>
-                        <p class="text-xs text-slate-400 mt-0.5">Primary contact info displayed in website headers, footers, and patient contact sections.</p>
+                        <p class="text-xs text-slate-400 mt-0.5">Primary contact credentials, physical address, and consultation hours displayed across website headers & footers.</p>
                     </div>
 
                     <form wire:submit.prevent="saveHospitalInfo" class="space-y-5 max-w-2xl">
@@ -64,7 +64,7 @@
                                        type="text" 
                                        wire:model="hospital_name" 
                                        placeholder="e.g. Advance Ortho & Spine Center" 
-                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('hospital_name') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror" 
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('hospital_name') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror" 
                                        required />
                             </div>
                             @error('hospital_name')
@@ -85,7 +85,7 @@
                                        type="text" 
                                        wire:model="phone_number" 
                                        placeholder="e.g. +1 (555) 234-5678" 
-                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@
                                        type="text" 
                                        wire:model="whatsapp_number" 
                                        placeholder="e.g. +1 (555) 987-6543" 
-                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                             </div>
                             <p class="text-[11px] text-slate-400">Include country code for direct click-to-chat links (e.g. +15559876543).</p>
                         </div>
@@ -115,14 +115,59 @@
                                 <input id="email" 
                                        type="email" 
                                        wire:model="email" 
-                                       placeholder="e.g. contact@orthohosp.com" 
-                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                                       placeholder="e.g. care@advanceorthospine.com" 
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
+                            </div>
+                        </div>
+
+                        <!-- Hospital Address -->
+                        <div class="space-y-1.5">
+                            <label for="address" class="text-xs font-semibold text-slate-700">Hospital Physical Address</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 pt-3 flex items-start pointer-events-none text-slate-400">
+                                    <i class="ri-map-pin-2-fill text-base"></i>
+                                </div>
+                                <textarea id="address" 
+                                          wire:model="address" 
+                                          rows="2" 
+                                          placeholder="e.g. 450 Health Avenue, Medical District, NY 10001" 
+                                          class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- OPD Timings -->
+                        <div class="space-y-1.5">
+                            <label for="opd_timings" class="text-xs font-semibold text-slate-700">OPD & Consultation Hours</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                    <i class="ri-time-fill text-base"></i>
+                                </div>
+                                <input id="opd_timings" 
+                                       type="text" 
+                                       wire:model="opd_timings" 
+                                       placeholder="e.g. Mon - Sat: 8:00 AM - 8:00 PM" 
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
+                            </div>
+                        </div>
+
+                        <!-- Google Maps URL -->
+                        <div class="space-y-1.5">
+                            <label for="google_maps_url" class="text-xs font-semibold text-slate-700">Google Maps Direction URL</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                                    <i class="ri-map-2-line text-base"></i>
+                                </div>
+                                <input id="google_maps_url" 
+                                       type="url" 
+                                       wire:model="google_maps_url" 
+                                       placeholder="e.g. https://maps.google.com/?q=..." 
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                             </div>
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 flex justify-end">
                             <button type="submit" 
-                                    class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer">
+                                    class="px-5 py-2.5 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs rounded-xl shadow-md shadow-[#114b5f]/15 active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer">
                                 <span wire:loading wire:target="saveHospitalInfo" class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                                 <i wire:loading.remove wire:target="saveHospitalInfo" class="ri-save-line text-base"></i>
                                 <span>Save Hospital Info</span>
@@ -137,7 +182,7 @@
                 <div class="space-y-6">
                     <div class="border-b border-slate-100 pb-4">
                         <h2 class="text-base font-heading font-bold text-slate-800 flex items-center gap-2">
-                            <i class="ri-global-line text-sky-600"></i> Social Media Links
+                            <i class="ri-global-line text-[#114b5f]"></i> Social Media Links
                         </h2>
                         <p class="text-xs text-slate-400 mt-0.5">Links to official hospital social profiles (Instagram, Facebook, X/Twitter).</p>
                     </div>
@@ -154,7 +199,7 @@
                                        type="url" 
                                        wire:model="social_instagram" 
                                        placeholder="https://instagram.com/your-hospital" 
-                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                             </div>
                         </div>
 
@@ -169,7 +214,7 @@
                                        type="url" 
                                        wire:model="social_facebook" 
                                        placeholder="https://facebook.com/your-hospital" 
-                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                             </div>
                         </div>
 
@@ -184,13 +229,13 @@
                                        type="url" 
                                        wire:model="social_x" 
                                        placeholder="https://x.com/your-hospital" 
-                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                             </div>
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 flex justify-end">
                             <button type="submit" 
-                                    class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer">
+                                    class="px-5 py-2.5 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs rounded-xl shadow-md shadow-[#114b5f]/15 active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer">
                                 <span wire:loading wire:target="saveSocialLinks" class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                                 <i wire:loading.remove wire:target="saveSocialLinks" class="ri-save-line text-base"></i>
                                 <span>Save Social Links</span>
@@ -205,7 +250,7 @@
                 <div class="space-y-6">
                     <div class="border-b border-slate-100 pb-4">
                         <h2 class="text-base font-heading font-bold text-slate-800 flex items-center gap-2">
-                            <i class="ri-layout-top-line text-sky-600"></i> Homepage Hero Section & Image Slider
+                            <i class="ri-layout-top-line text-[#114b5f]"></i> Homepage Hero Section & Image Slider
                         </h2>
                         <p class="text-xs text-slate-400 mt-0.5">Manage the main headline title, description, and slider image background assets.</p>
                     </div>
@@ -218,7 +263,7 @@
                                    type="text" 
                                    wire:model="hero_title" 
                                    placeholder="e.g. Advanced Orthopedic & Spine Surgery Center" 
-                                   class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('hero_title') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror" 
+                                   class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('hero_title') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror" 
                                    required />
                             @error('hero_title')
                                 <span class="text-xs font-medium text-rose-500 flex items-center gap-1 mt-1">
@@ -234,7 +279,7 @@
                                       wire:model="hero_description" 
                                       rows="3" 
                                       placeholder="e.g. Comprehensive joint replacement, sports medicine, and state-of-the-art spine surgery." 
-                                      class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all @error('hero_description') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
+                                      class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('hero_description') border-rose-400 focus:border-rose-500 focus:ring-rose-100 @enderror"
                                       required></textarea>
                             @error('hero_description')
                                 <span class="text-xs font-medium text-rose-500 flex items-center gap-1 mt-1">
@@ -251,7 +296,7 @@
                             </div>
 
                             <!-- Upload Box -->
-                            <div class="relative border-2 border-dashed border-slate-200 hover:border-sky-500 rounded-2xl p-6 flex flex-col items-center justify-center transition-colors text-center group cursor-pointer bg-slate-50/50 hover:bg-sky-50/20">
+                            <div class="relative border-2 border-dashed border-slate-200 hover:border-[#114b5f] rounded-2xl p-6 flex flex-col items-center justify-center transition-colors text-center group cursor-pointer bg-slate-50/50 hover:bg-teal-50/30">
                                 <input type="file" 
                                        wire:model="newHeroImages" 
                                        id="hero-images-input" 
@@ -260,7 +305,7 @@
                                        class="absolute inset-0 opacity-0 cursor-pointer z-10" />
                                 
                                 <div class="space-y-2 pointer-events-none">
-                                    <div class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-400 group-hover:text-sky-600 group-hover:border-sky-200 transition-colors mx-auto">
+                                    <div class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-400 group-hover:text-[#114b5f] group-hover:border-teal-200 transition-colors mx-auto">
                                         <i class="ri-landscape-line text-2xl"></i>
                                     </div>
                                     <div>
@@ -286,7 +331,7 @@
                                         @foreach ($newHeroImages as $key => $img)
                                             <div class="flex items-center justify-between bg-white px-3 py-2 rounded-lg border border-slate-200 text-xs">
                                                 <div class="flex items-center gap-2 truncate">
-                                                    <i class="ri-image-line text-sky-600"></i>
+                                                    <i class="ri-image-line text-[#114b5f]"></i>
                                                     <span class="truncate font-medium text-slate-700">{{ $img->getClientOriginalName() }}</span>
                                                 </div>
                                                 <span class="text-[11px] text-slate-400 shrink-0 font-mono">{{ round($img->getSize() / 1024, 1) }} KB</span>
@@ -335,7 +380,7 @@
                         <!-- Action Submit Button -->
                         <div class="pt-4 border-t border-slate-100 flex justify-end">
                             <button type="submit" 
-                                    class="px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer">
+                                    class="px-5 py-2.5 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-bold text-xs rounded-xl shadow-md shadow-[#114b5f]/15 active:scale-[0.99] transition-all flex items-center gap-2 cursor-pointer">
                                 <span wire:loading wire:target="saveHeroSection" class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                                 <i wire:loading.remove wire:target="saveHeroSection" class="ri-save-line text-base"></i>
                                 <span>Save Hero Section</span>

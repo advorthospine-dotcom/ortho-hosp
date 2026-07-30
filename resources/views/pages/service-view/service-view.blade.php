@@ -17,22 +17,6 @@
     <!-- Main Outer Container -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- Breadcrumbs Navigation -->
-        <nav class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 mb-8 overflow-x-auto whitespace-nowrap pb-1 shrink-0">
-            <a href="{{ route('home') }}" class="hover:text-[#114b5f] transition-colors inline-flex items-center gap-1">
-                <i class="ri-home-4-line text-sm"></i> Home
-            </a>
-            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
-            <a href="{{ route('services') }}" class="hover:text-[#114b5f] transition-colors">
-                Services
-            </a>
-            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
-            <span class="text-[#114b5f] bg-teal-50 px-2 py-0.5 rounded font-bold border border-teal-200/60">
-                {{ $categoryLabel }}
-            </span>
-            <i class="ri-arrow-right-s-line text-slate-300 text-sm"></i>
-            <span class="text-slate-600 truncate max-w-[240px]" title="{{ $title }}">{{ $title }}</span>
-        </nav>
 
         <!-- Main Layout Grid -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
@@ -137,7 +121,7 @@
 
                         <!-- Step 4 -->
                         <div class="relative">
-                            <span class="absolute -left-[39px] top-0 w-7 h-7 rounded-full bg-[#3b774b] text-white flex items-center justify-center text-xs font-extrabold shadow-md ring-4 ring-white">4</span>
+                            <span class="absolute -left-[39px] top-0 w-7 h-7 rounded-full bg-[#114b5f] text-white flex items-center justify-center text-xs font-extrabold shadow-md ring-4 ring-white">4</span>
                             <div class="space-y-1">
                                 <h4 class="font-heading font-bold text-xs sm:text-sm text-slate-900">Targeted Rehabilitation & Rapid Discharge</h4>
                                 <p class="text-xs text-slate-600 leading-relaxed">Dedicated physiotherapists map out personalized daily mobility routines to get you walking safely within 24 hours.</p>

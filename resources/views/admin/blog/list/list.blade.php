@@ -8,7 +8,7 @@
             <p class="text-slate-500 text-sm mt-0.5">Publish articles, updates, and research documents on orthopaedics, spine surgeries, and health tips.</p>
         </div>
         <a href="{{ route('admin.blogs.create') }}" 
-           class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.98] transition-all cursor-pointer">
+           class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#114b5f]/15 active:scale-[0.98] transition-all cursor-pointer">
             <i class="ri-add-line text-lg"></i> Create New Post
         </a>
     </div>
@@ -19,12 +19,12 @@
         <div class="p-5 border-b border-slate-50">
             <div class="max-w-md relative group">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <i class="ri-search-2-line text-slate-400 group-focus-within:text-sky-600 transition-colors"></i>
+                    <i class="ri-search-2-line text-slate-400 group-focus-within:text-[#114b5f] transition-colors"></i>
                 </div>
                 <input type="text" 
                        wire:model.live.debounce.300ms="search" 
                        placeholder="Search posts by title or content..." 
-                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                       class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                                         <img src="{{ $blog->image_url }}" alt="{{ $blog->image_alt ?? $blog->title }}" class="w-full h-full object-cover" />
                                     </div>
                                     <div class="flex flex-col min-w-0">
-                                        <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="font-semibold text-slate-900 hover:text-sky-600 transition-colors truncate">
+                                        <a href="{{ route('admin.blogs.edit', $blog->id) }}" class="font-semibold text-slate-900 hover:text-[#114b5f] transition-colors truncate">
                                             {{ $blog->title }}
                                         </a>
                                         <span class="text-[10px] text-slate-400 font-mono mt-0.5 truncate">{{ $blog->slug }}</span>
@@ -60,7 +60,7 @@
                             </td>
                             <!-- Category Badge -->
                             <td class="py-3.5 px-6">
-                                <span class="bg-sky-50 text-sky-700 font-semibold px-2 py-0.5 rounded text-[10px]">
+                                <span class="bg-teal-50 text-[#114b5f] font-semibold px-2 py-0.5 rounded text-[10px]">
                                     {{ $blog->category->name ?? 'Uncategorized' }}
                                 </span>
                             </td>
@@ -87,7 +87,7 @@
                             <!-- Action Buttons -->
                             <td class="py-3.5 px-6 text-right space-x-1 whitespace-nowrap">
                                 <a href="{{ route('admin.blogs.edit', $blog->id) }}" 
-                                   class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-sky-600 transition-all cursor-pointer inline-flex"
+                                   class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-[#114b5f] transition-all cursor-pointer inline-flex"
                                    title="Edit Post">
                                     <i class="ri-pencil-fill text-base"></i>
                                 </a>
@@ -104,7 +104,7 @@
                                 <div class="flex flex-col items-center justify-center gap-2">
                                     <i class="ri-file-text-line text-4xl text-slate-300"></i>
                                     <span>No blog posts found</span>
-                                    <a href="{{ route('admin.blogs.create') }}" class="text-sky-600 hover:underline text-xs mt-1 font-semibold">Write your first post</a>
+                                    <a href="{{ route('admin.blogs.create') }}" class="text-[#114b5f] hover:underline text-xs mt-1 font-semibold">Write your first post</a>
                                 </div>
                             </td>
                         </tr>

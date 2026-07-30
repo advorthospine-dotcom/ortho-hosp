@@ -19,7 +19,7 @@
         <div>
             <div class="flex items-center gap-2">
                 <h1 class="text-2xl font-heading font-bold text-slate-900 tracking-tight">Hospital Gallery</h1>
-                <span class="bg-sky-50 text-sky-700 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-sky-200/60">
+                <span class="bg-teal-50 text-[#114b5f] text-xs font-semibold px-2.5 py-0.5 rounded-full border border-teal-200/60">
                     {{ $galleries->total() }} Images
                 </span>
             </div>
@@ -28,7 +28,7 @@
         
         <div class="flex items-center gap-3">
             <button @click="uploadModalOpen = true; $wire.resetUploadForm()" 
-                    class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm rounded-xl shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.98] transition-all cursor-pointer">
+                    class="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-semibold text-sm rounded-xl shadow-md shadow-[#114b5f]/15 active:scale-[0.98] transition-all cursor-pointer">
                 <i class="ri-upload-cloud-2-line text-lg"></i>
                 <span>Upload New Images</span>
             </button>
@@ -45,7 +45,7 @@
             <input type="text" 
                    wire:model.live.debounce.300ms="search" 
                    placeholder="Search gallery by title..." 
-                   class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                   class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
         </div>
 
         <!-- Filter tabs -->
@@ -103,7 +103,7 @@
                             <!-- Edit Details -->
                             <button type="button"
                                     wire:click="edit({{ $item->id }})"
-                                    class="w-9 h-9 bg-white/90 hover:bg-sky-600 hover:text-white text-slate-700 rounded-xl flex items-center justify-center shadow transition-all hover:scale-110 cursor-pointer"
+                                    class="w-9 h-9 bg-white/90 hover:bg-[#114b5f] hover:text-white text-slate-700 rounded-xl flex items-center justify-center shadow transition-all hover:scale-110 cursor-pointer"
                                     title="Edit Gallery Info">
                                 <i class="ri-pencil-line text-base"></i>
                             </button>
@@ -135,7 +135,7 @@
                             <span class="text-[11px] font-medium text-slate-500">Status</span>
                             <button type="button" 
                                     wire:click="toggleStatus({{ $item->id }})"
-                                    class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $item->is_active ? 'bg-sky-600' : 'bg-slate-300' }}"
+                                    class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $item->is_active ? 'bg-[#114b5f]' : 'bg-slate-300' }}"
                                     role="switch" 
                                     aria-checked="{{ $item->is_active ? 'true' : 'false' }}">
                                 <span class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $item->is_active ? 'translate-x-4' : 'translate-x-0' }}"></span>
@@ -162,7 +162,7 @@
                         </div>
                         @if(!$search)
                             <button @click="uploadModalOpen = true; $wire.resetUploadForm()" 
-                                    class="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-semibold text-xs rounded-xl shadow-md transition-all cursor-pointer">
+                                    class="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-[#114b5f] hover:bg-[#0e3b4b] text-white font-semibold text-xs rounded-xl shadow-md transition-all cursor-pointer">
                                 <i class="ri-upload-cloud-line text-base"></i> Upload Images Now
                             </button>
                         @endif
@@ -210,7 +210,7 @@
             <!-- Modal Header -->
             <div class="px-6 py-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-sky-100 text-sky-600 flex items-center justify-center">
+                    <div class="w-8 h-8 rounded-lg bg-teal-100 text-[#114b5f] flex items-center justify-center">
                         <i class="ri-upload-cloud-fill text-lg"></i>
                     </div>
                     <div>
@@ -231,7 +231,7 @@
                     <!-- File Drag & Drop Box -->
                     <div class="space-y-1.5">
                         <label class="text-xs font-semibold text-slate-700">Image Files <span class="text-rose-500">*</span></label>
-                        <div class="relative border-2 border-dashed border-slate-200 hover:border-sky-500 rounded-2xl p-6 flex flex-col items-center justify-center transition-colors text-center group cursor-pointer bg-slate-50/50 hover:bg-sky-50/20">
+                        <div class="relative border-2 border-dashed border-slate-200 hover:border-[#114b5f] rounded-2xl p-6 flex flex-col items-center justify-center transition-colors text-center group cursor-pointer bg-slate-50/50 hover:bg-teal-50/20">
                             <input type="file" 
                                    wire:model="images" 
                                    id="gallery-file-input" 
@@ -240,7 +240,7 @@
                                    class="absolute inset-0 opacity-0 cursor-pointer z-10" />
                             
                             <div class="space-y-2 py-1 pointer-events-none">
-                                <div class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-400 group-hover:text-sky-600 group-hover:border-sky-200 transition-colors mx-auto">
+                                <div class="w-12 h-12 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-400 group-hover:text-[#114b5f] group-hover:border-teal-200 transition-colors mx-auto">
                                     <i class="ri-image-add-line text-2xl"></i>
                                 </div>
                                 <div>
@@ -267,7 +267,7 @@
                                 @foreach ($images as $key => $img)
                                     <div class="flex items-center justify-between bg-white px-3 py-1.5 rounded-lg border border-slate-200 text-xs">
                                         <div class="flex items-center gap-2 truncate">
-                                            <i class="ri-image-fill text-sky-600"></i>
+                                            <i class="ri-image-fill text-[#114b5f]"></i>
                                             <span class="truncate font-medium text-slate-700">{{ $img->getClientOriginalName() }}</span>
                                         </div>
                                         <span class="text-[11px] text-slate-400 shrink-0 font-mono">{{ round($img->getSize() / 1024, 1) }} KB</span>
@@ -286,7 +286,7 @@
                                type="text" 
                                wire:model="title" 
                                placeholder="e.g., Main Surgical Operating Room, Executive Ward" 
-                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                         <p class="text-[11px] text-slate-400">If left empty, the original file name will be formatted as the title.</p>
                     </div>
 
@@ -298,7 +298,7 @@
                         </div>
                         <button type="button" 
                                 wire:click="$toggle('is_active')"
-                                class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $is_active ? 'bg-sky-600' : 'bg-slate-300' }}"
+                                class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $is_active ? 'bg-[#114b5f]' : 'bg-slate-300' }}"
                                 role="switch">
                             <span class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $is_active ? 'translate-x-4' : 'translate-x-0' }}"></span>
                         </button>
@@ -316,7 +316,7 @@
                     <button type="submit" 
                             wire:loading.attr="disabled"
                             @if (count($images) === 0) disabled @endif
-                            class="px-4 py-2 bg-sky-600 hover:bg-sky-700 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white rounded-xl text-xs font-semibold shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
+                            class="px-4 py-2 bg-[#114b5f] hover:bg-[#0e3b4b] disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white rounded-xl text-xs font-semibold shadow-md shadow-[#114b5f]/15 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
                         <span wire:loading wire:target="uploadImages" class="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                         <span wire:loading.remove wire:target="uploadImages"><i class="ri-upload-2-line"></i> Save & Upload</span>
                         <span wire:loading wire:target="uploadImages">Uploading...</span>
@@ -371,7 +371,7 @@
                                type="text" 
                                wire:model="title" 
                                placeholder="Enter photo title" 
-                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100 transition-all" />
+                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                     </div>
 
                     <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200/80">
@@ -381,7 +381,7 @@
                         </div>
                         <button type="button" 
                                 wire:click="$toggle('is_active')"
-                                class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $is_active ? 'bg-sky-600' : 'bg-slate-300' }}"
+                                class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none {{ $is_active ? 'bg-[#114b5f]' : 'bg-slate-300' }}"
                                 role="switch">
                             <span class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $is_active ? 'translate-x-4' : 'translate-x-0' }}"></span>
                         </button>
@@ -395,7 +395,7 @@
                         Cancel
                     </button>
                     <button type="submit" 
-                            class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-semibold shadow-md shadow-sky-600/10 hover:shadow-sky-600/20 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
+                            class="px-4 py-2 bg-[#114b5f] hover:bg-[#0e3b4b] text-white rounded-xl text-xs font-semibold shadow-md shadow-[#114b5f]/15 active:scale-[0.99] transition-all flex items-center gap-1.5 cursor-pointer">
                         <span>Save Changes</span>
                     </button>
                 </div>
