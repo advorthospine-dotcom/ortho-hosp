@@ -338,14 +338,14 @@
     </section>
 
     <!-- 4.5 HOSPITAL INFRASTRUCTURE & CAMPUS GALLERY -->
-    <section class="py-16 sm:py-20 bg-slate-50/90 border-b border-slate-200/80">
+    <section class="py-20 sm:py-20 bg-slate-50/90 border-b border-slate-200/80">
         <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 space-y-12">
             
             <div class="text-center max-w-3xl mx-auto space-y-3">
-                <span class="text-xs font-bold uppercase tracking-widest text-[#114b5f] bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200/80">
+                <span class="text-xs  font-bold uppercase tracking-widest text-[#114b5f] bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200/80">
                     Hospital Campus & Technology
                 </span>
-                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 tracking-tight">
+                <h2 class="text-2xl mt-2117.96.147.238 sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 tracking-tight">
                     State-of-the-Art Infrastructure & Facilities
                 </h2>
                 <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -415,7 +415,7 @@
     </section>
 
     <!-- 5. SERVING THE ENTIRE SEEMANCHAL REGION (Districts Ribbon) -->
-    <section class="py-16 sm:py-20 bg-slate-900 text-white relative overflow-hidden border-b border-slate-800">
+    <section class="py-20 sm:py-28 bg-slate-900 text-white relative overflow-hidden border-b border-slate-800">
         <div class="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-[#114b5f]/30 blur-3xl pointer-events-none"></div>
 
         <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 space-y-8 relative z-10">
