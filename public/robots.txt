@@ -1,2 +1,10 @@
 User-agent: *
-Disallow: /
+Allow: /
+
+# Exclude Administrative & Auth Routes
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+
+# XML Sitemap
+Sitemap: /sitemap.xml

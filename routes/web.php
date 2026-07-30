@@ -47,3 +47,57 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     // Settings (Hospital info, Socials, Hero Slider)
     Route::livewire('/settings', 'admin::setting')->name('admin.settings.index');
 });
+
+// Dynamic XML Sitemap Generator for Search Engines
+Route::get('/sitemap.xml', function () {
+    $baseUrl = url('/');
+    $now = now()->toAtomString();
+
+    $staticUrls = [
+        ['loc' => $baseUrl, 'priority' => '1.0', 'changefreq' => 'daily'],
+        ['loc' => $baseUrl . '/about', 'priority' => '0.8', 'changefreq' => 'monthly'],
+        ['loc' => $baseUrl . '/services', 'priority' => '0.9', 'changefreq' => 'weekly'],
+        ['loc' => $baseUrl . '/gallery', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => $baseUrl . '/blogs', 'priority' => '0.8', 'changefreq' => 'weekly'],
+        ['loc' => $baseUrl . '/contact', 'priority' => '0.9', 'changefreq' => 'monthly'],
+    ];
+
+    $services = class_exists(\App\Models\Service::class) ? \App\Models\Service::where('is_active', true)->get() : [];
+    $blogs = class_exists(\App\Models\Blog::class) ? \App\Models\Blog::where('is_active', true)->get() : [];
+
+    $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+    foreach ($staticUrls as $url) {
+        $xml .= '<url>';
+        $xml .= '<loc>' . htmlspecialchars($url['loc']) . '</loc>';
+        $xml .= '<lastmod>' . $now . '</lastmod>';
+        $xml .= '<changefreq>' . $url['changefreq'] . '</changefreq>';
+        $xml .= '<priority>' . $url['priority'] . '</priority>';
+        $xml .= '</url>';
+    }
+
+    foreach ($services as $service) {
+        $xml .= '<url>';
+        $xml .= '<loc>' . htmlspecialchars($baseUrl . '/services/' . $service->slug) . '</loc>';
+        $xml .= '<lastmod>' . ($service->updated_at ? $service->updated_at->toAtomString() : $now) . '</lastmod>';
+        $xml .= '<changefreq>weekly</changefreq>';
+        $xml .= '<priority>0.8</priority>';
+        $xml .= '</url>';
+    }
+
+    foreach ($blogs as $blog) {
+        $xml .= '<url>';
+        $xml .= '<loc>' . htmlspecialchars($baseUrl . '/blogs/' . $blog->slug) . '</loc>';
+        $xml .= '<lastmod>' . ($blog->updated_at ? $blog->updated_at->toAtomString() : $now) . '</lastmod>';
+        $xml .= '<changefreq>weekly</changefreq>';
+        $xml .= '<priority>0.7</priority>';
+        $xml .= '</url>';
+    }
+
+    $xml .= '</urlset>';
+
+    return response($xml, 200, [
+        'Content-Type' => 'application/xml',
+    ]);
+})->name('sitemap');
