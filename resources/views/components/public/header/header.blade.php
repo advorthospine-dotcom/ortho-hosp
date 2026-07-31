@@ -55,7 +55,7 @@
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
                 <i class="ri-time-line text-sm"></i>
-                <span>24/7 Emergency & OPD Open</span>
+                <span>24/7 Emergency</span>
             </div>
 
         </div>
