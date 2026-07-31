@@ -93,3 +93,10 @@ test('public users can render gallery page and see active images', function () {
         ->assertSee('Advanced Surgery Operating Room');
 });
 
+test('public users see empty state when no images exist in database', function () {
+    $this->get('/gallery')
+        ->assertSuccessful()
+        ->assertSee('No Gallery Photos Available')
+        ->assertDontSee('Hospital Facility Showcase');
+});
+

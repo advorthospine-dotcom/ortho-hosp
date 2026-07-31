@@ -14,10 +14,15 @@ new #[Layout('layouts::app')] #[Title('Hospital Photo Gallery | Advance Orthopae
     {
         $galleries = Gallery::query()
             ->where('is_active', true)
+            ->whereNotNull('image_path')
+            ->where('image_path', '!=', '')
             ->orderByDesc('id')
             ->paginate(12);
 
-        $totalImages = Gallery::where('is_active', true)->count();
+        $totalImages = Gallery::where('is_active', true)
+            ->whereNotNull('image_path')
+            ->where('image_path', '!=', '')
+            ->count();
 
         return view('pages.gallery.gallery', [
             'galleries' => $galleries,
