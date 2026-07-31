@@ -211,8 +211,8 @@
                         </div>
                     </div>
 
-                    <!-- Floating Quality Badge -->
-                    <div class="absolute -bottom-5 -right-3 bg-white border border-slate-200/80 p-3.5 sm:p-4 rounded-2xl shadow-xl flex items-center gap-3 max-w-xs">
+                    <!-- Floating Quality Badge (Top-Right position to avoid overlapping doctor name) -->
+                    <div class="absolute -top-4 -right-3 sm:-top-5 sm:-right-5 z-20 bg-white border border-slate-200/90 p-3.5 sm:p-4 rounded-2xl shadow-xl flex items-center gap-3 max-w-xs">
                         <div class="w-10 h-10 rounded-xl bg-teal-50 text-[#114b5f] flex items-center justify-center text-xl font-bold shrink-0 border border-teal-200/60">
                             <i class="ri-award-fill"></i>
                         </div>

@@ -28,7 +28,7 @@
             </p>
 
             <p class="text-slate-300 text-sm sm:text-base max-w-4xl mx-auto leading-relaxed font-normal">
-                At Advanced Orthopaedic & Spine Center, we are committed to providing comprehensive, evidence-based, and patient-focused orthopaedic and spine care. Located at Advanced Super Speciality Hospital, NH-31, Line Bazar, Purnea, our center serves patients not only from Purnea but also from the entire Seemanchal region, including Katihar, Kishanganj, Araria, Supaul, Madhepura, Saharsa, Forbesganj, and nearby districts of Bihar, as well as neighboring areas of West Bengal and Nepal.
+                At Advanced Orthopaedic & Spine Center, we are committed to providing comprehensive, evidence-based, and patient-focused orthopaedic and spine care. Located at Advanced Super Speciality Hospital, NH-31, Line Bazar, Purnea, our center serves patients not only from Purnea but also from the entire Seemanchal region, including Katihar, Kishanganj, Araria, Supaul, Madhepura, Saharsa, Forbesganj, and nearby districts of Bihar, as well as neighboring areas of West Bengal.
             </p>
 
             <!-- Quick Stats Ribbon -->
@@ -43,7 +43,7 @@
                 </div>
                 <div class="bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl text-center space-y-1">
                     <p class="text-2xl sm:text-3xl font-extrabold text-emerald-400 tracking-tight">12+ Districts</p>
-                    <p class="text-xs text-slate-300 font-medium">Seemanchal & Nepal</p>
+                    <p class="text-xs text-slate-300 font-medium">Seemanchal</p>
                 </div>
                 <div class="bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl text-center space-y-1">
                     <p class="text-2xl sm:text-3xl font-extrabold text-emerald-400 tracking-tight">24/7</p>
@@ -77,14 +77,14 @@
                         </div>
                     </div>
 
-                    <!-- Floating Experience Badge -->
-                    <div class="absolute -bottom-6 -right-4 sm:bottom-6 sm:-right-6 bg-white border border-slate-200/80 p-4 sm:p-5 rounded-2xl shadow-xl flex items-center gap-3.5 max-w-xs">
-                        <div class="w-12 h-12 rounded-xl bg-teal-50 text-[#114b5f] flex items-center justify-center text-2xl font-bold shrink-0 border border-teal-200/60">
+                    <!-- Floating Experience Badge (Top-Right position to avoid overlapping doctor name) -->
+                    <div class="absolute -top-4 -right-3 sm:-top-5 sm:-right-5 z-20 bg-white border border-slate-200/90 p-3.5 sm:p-4 rounded-2xl shadow-xl flex items-center gap-3.5 max-w-xs">
+                        <div class="w-11 h-11 rounded-xl bg-teal-50 text-[#114b5f] flex items-center justify-center text-xl font-bold shrink-0 border border-teal-200/60">
                             <i class="ri-award-fill text-[#114b5f]"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-xs sm:text-sm text-slate-900 leading-tight">21+ Years Experience</h4>
-                            <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Thousands of successful bone, joint & spine surgeries.</p>
+                            <p class="text-[11px] text-slate-500 mt-0.5 leading-relaxed">Thousands of successful surgeries.</p>
                         </div>
                     </div>
                 </div>
@@ -466,9 +466,7 @@
                 <span class="px-4 py-2 rounded-xl bg-white/10 text-white font-bold text-xs border border-white/15 flex items-center gap-1.5">
                     <i class="ri-map-pin-2-fill text-teal-400"></i> West Bengal Border
                 </span>
-                <span class="px-4 py-2 rounded-xl bg-white/10 text-white font-bold text-xs border border-white/15 flex items-center gap-1.5">
-                    <i class="ri-map-pin-2-fill text-teal-400"></i> Nepal Border Areas
-                </span>
+                
             </div>
         </div>
     </section>
