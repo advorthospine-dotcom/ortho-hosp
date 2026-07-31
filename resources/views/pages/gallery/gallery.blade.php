@@ -224,9 +224,9 @@
                     <!-- Sample 3 -->
                     <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_32px_rgba(17,75,95,0.08)] hover:border-[#114b5f]/40 transition-all duration-300 group relative">
                         <div class="aspect-16/9 bg-slate-900 relative overflow-hidden cursor-pointer"
-                             @click="openLightbox(2, 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80', 'Endoscopic Spine Surgery Suite')">
+                             @click="openLightbox(2, 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80', 'Minimally Invasive Spine Surgery Suite')">
                             <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80" 
-                                 alt="Endoscopic Spine Suite" 
+                                 alt="Minimally Invasive Spine Suite" 
                                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out" />
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
                             
@@ -245,17 +245,17 @@
                         <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
                             <div class="space-y-2">
                                 <h3 class="text-base sm:text-lg font-heading font-extrabold text-slate-900 group-hover:text-[#114b5f] transition-colors leading-snug">
-                                    Endoscopic Spine Theatre
+                                    Minimally Invasive Spine Theatre
                                 </h3>
                                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                    Equipped with 4K Karl Storz ultra-HD spine endoscopes for keyhole procedures.
+                                    Equipped with 4K Karl Storz ultra-HD operating microscopes for keyhole procedures.
                                 </p>
                             </div>
 
                             <div class="pt-4 shrink-0 border-t border-slate-100 flex items-center justify-between mt-4">
                                 <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Infrastructure</span>
                                 <button type="button" 
-                                        @click="openLightbox(2, 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80', 'Endoscopic Spine Surgery Suite')"
+                                        @click="openLightbox(2, 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80', 'Minimally Invasive Spine Surgery Suite')"
                                         class="inline-flex items-center gap-1 text-xs font-bold text-[#114b5f] hover:text-[#0d3b4b] transition-colors group/link cursor-pointer">
                                     <span>Expand Photo</span>
                                     <i class="ri-arrow-right-line group-hover/link:translate-x-1 transition-transform"></i>

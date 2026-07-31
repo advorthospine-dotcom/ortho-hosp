@@ -19,7 +19,7 @@
                 Get in Touch with Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-emerald-300 to-teal-100">Clinical Team</span>
             </h1>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-medium">
-                Have questions regarding knee replacement, endoscopic spine surgery, or emergency trauma admissions? We are available 24/7 to assist you.
+                Have questions regarding knee replacement, minimally invasive spine surgery, or emergency trauma admissions? We are available 24/7 to assist you.
             </p>
         </div>
     </div>
@@ -199,7 +199,7 @@
                                     <option value="General Inquiry">General Inquiry</option>
                                     <option value="Trauma & Emergency Care">Trauma & Emergency Care</option>
                                     <option value="Knee & Hip Surgery">Knee & Hip Surgery</option>
-                                    <option value="Endoscopic Spine Care">Endoscopic Spine Care</option>
+                                    <option value="Minimally Invasive Spine Care">Minimally Invasive Spine Care</option>
                                     <option value="Sports Medicine & ACL">Sports Medicine & ACL</option>
                                     <option value="Physiotherapy & Rehabilitation">Physiotherapy & Rehabilitation</option>
                                 </select>

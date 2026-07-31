@@ -38,7 +38,7 @@
                     <p class="text-xs text-slate-300 font-medium">Surgical Experience</p>
                 </div>
                 <div class="bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl text-center space-y-1">
-                    <p class="text-2xl sm:text-3xl font-extrabold text-teal-300 tracking-tight">Endoscopic</p>
+                    <p class="text-2xl sm:text-3xl font-extrabold text-teal-300 tracking-tight">Keyhole</p>
                     <p class="text-xs text-slate-300 font-medium">Spine Precision</p>
                 </div>
                 <div class="bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-2xl text-center space-y-1">

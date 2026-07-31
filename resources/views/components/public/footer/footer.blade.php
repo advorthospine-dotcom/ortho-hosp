@@ -14,7 +14,7 @@
                 </a>
 
                 <p class="text-slate-400 leading-relaxed text-xs">
-                    Super-specialty hospital for joint replacements, endoscopic spine surgery, trauma emergency, and physical rehabilitation.
+                    Super-specialty hospital for joint replacements, minimally invasive spine surgery, trauma emergency, and physical rehabilitation.
                 </p>
 
                 <!-- Social Links Icons -->

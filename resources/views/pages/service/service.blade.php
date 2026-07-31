@@ -1,6 +1,6 @@
 @section('title', 'Clinical Services & Treatments | Advance Orthopaedic & Spine Center')
 @section('meta_description', 'Comprehensive orthopaedic services including minimally invasive spine surgery, robotic knee replacement, fracture care, sports medicine, and physical therapy.')
-@section('meta_keywords', 'orthopaedic services, robotic joint replacement, endoscopic spine surgery, fracture treatment, physical therapy')
+@section('meta_keywords', 'orthopaedic services, robotic joint replacement, minimally invasive spine surgery, fracture treatment, physical therapy')
 
 <div class="min-h-screen bg-slate-50/60 pb-20">
     
@@ -19,7 +19,7 @@
                 World-Class <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-200 via-emerald-300 to-teal-100">Orthopaedic & Spine Care</span>
             </h1>
             <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-medium">
-                Comprehensive trauma response, joint replacements, micro-endoscopic spine surgery, and 1-on-1 advanced physical rehabilitation.
+                Comprehensive trauma response, joint replacements, minimally invasive spine surgery, and 1-on-1 advanced physical rehabilitation.
             </p>
 
             <!-- Search Bar inside Hero -->

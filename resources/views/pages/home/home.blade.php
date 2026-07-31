@@ -1,12 +1,12 @@
 @section('title', 'Advance Orthopaedic & Spine Center | Super-Specialty Hospital')
-@section('meta_description', 'Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, endoscopic spine surgery, joint care, sports injury, and 24/7 emergency care.')
+@section('meta_description', 'Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, minimally invasive spine surgery, joint care, sports injury, and 24/7 emergency care.')
 @section('meta_keywords', 'orthopaedic hospital, spine surgeon Kanpur, knee replacement, joint care, sports medicine, trauma center')
 
 <div>
     <!-- 1. LIGHT HERO SECTION WITH DYNAMIC AUTO-SLIDING CAROUSEL -->
     @php
         $heroTitle = setting('hero_title', 'Restoring Pain-Free Mobility & Spine Health');
-        $heroDescription = setting('hero_description', 'Sub-specialized orthopaedic excellence powered by Advanced Knee Replacements, Keyhole Endoscopic Spine Surgery, and 24/7 Level-1 Trauma Emergency Care.');
+        $heroDescription = setting('hero_description', 'Sub-specialized orthopaedic excellence powered by Advanced Knee Replacements, Minimally Invasive Spine Surgery, and 24/7 Level-1 Trauma Emergency Care.');
         
         $customSliderImages = setting('hero_slider_images', []);
         $slides = [];
@@ -452,7 +452,7 @@
                     </div>
                     <h3 class="font-bold text-white text-lg group-hover:text-teal-300 transition-colors">Daycare Keyhole & Minimal Precision</h3>
                     <p class="text-xs text-slate-300 leading-relaxed">
-                        Endoscopic 7mm spine discectomy and 3D precision joint alignment minimize soft tissue disruption, enabling same-day or 24-hour hospital discharge.
+                        Minimally invasive keyhole spine discectomy and 3D precision joint alignment minimize soft tissue disruption, enabling same-day or 24-hour hospital discharge.
                     </p>
                 </div>
 
@@ -517,12 +517,12 @@
                     <button @click="activeFaq = (activeFaq === 2 ? 0 : 2)" class="w-full px-6 py-5 text-left font-bold text-slate-900 text-base flex items-center justify-between gap-4 focus:outline-none">
                         <span class="flex items-center gap-3">
                             <i class="ri-question-fill text-[#114b5f] text-xl"></i>
-                            <span>What is the recovery time for keyhole endoscopic spine surgery?</span>
+                            <span>What is the recovery time for keyhole spine discectomy surgery?</span>
                         </span>
                         <i class="ri-add-line text-slate-400 text-2xl transition-transform duration-200" :class="{ 'rotate-45 text-[#114b5f]': activeFaq === 2 }"></i>
                     </button>
                     <div x-show="activeFaq === 2" x-collapse x-cloak class="px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 border-t border-slate-100 leading-relaxed">
-                        Keyhole endoscopic spine discectomy is performed through a tiny 7mm portal without cutting back muscles or damaging spinal ligaments. Patients are usually discharged within 24 hours and return to light activities in 7 to 10 days.
+                        Keyhole micro-discectomy spine surgery is performed through a tiny incision without cutting back muscles or damaging spinal ligaments. Patients are usually discharged within 24 hours and return to light activities in 7 to 10 days.
                     </div>
                 </div>
 

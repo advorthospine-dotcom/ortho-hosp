@@ -29,7 +29,7 @@ class GallerySeeder extends Seeder
                 'is_active' => true,
             ],
             [
-                'title' => 'Keyhole Endoscopic Spine Surgery OT',
+                'title' => 'Keyhole Minimally Invasive Spine Surgery OT',
                 'image_path' => 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80',
                 'is_active' => true,
             ],

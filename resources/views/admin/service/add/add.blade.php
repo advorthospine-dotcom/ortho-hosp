@@ -46,7 +46,7 @@
                         <input id="title" 
                                type="text" 
                                wire:model.live.debounce.300ms="title" 
-                               placeholder="e.g. Endoscopic Discectomy Spine Surgery" 
+                               placeholder="e.g. Minimally Invasive Spine Surgery" 
                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('title') border-rose-400 @enderror" 
                                required />
                         @error('title') <span class="text-xs font-medium text-rose-500 flex items-center gap-1"><i class="ri-error-warning-line"></i> {{ $message }}</span> @enderror
@@ -58,7 +58,7 @@
                         <input id="slug" 
                                type="text" 
                                wire:model="slug" 
-                               placeholder="e.g. endoscopic-discectomy-spine-surgery" 
+                               placeholder="e.g. minimally-invasive-spine-surgery" 
                                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-mono text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all @error('slug') border-rose-400 @enderror" 
                                required />
                         @error('slug') <span class="text-xs font-medium text-rose-500 flex items-center gap-1"><i class="ri-error-warning-line"></i> {{ $message }}</span> @enderror
@@ -190,7 +190,7 @@
                     <textarea id="featuresInput" 
                               wire:model="featuresInput" 
                               rows="4" 
-                              placeholder="Keyhole Micro-Incisions&#10;Same-Day Mobilization Protocol&#10;3D High-Definition Endoscopic Guidance" 
+                              placeholder="Keyhole Micro-Incisions&#10;Same-Day Mobilization Protocol&#10;3D High-Definition Microscopic Guidance" 
                               class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium text-slate-800 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all leading-relaxed"></textarea>
                 </div>
             </div>
@@ -208,7 +208,7 @@
                     <input id="meta_title" 
                            type="text" 
                            wire:model="meta_title" 
-                           placeholder="Recommended: 50-60 characters (e.g. Endoscopic Spine Surgery in Purnea)" 
+                           placeholder="Recommended: 50-60 characters (e.g. Minimally Invasive Spine Surgery in Purnea)" 
                            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-[#114b5f] focus:ring-2 focus:ring-teal-100 transition-all" />
                 </div>
 

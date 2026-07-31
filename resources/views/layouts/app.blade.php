@@ -33,7 +33,7 @@
         }
 
         $defaultTitle = $title ?? ($pageSeo?->meta_title ?: 'Advance Orthopaedic & Spine Center | Super-Specialty Hospital');
-        $defaultDesc = $pageSeo?->meta_description ?: 'Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, endoscopic spine surgery, joint care, and 24/7 trauma emergency care.';
+        $defaultDesc = $pageSeo?->meta_description ?: 'Advance Orthopaedic & Spine Center - Premier hospital for knee replacement, minimally invasive spine surgery, joint care, and 24/7 trauma emergency care.';
         $defaultKeywords = $pageSeo?->meta_keywords ?: 'orthopaedic hospital, spine surgeon, knee replacement, joint care, sports medicine';
         $defaultOgTitle = $pageSeo?->og_title ?: $defaultTitle;
         $defaultOgDesc = $pageSeo?->og_description ?: $defaultDesc;
@@ -46,7 +46,7 @@
             'description' => strip_tags($defaultDesc),
             'medicalSpecialty' => [
                 'Orthopedic Surgery',
-                'Endoscopic Spine Surgery',
+                'Minimally Invasive Spine Surgery',
                 'Joint Replacement',
                 'Sports Injury Care',
             ],

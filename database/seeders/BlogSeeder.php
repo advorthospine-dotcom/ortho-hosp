@@ -84,16 +84,16 @@ class BlogSeeder extends Seeder
             ],
             [
                 'category_slug' => 'spine-care',
-                'title' => 'Endoscopic Spine Surgery: 7mm Keyhole Discectomy Guide',
-                'slug' => 'endoscopic-spine-surgery-7mm-keyhole-discectomy-guide',
-                'image_alt' => 'Micro endoscopic spinal surgery setup',
-                'meta_title' => 'Endoscopic Spine Surgery & Discectomy Guide',
-                'meta_description' => 'Discover ultra-minimally invasive endoscopic spine surgery performed through a 7mm incision with zero back muscle disruption.',
+                'title' => 'Minimally Invasive Spine Surgery: Microdiscectomy Guide',
+                'slug' => 'minimally-invasive-spine-surgery-microdiscectomy-guide',
+                'image_alt' => 'Microscopic spinal surgery setup',
+                'meta_title' => 'Minimally Invasive Spine Surgery & Discectomy Guide',
+                'meta_description' => 'Discover ultra-minimally invasive keyhole spine surgery performed through a micro-incision with zero back muscle disruption.',
                 'content' => '
-                    <p>For patients suffering from chronic sciatica, lumbar disc herniation, or spinal stenosis, open spine surgery was historically associated with lengthy hospital stays and significant muscle detachment. Today, full endoscopic spine surgery allows targeted neural decompression through a single 7mm micro-incision.</p>
+                    <p>For patients suffering from chronic sciatica, lumbar disc herniation, or spinal stenosis, open spine surgery was historically associated with lengthy hospital stays and significant muscle detachment. Today, minimally invasive spine surgery allows targeted neural decompression through a micro-incision.</p>
 
-                    <h2>How Does Micro-Endoscopic Discectomy Work?</h2>
-                    <p>Under continuous fluid irrigation and high-definition endoscopic visualization, a slender tube is inserted directly into the spinal canal through the interlaminar or transforaminal space. Specialized micro-instruments remove disc fragments compressing the nerve root without cutting back muscles.</p>
+                    <h2>How Does Microdiscectomy Work?</h2>
+                    <p>Under high-definition microscopic visualization, a slender tubular retractor is inserted directly into the spinal canal through the interlaminar or transforaminal space. Specialized micro-instruments remove disc fragments compressing the nerve root without cutting back muscles.</p>
 
                     <h2>Key Clinical Advantages</h2>
                     <ul>
