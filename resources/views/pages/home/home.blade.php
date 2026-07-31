@@ -156,7 +156,6 @@
                 <span class="text-teal-200/60">•</span>
                 <span class="flex items-center gap-2 text-rose-300"><i class="ri-alarm-warning-fill"></i> 24/7 LEVEL-1 EMERGENCY TRAUMA CARE</span>
                 <span class="text-teal-200/60">•</span>
-                <span class="flex items-center gap-2 text-emerald-300"><i class="ri-shield-check-fill text-emerald-300"></i> JCI & NABH GLOBAL ACCREDITATION</span>
                 <span class="text-teal-200/60">•</span>
                 <span class="flex items-center gap-2 text-white"><i class="ri-heart-pulse-fill text-teal-300"></i> 99.4% PATIENT RECOVERY SATISFACTION</span>
                 <span class="text-teal-200/60">•</span>
