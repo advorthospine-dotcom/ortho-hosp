@@ -1,5 +1,32 @@
 <!-- CLEAN & PROFESSIONAL HEADER COMPONENT -->
-<div x-data="{ mobileMenuOpen: false, servicesOpen: false, mobileServicesOpen: false }" @keydown.escape.window="mobileMenuOpen = false">
+<div x-data="{ 
+    mobileMenuOpen: false, 
+    servicesOpen: false, 
+    mobileServicesOpen: false, 
+    galleryOpen: false, 
+    mobileGalleryOpen: false,
+    servicesTimeout: null,
+    galleryTimeout: null,
+
+    openServices() {
+        clearTimeout(this.servicesTimeout);
+        this.servicesOpen = true;
+    },
+    closeServices() {
+        this.servicesTimeout = setTimeout(() => {
+            this.servicesOpen = false;
+        }, 250);
+    },
+    openGallery() {
+        clearTimeout(this.galleryTimeout);
+        this.galleryOpen = true;
+    },
+    closeGallery() {
+        this.galleryTimeout = setTimeout(() => {
+            this.galleryOpen = false;
+        }, 250);
+    }
+}" @keydown.escape.window="mobileMenuOpen = false">
     <!-- Top Contact Bar (Dark Theme: Left = Phone & Email, Right = 24/7 Open - Hidden on mobile screens) -->
     <div class="hidden sm:block bg-slate-950 text-slate-300 text-xs py-2.5 border-b border-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3">
@@ -47,79 +74,120 @@
 
             <!-- Desktop Navigation Links -->
             <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-700">
-                <a href="{{ route('home') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-1 {{ request()->routeIs('home') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">Home</a>
-                <a href="{{ route('about') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-1 {{ request()->routeIs('about') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">About Us</a>
+                <a href="{{ route('home') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-2 {{ request()->routeIs('home') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">Home</a>
+                <a href="{{ route('about') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-2 {{ request()->routeIs('about') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">About Us</a>
                 
                 <!-- Services Dropdown with Sub-Menu -->
-                <div class="relative" @mouseleave="servicesOpen = false">
+                <div class="relative" @mouseenter="openServices()" @mouseleave="closeServices()">
                     <button @click="servicesOpen = !servicesOpen" 
-                            @mouseenter="servicesOpen = true" 
                             type="button"
-                            class="flex items-center gap-1.5 hover:text-[#114b5f] transition-colors py-1 focus:outline-none {{ request()->routeIs('services*') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">
+                            class="flex items-center gap-1.5 hover:text-[#114b5f] transition-colors py-2 focus:outline-none {{ request()->routeIs('services*') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">
                         <span>Services</span>
                         <i class="ri-arrow-down-s-line text-slate-400 transition-transform duration-200" :class="{ 'rotate-180 text-[#114b5f]': servicesOpen }"></i>
                     </button>
 
-                    <!-- Sub-Menu Dropdown Panel -->
+                    <!-- Sub-Menu Dropdown Panel with Invisible Bridge -->
                     <div x-show="servicesOpen" 
                           x-transition:enter="transition ease-out duration-200"
-                          x-transition:enter-start="opacity-0 translate-y-2"
+                          x-transition:enter-start="opacity-0 translate-y-1"
                           x-transition:enter-end="opacity-100 translate-y-0"
                           x-transition:leave="transition ease-in duration-150"
                           x-transition:leave-start="opacity-100 translate-y-0"
-                          x-transition:leave-end="opacity-0 translate-y-2"
+                          x-transition:leave-end="opacity-0 translate-y-1"
                           @click.outside="servicesOpen = false"
                           x-cloak
-                          class="absolute top-full left-0 w-80 bg-white rounded-2xl shadow-xl border border-slate-200/90 p-3 z-50 mt-2 space-y-1">
-                        
-                        <div class="px-3 py-2 border-b border-slate-100 font-extrabold text-[11px] text-slate-400 uppercase tracking-wider flex items-center justify-between">
-                            <span>Surgical Specialties</span>
-                            <span class="text-[#114b5f] bg-teal-50 px-2 py-0.5 rounded-md font-bold">20 Services</span>
-                        </div>
-                        
-                        <div class="py-1 space-y-1">
-                            <a href="{{ route('services.view', 'trauma-and-accident-care') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
-                                <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
-                                    <i class="ri-first-aid-kit-line text-sm"></i>
-                                </div>
-                                <span>Trauma & Accident Care</span>
-                            </a>
-                            <a href="{{ route('services.view', 'cervical-thoracic-lumbar-spine-disorders') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
-                                <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
-                                    <i class="ri-health-book-line text-sm"></i>
-                                </div>
-                                <span>Spine & Back Care</span>
-                            </a>
-                            <a href="{{ route('services.view', 'knee-replacement-surgery') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
-                                <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
-                                    <i class="ri-pulse-line text-sm"></i>
-                                </div>
-                                <span>Knee & Hip Replacement</span>
-                            </a>
-                            <a href="{{ route('services.view', 'sports-injury-treatment') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
-                                <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
-                                    <i class="ri-run-line text-sm"></i>
-                                </div>
-                                <span>Sports Injury & Arthroscopy</span>
-                            </a>
-                            <a href="{{ route('services.view', 'physiotherapy-and-rehabilitation') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
-                                <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
-                                    <i class="ri-body-scan-line text-sm"></i>
-                                </div>
-                                <span>Physiotherapy & Rehabilitation</span>
-                            </a>
-                        </div>
+                          class="absolute top-full left-0 pt-2 z-50">
+                        <div class="w-80 bg-white rounded-2xl shadow-xl border border-slate-200/90 p-3 space-y-1">
+                            <div class="px-3 py-2 border-b border-slate-100 font-extrabold text-[11px] text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                                <span>Surgical Specialties</span>
+                                <span class="text-[#114b5f] bg-teal-50 px-2 py-0.5 rounded-md font-bold">20 Services</span>
+                            </div>
+                            
+                            <div class="py-1 space-y-1">
+                                <a href="{{ route('services.view', 'trauma-and-accident-care') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
+                                        <i class="ri-first-aid-kit-line text-sm"></i>
+                                    </div>
+                                    <span>Trauma & Accident Care</span>
+                                </a>
+                                <a href="{{ route('services.view', 'cervical-thoracic-lumbar-spine-disorders') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
+                                        <i class="ri-health-book-line text-sm"></i>
+                                    </div>
+                                    <span>Spine & Back Care</span>
+                                </a>
+                                <a href="{{ route('services.view', 'knee-replacement-surgery') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
+                                        <i class="ri-pulse-line text-sm"></i>
+                                    </div>
+                                    <span>Knee & Hip Replacement</span>
+                                </a>
+                                <a href="{{ route('services.view', 'sports-injury-treatment') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
+                                        <i class="ri-run-line text-sm"></i>
+                                    </div>
+                                    <span>Sports Injury & Arthroscopy</span>
+                                </a>
+                                <a href="{{ route('services.view', 'physiotherapy-and-rehabilitation') }}" wire:navigate @click="servicesOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
+                                        <i class="ri-body-scan-line text-sm"></i>
+                                    </div>
+                                    <span>Physiotherapy & Rehabilitation</span>
+                                </a>
+                            </div>
 
-                        <div class="pt-2 border-t border-slate-100">
-                            <a href="{{ route('services') }}" wire:navigate @click="servicesOpen = false" class="flex items-center justify-between px-3 py-2 text-xs font-bold text-[#114b5f] hover:bg-teal-50 rounded-xl transition-colors">
-                                <span>View All 20 Services</span>
-                                <i class="ri-arrow-right-line"></i>
-                            </a>
+                            <div class="pt-2 border-t border-slate-100">
+                                <a href="{{ route('services') }}" wire:navigate @click="servicesOpen = false" class="flex items-center justify-between px-3 py-2 text-xs font-bold text-[#114b5f] hover:bg-teal-50 rounded-xl transition-colors">
+                                    <span>View All 20 Services</span>
+                                    <i class="ri-arrow-right-line"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <a href="{{ route('gallery') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-1 {{ request()->routeIs('gallery') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">Gallery</a>
+                <!-- Gallery Dropdown with Sub-Menu -->
+                <div class="relative" @mouseenter="openGallery()" @mouseleave="closeGallery()">
+                    <button @click="galleryOpen = !galleryOpen" 
+                            type="button"
+                            class="flex items-center gap-1.5 hover:text-[#114b5f] transition-colors py-2 focus:outline-none {{ (request()->routeIs('gallery') || request()->routeIs('videos')) ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">
+                        <span>Gallery</span>
+                        <i class="ri-arrow-down-s-line text-slate-400 transition-transform duration-200" :class="{ 'rotate-180 text-[#114b5f]': galleryOpen }"></i>
+                    </button>
+
+                    <!-- Sub-Menu Dropdown Panel with Invisible Bridge -->
+                    <div x-show="galleryOpen" 
+                          x-transition:enter="transition ease-out duration-200"
+                          x-transition:enter-start="opacity-0 translate-y-1"
+                          x-transition:enter-end="opacity-100 translate-y-0"
+                          x-transition:leave="transition ease-in duration-150"
+                          x-transition:leave-start="opacity-100 translate-y-0"
+                          x-transition:leave-end="opacity-0 translate-y-1"
+                          @click.outside="galleryOpen = false"
+                          x-cloak
+                          class="absolute top-full left-0 pt-2 z-50">
+                        <div class="w-64 bg-white rounded-2xl shadow-xl border border-slate-200/90 p-3 space-y-1">
+                            <div class="px-3 py-2 border-b border-slate-100 font-extrabold text-[11px] text-slate-400 uppercase tracking-wider">
+                                <span>Media & Galleries</span>
+                            </div>
+                            
+                            <div class="py-1 space-y-1">
+                                <a href="{{ route('gallery') }}" wire:navigate @click="galleryOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
+                                        <i class="ri-gallery-line text-sm"></i>
+                                    </div>
+                                    <span>Photo Gallery</span>
+                                </a>
+                                <a href="{{ route('videos') }}" wire:navigate @click="galleryOpen = false" class="flex items-center gap-3 px-3 py-2.5 text-xs font-semibold text-slate-700 hover:bg-teal-50/80 hover:text-[#114b5f] rounded-xl transition-colors">
+                                    <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#114b5f] flex items-center justify-center shrink-0">
+                                        <i class="ri-video-line text-sm"></i>
+                                    </div>
+                                    <span>Video Gallery</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <a href="{{ route('blog') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-1 {{ request()->routeIs('blog*') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">Blog</a>
                 <a href="{{ route('contact') }}" wire:navigate class="hover:text-[#114b5f] transition-colors py-1 {{ request()->routeIs('contact') ? 'text-[#114b5f] font-extrabold border-b-2 border-[#114b5f]' : '' }}">Contact</a>
             </nav>
@@ -226,14 +294,28 @@
                 </div>
             </div>
 
-            <!-- Gallery Link -->
-            <a href="{{ route('gallery') }}" 
-               wire:navigate 
-               @click="mobileMenuOpen = false" 
-               class="flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('gallery') ? 'bg-teal-50 text-[#114b5f] border border-teal-200/80 font-extrabold shadow-2xs' : 'text-slate-700 hover:bg-slate-50 hover:text-[#114b5f]' }}">
-                <i class="ri-gallery-line text-lg {{ request()->routeIs('gallery') ? 'text-[#114b5f]' : 'text-slate-400' }}"></i>
-                <span>Hospital Gallery</span>
-            </a>
+            <!-- Gallery Accordion Sub-Menu on Mobile -->
+            <div class="rounded-xl border border-slate-200/80 overflow-hidden bg-slate-50/50">
+                <button type="button" 
+                        @click="mobileGalleryOpen = !mobileGalleryOpen" 
+                        class="w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-700 hover:text-[#114b5f] transition-colors">
+                    <div class="flex items-center gap-3.5">
+                        <i class="ri-gallery-line text-lg text-slate-400"></i>
+                        <span>Gallery & Media</span>
+                    </div>
+                    <i class="ri-arrow-down-s-line text-slate-400 text-lg transition-transform duration-200" :class="{ 'rotate-180 text-[#114b5f]': mobileGalleryOpen }"></i>
+                </button>
+
+                <!-- Collapsible Sub-Menu List -->
+                <div x-show="mobileGalleryOpen" x-transition x-cloak class="px-3 pb-3 space-y-1 border-t border-slate-200/60 pt-2 text-xs">
+                    <a href="{{ route('gallery') }}" wire:navigate @click="mobileMenuOpen = false" class="block px-3 py-2 font-medium text-slate-600 hover:text-[#114b5f] hover:bg-white rounded-lg transition-colors">
+                        • Photo Gallery
+                    </a>
+                    <a href="{{ route('videos') }}" wire:navigate @click="mobileMenuOpen = false" class="block px-3 py-2 font-medium text-slate-600 hover:text-[#114b5f] hover:bg-white rounded-lg transition-colors">
+                        • Video Gallery
+                    </a>
+                </div>
+            </div>
 
             <!-- Blog Link -->
             <a href="{{ route('blog') }}" 

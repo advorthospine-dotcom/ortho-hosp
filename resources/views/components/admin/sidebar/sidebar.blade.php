@@ -116,7 +116,16 @@
                        @click="sidebarOpen = false"
                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group {{ request()->routeIs('admin.gallery.index') ? 'bg-[#114b5f] text-white font-bold shadow-md shadow-[#114b5f]/20' : 'text-slate-300 hover:text-white hover:bg-slate-900/80' }}">
                         <i class="ri-gallery-fill text-base {{ request()->routeIs('admin.gallery.index') ? 'text-white' : 'text-slate-400 group-hover:text-emerald-400' }}"></i>
-                        <span>Gallery</span>
+                        <span>Photo Gallery</span>
+                    </a>
+
+                    <!-- Video List -->
+                    <a href="{{ route('admin.videos.index') }}" 
+                       wire:navigate 
+                       @click="sidebarOpen = false"
+                       class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all group {{ request()->routeIs('admin.videos.*') ? 'bg-[#114b5f] text-white font-bold shadow-md shadow-[#114b5f]/20' : 'text-slate-300 hover:text-white hover:bg-slate-900/80' }}">
+                        <i class="ri-video-fill text-base {{ request()->routeIs('admin.videos.*') ? 'text-white' : 'text-slate-400 group-hover:text-emerald-400' }}"></i>
+                        <span>Video Library</span>
                     </a>
 
                     <!-- Clinical Services -->

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::livewire('/', 'pages::home')->name('home');
 Route::livewire('/about', 'pages::about')->name('about');
 Route::livewire('/gallery', 'pages::gallery')->name('gallery');
+Route::livewire('/videos', 'pages::videos')->name('videos');
 Route::livewire('/blogs', 'pages::blog')->name('blog');
 Route::livewire('/blogs/{slug}', 'pages::blog-view')->name('blog.view');
 Route::livewire('/services', 'pages::service')->name('services');
@@ -40,6 +41,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
     // Gallery (Upload & Modal CRUD)
     Route::livewire('/gallery', 'admin::gallery')->name('admin.gallery.index');
+    Route::livewire('/videos', 'admin::video-list')->name('admin.videos.index');
 
     // Clinical Services CRUD (Dedicated pages)
     Route::livewire('/services', 'admin::service.list')->name('admin.services.index');
@@ -60,6 +62,7 @@ Route::get('/sitemap.xml', function () {
         ['loc' => $baseUrl . '/about', 'priority' => '0.8', 'changefreq' => 'monthly'],
         ['loc' => $baseUrl . '/services', 'priority' => '0.9', 'changefreq' => 'weekly'],
         ['loc' => $baseUrl . '/gallery', 'priority' => '0.7', 'changefreq' => 'monthly'],
+        ['loc' => $baseUrl . '/videos', 'priority' => '0.7', 'changefreq' => 'weekly'],
         ['loc' => $baseUrl . '/blogs', 'priority' => '0.8', 'changefreq' => 'weekly'],
         ['loc' => $baseUrl . '/contact', 'priority' => '0.9', 'changefreq' => 'monthly'],
     ];

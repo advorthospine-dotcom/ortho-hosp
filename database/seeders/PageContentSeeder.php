@@ -54,6 +54,16 @@ class PageContentSeeder extends Seeder
                 'is_active' => true,
             ],
             [
+                'page_name' => 'Video Gallery',
+                'slug' => 'videos',
+                'meta_title' => 'Surgical Procedures & Patient Education Videos | Advance Orthopaedic & Spine Center',
+                'meta_description' => 'Watch video walkthroughs of advanced knee replacement, keyhole spine surgery, sports injury rehabilitation, and patient recovery stories.',
+                'meta_keywords' => 'surgery videos, orthopedic patient education, knee replacement video, spine surgery walkthrough',
+                'og_title' => 'Clinical Procedure & Patient Education Videos',
+                'og_description' => 'Watch video insights and surgical walkthroughs by our sub-specialist orthopaedic surgeons.',
+                'is_active' => true,
+            ],
+            [
                 'page_name' => 'Blog & Articles',
                 'slug' => 'blog',
                 'meta_title' => 'Orthopaedic Health Articles & Medical Insights | Advance Orthopaedic & Spine Center',
