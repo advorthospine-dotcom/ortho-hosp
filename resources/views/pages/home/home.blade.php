@@ -224,11 +224,11 @@
 
                 <!-- Doctor Description & Center Commitment (7 cols) -->
                 <div class="lg:col-span-7 space-y-5">
-                    <div class="space-y-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-[#114b5f] bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200/80">
+                    <div class="space-y-3">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-[#114b5f] bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200/80">
                             Trusted Care in Seemanchal
                         </span>
-                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight">
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight mt-3 sm:mt-4">
                             Advanced Orthopaedic & Spine Center, Purnea
                         </h2>
                     </div>

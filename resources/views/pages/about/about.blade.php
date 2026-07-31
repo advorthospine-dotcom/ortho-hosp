@@ -92,10 +92,10 @@
                 <!-- Right Content Column (7 Cols) -->
                 <div class="lg:col-span-7 space-y-6">
                     <div class="space-y-3">
-                        <span class="text-xs font-bold uppercase tracking-widest text-[#114b5f] bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200/80">
+                        <span class="inline-block text-xs font-bold uppercase tracking-widest text-[#114b5f] bg-teal-50 px-3.5 py-1.5 rounded-full border border-teal-200/80">
                             Meet Our Specialist
                         </span>
-                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight">
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-extrabold text-slate-900 tracking-tight leading-tight mt-3 sm:mt-4">
                             Dr. Md. Shafique Alam
                         </h2>
                         <p class="text-[#114b5f] font-bold text-sm sm:text-base">
